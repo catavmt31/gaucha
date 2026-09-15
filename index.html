@@ -2168,7 +2168,8 @@ async function openFundamentoDetail(id){
       textInput.value = '';
       await refreshComments(id);
     }catch(e){
-      errorEl.textContent = 'No se pudo guardar el comentario. Probá de nuevo.';
+      console.error('Error al guardar comentario:', e);
+      errorEl.textContent = 'No se pudo guardar el comentario: ' + (e.message || e);
       errorEl.style.display = 'block';
     }
     btn.disabled = false;
@@ -2358,7 +2359,8 @@ async function openDetail(id){
       textInput.value = '';
       await refreshComments(id);
     }catch(e){
-      errorEl.textContent = 'No se pudo guardar el comentario. Probá de nuevo.';
+      console.error('Error al guardar comentario:', e);
+      errorEl.textContent = 'No se pudo guardar el comentario: ' + (e.message || e);
       errorEl.style.display = 'block';
     }
     btn.disabled = false;
