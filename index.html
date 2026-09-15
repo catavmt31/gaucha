@@ -316,7 +316,16 @@
 <script>
 const SUPABASE_URL = 'https://aepufwftobgdkmxhikxe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_C5rzs1B2-HR8o8GoG1AyXw_AaP1Ix7l';
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let supabaseClient = null;
+try{
+  if(typeof supabase !== 'undefined'){
+    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } else {
+    console.error('Supabase library did not load — comments will be unavailable.');
+  }
+}catch(e){
+  console.error('Supabase init failed:', e);
+}
 
 const FUNDAMENTOS = [
   {
@@ -2178,6 +2187,7 @@ async function openFundamentoDetail(id){
 }
 
 async function commentCount(recipeId){
+  if(!supabaseClient) return 0;
   try{
     const { count, error } = await supabaseClient
       .from('comments')
@@ -2230,6 +2240,7 @@ async function renderGrid(){
 }
 
 async function loadComments(recipeId){
+  if(!supabaseClient) return [];
   try{
     const { data, error } = await supabaseClient
       .from('comments')
@@ -2245,6 +2256,7 @@ async function loadComments(recipeId){
 }
 
 async function saveComment(recipeId, name, text){
+  if(!supabaseClient) throw new Error('No se pudo conectar con el servicio de comentarios. Recargá la página e intentá de nuevo.');
   const { error } = await supabaseClient
     .from('comments')
     .insert({ recipe_id: recipeId, name, text });
