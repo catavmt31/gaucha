@@ -202,6 +202,20 @@
   }
   .tech-note strong{ display:block; font-size:12px; margin-bottom:4px; color:var(--cat-color, var(--carnes)); }
 
+  .tip-gaucha{
+    background:rgba(201,138,46,0.10);
+    border-left:3px solid var(--arroces);
+    padding:12px 14px;
+    border-radius:0 6px 6px 0;
+    font-size:13.5px;
+    line-height:1.55;
+    margin-top:12px;
+  }
+  .tip-gaucha strong{ display:block; font-size:12px; margin-bottom:6px; color:var(--arroces); }
+  .tip-gaucha ul{ margin:0; padding-left:18px; }
+  .tip-gaucha li{ margin-bottom:6px; }
+  .tip-gaucha li:last-child{ margin-bottom:0; }
+
   .comments-section{ padding:18px 24px 0; }
   .comment{
     padding:10px 0;
@@ -1432,7 +1446,13 @@ const RECIPES = [
       'Retirar la carne y dejar escurrir el exceso de marinada. Pasar por una capa fina de harina, sacudir el exceso, humedecer nuevamente con huevo si es necesario y cubrir con la cobertura seca presionando de manera uniforme.',
       'Disponer en bandeja sin superponer y refrigerar al menos 30 minutos. Calentar el aceite a 170-175 °C y freír pocas piezas por vez, dando vuelta una sola vez cuando la primera cara esté firme y dorada. Escurrir sobre rejilla y servir de inmediato.',
     ],
-    techNote:'Cortar la carne transversalmente a la fibra acorta los haces musculares y mejora la terneza. El reposo en frío tras empanar es lo que fija la cobertura: sin él, el vapor puede levantarla antes de que coagule. No freír desde congelado ni sobrecargar la sartén evita que se queme afuera mientras el interior queda crudo.',
+    techNote:'Cortar la carne transversalmente a la fibra acorta los haces musculares y mejora la terneza. El reposo en frío tras empanar es lo que fija la cobertura: sin él, el vapor puede levantarla antes de que coagule.',
+    tips:[
+      'Secar la carne antes de marinar y mantener un espesor parejo.',
+      'Retirar el exceso de harina y huevo, y usar una cobertura seca y fresca.',
+      'No freír desde congelado, mantener 170-175 °C y no sobrecargar la sartén.',
+      'Escurrir sobre rejilla, no tapar ni apilar en caliente, y servir de inmediato.',
+    ],
   },
   {
     id:'croquetas-de-lomito-ahumado',
@@ -1708,6 +1728,11 @@ const RECIPES = [
       'Mezclar limón, sumac, sal y pimienta, incorporar el aceite y emulsionar. Con el arroz frío, sumar la coliflor, el pepino, los dátiles, las aceitunas y la cebolla. Aliñar, incorporar las hierbas al final y terminar con las almendras.',
     ],
     techNote:'Lavar, marcar en grasa, no mover durante la cocción por absorción y reposar tapado son las decisiones que, en conjunto, mantienen el basmati suelto y separado: es el arroz de mayor contenido de amilosa entre los usados en la clase.',
+    tips:[
+      'Primero construimos aroma en la grasa. Después hidratamos el grano.',
+      'Marcar no es simplemente saltear: es preparar el grano y construir una primera capa de sabor antes de la cocción por absorción.',
+      'El dátil tiene que aparecer de vez en cuando como un pequeño golpe de dulzor; no convertir la ensalada en dulce.',
+    ],
   },
   {
     id:'arroz-meloso-negro-calamaretti',
@@ -1740,6 +1765,11 @@ const RECIPES = [
       'Cuando el exterior del grano esté tierno y el centro conserve una pequeña resistencia, reincorporar los calamaretti en los últimos instantes. Apagar el fuego cuando el arroz esté un poco más fluido de lo deseado, agregar aceite de oliva y perejil picado, y terminar con hinojo fresco muy fino y sal marina de limón.',
     ],
     techNote:'A diferencia del basmati, el Carnaroli no se lava: se conserva su almidón superficial para construir melosidad. El movimiento constante genera la fricción que libera ese almidón, y el arroz sigue absorbiendo líquido después de apagar el fuego, por lo que el punto se decide un poco antes de servir.',
+    tips:[
+      'La tinta no es solamente color: aporta profundidad, sabor marino y salinidad. Por eso se incorpora de manera controlada, probando antes de corregir la sal.',
+      'Humedad + sartén poco caliente = el calamaretti hierve en sus propios jugos en lugar de dorarse.',
+      'No toda la sal cumple la misma función: la sal durante la cocción sazona, la sal marina de limón al final aporta textura, contraste y un golpe cítrico.',
+    ],
   },
   {
     id:'arroz-con-leche-thai',
@@ -1767,6 +1797,9 @@ const RECIPES = [
       'Cocinar hasta que el arroz esté completamente tierno, más allá del punto al dente. Retirar el cardamomo, el jengibre y la piel de lima. Apagar cuando la preparación todavía se vea cremosa, brillante y bastante fluida, ya que espesa al enfriarse. Terminar con ralladura de lima, coco tostado y, opcionalmente, sésamo o fruta fresca.',
     ],
     techNote:'El Doble Carolina no se lava, para aprovechar su alto contenido de amilopectina y lograr una textura completamente cremosa. Agregar el azúcar recién cuando el arroz ya avanzó en su hidratación evita ralentizar la cocción del grano, y el punto final se decide en frío porque la preparación gana cuerpo al enfriarse.',
+    tips:[
+      'Una preparación cremosa agradece algo que la interrumpa: acidez, frescura o crocante.',
+    ],
   },
 
   {
@@ -1816,7 +1849,10 @@ const RECIPES = [
       'Tabulé: hidratar el burgol, escurrir muy bien, enfriar y mezclar con el tomate, el pepino y la cebolla morada, incorporando las hierbas al final.',
       'Salsa: mezclar el yogur con el pepino escurrido, limón, menta, aceite y sal, ajustando el sumac y el limón al final. El pepino se escurre para no diluir la salsa.',
     ],
-    techNote:'La sal y el trabajo manual favorecen la extracción de proteínas que ayudan a ligar la mezcla; detenerse antes de que se vuelva elástica evita una kofta demasiado compacta. La uniformidad de tamaño, el control de humedad y una sartén bien caliente son lo que da control real sobre el punto de cocción.',
+    techNote:'La sal y el trabajo manual favorecen la extracción de proteínas que ayudan a ligar la mezcla; detenerse antes de que se vuelva elástica evita una kofta demasiado compacta.',
+    tips:[
+      'Nivel 2: uniformidad de tamaño + control de humedad + temperatura de sartén = control real del punto.',
+    ],
   },
   {
     id:'empanadas-de-cordero-braseado',
@@ -1877,7 +1913,10 @@ const RECIPES = [
       'Relleno: desmenuzar el cordero braseado. Transparentar la cebolla y el morrón en brunoise, agregar el ajo picado fino, sumar el cordero desmenuzado y el jugo de cocción, y cocinar lento. Condimentar con comino y pimentón ahumado, y agregar la menta fresca picada al enfriar la preparación. Armar las empanadas y hornear fuerte para dorar la masa.',
       'Mojo picón: asar el choclo hasta dorar y desgranar. Cortar fino la cebolla de verdeo, escaldar y pelar el tomate y cortarlo en concassé, ciselar las hierbas y picar chico el ajo y el chile. Mezclar todo en un bol y cubrir con aceite.',
     ],
-    techNote:'Sellar la carne no "cierra los poros": construye color y sabor en la superficie antes de la cocción húmeda. El fondo reducido se incorpora de a poco al relleno hasta lograr un relleno jugoso pero sin líquido libre, porque el exceso de humedad debilita la masa y dificulta el cierre.',
+    techNote:'Sellar la carne no "cierra los poros": construye color y sabor en la superficie antes de la cocción húmeda.',
+    tips:[
+      'El fondo reducido es un ingrediente: no se agrega todo por obligación, se incorpora hasta alcanzar la humedad correcta.',
+    ],
   },
   {
     id:'solomillo-de-cerdo-al-wok',
@@ -1953,6 +1992,9 @@ const RECIPES = [
       'Encurtido: cortar fino la cebolla, el repollo y la zanahoria, cubrir con la salmuera de vinagre, agua, azúcar, sal y lima, y reposar al menos 30 minutos. Escurrir al servir.',
     ],
     techNote:'Tierno no significa necesariamente jugoso: en una carne desmechada, la jugosidad final se construye al reincorporar progresivamente el fondo reducido, no solo con la cocción lenta.',
+    tips:[
+      'Pulled pork + fajita blanda + encurtido crocante: también se diseña el plato desde el contraste de texturas.',
+    ],
   },
   {
     id:'guiso-de-cordero',
@@ -2317,6 +2359,11 @@ async function openDetail(id){
           <strong>Fundamento técnico</strong>
           ${recipe.techNote}
         </div>
+        ${recipe.tips && recipe.tips.length ? `
+        <div class="tip-gaucha">
+          <strong>💡 Tip Gaucha</strong>
+          <ul>${recipe.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+        </div>` : ''}
       </section>
     </div>
     <div class="comments-section">
