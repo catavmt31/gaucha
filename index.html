@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recetario — Gaucha Estudio de Cocina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A231D;
+    --paper:#EFE7D6;
+    --card:#F8F3E7;
+    --line: rgba(42,35,29,0.14);
+    --line-strong: rgba(42,35,29,0.28);
+    --carnes:#8B3A2B;
+    --pescados:#33616D;
+    --arroces:#B9791F;
+    --pastas:#5B6B45;
+    --panes:#7A5A38;
+    --pollo:#C79A2E;
+    --sopas:#4C6B8A;
+    --guisos:#6B4030;
+    --conservas:#6B4C6B;
+    --condimentos:#8A7B3F;
+    --rebozados:#D6A536;
+    --cerdo-cordero:#9C4A5C;
+    --fundamentos:#4A4038;
+    --muted:#6B6155;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:60px;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
+
+  header.top{
+    padding:28px 20px 18px;
+    border-bottom:1px solid var(--line-strong);
+    background:var(--paper);
+    position:sticky; top:0; z-index:5;
+  }
+  header.top .eyebrow{
+    font-size:12px; letter-spacing:0.02em; color:var(--muted); margin:0 0 4px;
+  }
+  header.top h1{
+    font-size:26px; font-weight:600; margin:0 0 6px; line-height:1.15;
+  }
+  header.top p.sub{
+    margin:0; font-size:14px; color:var(--muted); max-width:480px;
+  }
+
+  .controls{
+    padding:16px 20px 4px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .search-wrap{
+    position:relative;
+  }
+  .search-wrap input{
+    width:100%;
+    padding:11px 14px 11px 38px;
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    background:var(--card);
+    font-size:15px;
+    font-family:inherit;
+    color:var(--ink);
+  }
+  .search-wrap input:focus{
+    outline:none; border-color:var(--ink);
+  }
+  .search-wrap svg{
+    position:absolute; left:12px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px; opacity:0.55;
+  }
+  .chips{
+    display:flex; gap:8px; flex-wrap:wrap;
+  }
+  .chip{
+    padding:7px 13px;
+    border-radius:999px;
+    border:1px solid var(--line-strong);
+    background:transparent;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:13px;
+    color:var(--ink);
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .chip.active{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+
+  main{
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+    gap:16px;
+  }
+  .empty-state{
+    grid-column:1/-1;
+    text-align:center;
+    padding:50px 20px;
+    color:var(--muted);
+  }
+  .empty-state h3{ margin:0 0 6px; font-size:18px; }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--cat-color, var(--ink));
+    border-radius:6px;
+    padding:16px 16px 14px;
+    cursor:pointer;
+    position:relative;
+    transition:border-color .15s ease;
+  }
+  .card:hover{ border-color: var(--line-strong); border-left-color: var(--cat-color, var(--ink)); }
+  .card .cat-label{
+    font-size:11px;
+    text-transform:none;
+    color:var(--cat-color, var(--ink));
+    font-weight:600;
+    margin:0 0 6px;
+  }
+  .card h3{
+    font-size:19px; font-weight:600; margin:0 0 8px; line-height:1.25;
+  }
+  .card .meta{
+    font-size:12.5px; color:var(--muted); margin:0 0 10px;
+  }
+  .card .ing-preview{
+    font-size:13px; color:var(--ink); opacity:0.8; margin:0;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .card .comment-count{
+    margin-top:12px; font-size:12px; color:var(--muted);
+    display:flex; align-items:center; gap:5px;
+  }
+
+  .overlay{
+    position:fixed; inset:0; background:rgba(30,25,20,0.45);
+    display:flex; justify-content:center; align-items:flex-start;
+    padding:24px 12px; overflow-y:auto; z-index:20;
+  }
+  .overlay.hidden{ display:none; }
+  .detail{
+    background:var(--paper);
+    max-width:640px; width:100%;
+    border-radius:10px;
+    border:1px solid var(--line-strong);
+    padding:0 0 28px;
+    margin-bottom:40px;
+  }
+  .detail-head{
+    padding:22px 24px 18px;
+    border-bottom:1px solid var(--line);
+    border-top:5px solid var(--cat-color, var(--ink));
+    border-radius:10px 10px 0 0;
+    position:relative;
+  }
+  .detail-head .close{
+    position:absolute; top:16px; right:16px;
+    background:none; border:none; cursor:pointer;
+    font-size:20px; color:var(--muted); line-height:1;
+    padding:4px;
+  }
+  .detail-head .cat-label{ font-size:12px; font-weight:600; color:var(--cat-color, var(--ink)); margin:0 0 6px; }
+  .detail-head h2{ font-size:24px; margin:0 0 8px; font-weight:600; }
+  .detail-head .meta{ font-size:13px; color:var(--muted); margin:0; }
+
+  .detail-body{ padding:20px 24px 4px; }
+  .detail-body section{ margin-bottom:22px; }
+  .detail-body h4{
+    font-size:13px; text-transform:none; font-weight:600;
+    color:var(--ink); margin:0 0 10px; padding-bottom:6px;
+    border-bottom:1px solid var(--line);
+  }
+  .ing-group{ margin-bottom:12px; }
+  .ing-group .grp-title{ font-size:12.5px; color:var(--muted); margin:0 0 4px; font-style:italic; }
+  .ing-group ul{ margin:0; padding-left:18px; }
+  .ing-group li{ font-size:14.5px; margin-bottom:4px; line-height:1.4; }
+
+  .steps p{ font-size:14.5px; line-height:1.65; margin:0 0 12px; }
+
+  .tech-note{
+    background:rgba(139,58,43,0.08);
+    border-left:3px solid var(--cat-color, var(--carnes));
+    padding:12px 14px;
+    border-radius:0 6px 6px 0;
+    font-size:13.5px;
+    line-height:1.55;
+  }
+  .tech-note strong{ display:block; font-size:12px; margin-bottom:4px; color:var(--cat-color, var(--carnes)); }
+
+  .comments-section{ padding:18px 24px 0; }
+  .comment{
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .comment:last-child{ border-bottom:none; }
+  .comment .who{ font-size:13px; font-weight:600; margin:0 0 3px; }
+  .comment .who span{ font-weight:400; color:var(--muted); margin-left:6px; font-size:12px; }
+  .comment .txt{ font-size:14px; margin:0; line-height:1.5; }
+  .no-comments{ font-size:13.5px; color:var(--muted); padding:8px 0; }
+
+  .comment-form{ margin-top:14px; display:flex; flex-direction:column; gap:8px; }
+  .comment-form input, .comment-form textarea, .comment-form select{
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    padding:9px 12px;
+    font-family:inherit;
+    font-size:14px;
+    background:var(--card);
+    color:var(--ink);
+    resize:vertical;
+  }
+  .comment-form select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232A231D' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    background-size:16px;
+    padding-right:36px;
+  }
+  .comment-form textarea{ min-height:60px; }
+  .comment-form button{
+    align-self:flex-end;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    padding:9px 18px;
+    border-radius:8px;
+    font-family:inherit;
+    font-size:13.5px;
+    font-weight:500;
+    cursor:pointer;
+  }
+  .comment-form button:disabled{ opacity:0.5; cursor:default; }
+  .form-note{ font-size:12px; color:var(--muted); }
+
+  .view-toggle{
+    display:flex; gap:8px; padding:14px 20px 0;
+  }
+  .view-btn{
+    padding:8px 16px;
+    border-radius:8px 8px 0 0;
+    border:1px solid var(--line-strong);
+    border-bottom:none;
+    background:transparent;
+    font-family:'Fraunces', serif;
+    font-size:14px;
+    font-weight:500;
+    color:var(--muted);
+    cursor:pointer;
+  }
+  .view-btn.active{
+    background:var(--card);
+    color:var(--ink);
+  }
+  .fund-section{ margin-bottom:18px; }
+  .fund-section h5{
+    font-size:13.5px; font-weight:600; margin:0 0 8px;
+    color:var(--fundamentos);
+  }
+  .fund-section ul{ margin:0; padding-left:18px; }
+  .fund-section li{ font-size:14px; line-height:1.55; margin-bottom:6px; }
+
+  @media (max-width:480px){
+    .view-toggle{ padding-left:16px; padding-right:16px; }
+    header.top{ padding:22px 16px 14px; }
+    header.top h1{ font-size:22px; }
+    .controls, main{ padding-left:16px; padding-right:16px; }
+    .detail-head, .detail-body, .comments-section{ padding-left:18px; padding-right:18px; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+<header class="top">
+  <p class="eyebrow">Gaucha Estudio de Cocina</p>
+  <h1>Recetario del curso</h1>
+  <p class="sub">Todas las recetas de la clase, buscables por ingrediente, y los conceptos teóricos de cada clase en la pestaña "Fundamentos". Dejá tus comentarios y tips para el resto de la clase.</p>
+</header>
+
+<div class="view-toggle" id="viewToggle">
+  <button class="view-btn active" data-view="recetas">Recetas</button>
+  <button class="view-btn" data-view="fundamentos">Fundamentos</button>
+</div>
+
+<div class="controls" id="controlsBar">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="searchInput" type="text" placeholder="Buscar por ingrediente, ej: panceta, huevo, vino..." />
+  </div>
+  <div class="chips" id="categoryChips"></div>
+</div>
+
+<main id="grid"></main>
+
+<div class="overlay hidden" id="overlay">
+  <div class="detail" id="detailPanel"></div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://aepufwftobgdkmxhikxe.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_C5rzs1B2-HR8o8GoG1AyXw_AaP1Ix7l';
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const FUNDAMENTOS = [
+  {
+    id:'panificacion-nivel-1',
+    title:'Introducción a la panificación',
+    classInfo:'Fundamentos culinarios · Nivel 1 · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'El trigo y la harina', bullets:[
+        'Trigo duro: más proteico, se usa para semolina, pastas y masas muy elásticas. Trigo blando: para panes blancos y pastelería.',
+        'El grano se compone de salvado (fibra y minerales), germen (proteínas, lípidos y vitamina E) y endospermo (almidón y las proteínas que forman el gluten).',
+        'La harina es la molienda del endospermo, entre el 70 y 80% del grano limpio.',
+      ]},
+      { title:'El gluten', bullets:[
+        'Es una red proteica formada por gliadina (extensibilidad) y glutenina (elasticidad) al agregar agua y amasar.',
+        'Retiene el gas carbónico liberado por la levadura: es lo que hace crecer y sostiene la estructura del pan.',
+        'Más amasado desarrolla más gluten: una masa de pan necesita mucho amasado, una de tarta o budín casi nada.',
+        'La grasa acorta las cadenas de gluten y da masas más tiernas.',
+      ]},
+      { title:'Componentes de una masa panadera', bullets:[
+        'Agua: entre 60 y 90% sobre el peso de la harina, según el pan buscado.',
+        'Sal: 20 a 30% sobre la harina; refuerza el gluten, retarda la fermentación de la levadura y mejora color, aroma y crocancia de la corteza.',
+        'Azúcares: alimentan a la levadura, activan la reacción de Maillard y alargan la vida útil del pan.',
+        'Grasas: ablandan la miga y retrasan el envejecimiento; un 2-3% sobre la harina puede aumentar el volumen del pan hasta un 20%.',
+        'Mejoradores y emulsionantes: refuerzan el gluten y mejoran la retención de gas, dando panes de mayor volumen y alveolado parejo.',
+      ]},
+      { title:'La levadura', bullets:[
+        'Transforma azúcares en alcohol y CO2 durante la fermentación.',
+        'Temperatura óptima de fermentación: 25-35 °C. Se aletarga por debajo de 3 °C y muere por encima de 50 °C.',
+        'Una buena levadura es de color crema claro, inodora, de sabor agradable y se desmigaja sin formar grumos.',
+      ]},
+      { title:'Métodos de fermentación previa', bullets:[
+        'Directo: la levadura se incorpora directamente al amasar.',
+        'Poolish (Francia): prefermento al 100% de hidratación; mejora la miga y el sabor de baguettes.',
+        'Biga (Italia): prefermento al 45-55% de hidratación; usado en pizza, ciabatta y focaccia.',
+        'Esponja: reduce tiempos de fermentación y permite usar menos levadura.',
+        'Masa madre (levain): aporta sabor ácido, mayor digestibilidad y mejor conservación.',
+      ]},
+      { title:'El horneado', bullets:[
+        'Fases: expansión de gases → retención en la red de gluten → gelatinización del almidón (65 °C) → coagulación de proteínas (74 °C) → evaporación → formación de costra y pardeamiento (Maillard).',
+        'El vapor inicial evita que se forme costra antes de tiempo y da una corteza fina, crocante y brillante.',
+        'El pan pierde entre un 10 y 13% de su peso durante el horneado.',
+      ]},
+      { title:'Diagnóstico de errores frecuentes', bullets:[
+        'Poco volumen: mucha sal, poca levadura, poco líquido o harina débil.',
+        'Demasiado volumen: poca sal, mucha levadura o mal moldeado.',
+        'Miga muy densa: mucha sal, poca levadura o poca fermentación. Miga muy abierta: exceso de levadura, líquido o fermentación.',
+        'Corteza muy oscura: exceso de azúcar o leche, horno muy fuerte o poco vapor. Muy pálida: lo contrario.',
+        'Sabor chato o insulso: poca sal.',
+      ]},
+    ],
+  },
+  {
+    id:'bases-de-la-cocina',
+    title:'Bases de la cocina',
+    classInfo:'Clase 01 · Fundamentos de cocina · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'Mise en place y organización', bullets:[
+        '"Mise en place" significa tener todo en su lugar: ingredientes lavados, cortes hechos, cantidades medidas y utensilios listos antes de empezar.',
+        'Regla base: cocinar es organizar. Implica limpieza constante, orden de trabajo y una estación de trabajo despejada.',
+        'Reglas básicas: todo lavado antes de cortar, cuchillo y tabla limpios, limpiar mientras se cocina, no acumular utensilios sucios.',
+      ]},
+      { title:'Uso del cuchillo y cortes básicos', bullets:[
+        'Agarre firme cerca de la hoja, con la mano guía manteniendo los dedos hacia adentro, sobre una tabla estable.',
+        'Brunoise: cubos de ~2×2 mm. Juliana: tiras finas de 2 mm × 4 cm. Bastones: tiras de 0,5 cm × 4 cm. Paisana: rodajas o piezas pequeñas para sopas y guisos.',
+      ]},
+      { title:'Bases aromáticas y fuego', bullets:[
+        'Mirepoix: cebolla, zanahoria, apio y puerro. Guarnición aromática: ajo, puerro, laurel, tomillo y perejil.',
+        'Fuego bajo para sudar o cocinar lento, medio para la mayoría de las cocciones, alto para saltear o sellar.',
+      ]},
+      { title:'Construcción del sabor', bullets:[
+        'Secuencia base: grasa → base aromática → ingrediente principal → condimentos o líquidos → hierbas o acidez.',
+      ]},
+      { title:'Los 4 pilares de la cocina', bullets:[
+        'Sal: realza el sabor, reduce el amargor y resalta el dulzor natural.',
+        'Grasa: aporta textura, suavidad, transmite calor y ayuda al dorado.',
+        'Ácido: aporta frescura y equilibrio, corta la sensación de pesadez de un plato.',
+        'Calor: transforma los alimentos — dora, ablanda, caramelina y concentra sabores.',
+      ]},
+      { title:'El uso de la sal', bullets:[
+        'La comida no debe quedar "salada" sino bien sazonada: hay un punto donde todos los sabores se perciben con claridad.',
+        'Se aprende probando y ajustando durante la cocción: agregar de a poco y volver a probar.',
+        'Salar en distintos momentos de la cocción construye el sabor de forma progresiva, en vez de hacerlo una sola vez.',
+      ]},
+    ],
+  },
+  {
+    id:'fundamentos-de-las-carnes',
+    title:'Fundamentos de las carnes',
+    classInfo:'Clase 05 · Fundamentos culinarios: Carnes · Gabriela Miconi',
+    sections:[
+      { title:'Composición y estructura', bullets:[
+        'Las fibras musculares determinan la textura: cortas y tiernas en músculos de bajo trabajo, largas y resistentes en los de alto trabajo. Se contraen y pierden agua con el calor.',
+        'La grasa aporta sabor, aroma y jugosidad; la intramuscular (marmoleo) se funde durante la cocción.',
+        'El colágeno es rígido en crudo, pero con cocción prolongada en medio húmedo se transforma en gelatina, dando textura suave.',
+      ]},
+      { title:'Clasificación funcional de los cortes', bullets:[
+        'Cortes tiernos (bajo colágeno): cocción seca, alta temperatura, tiempos cortos.',
+        'Cortes intermedios: equilibrio entre terneza y sabor, requieren control del punto de cocción.',
+        'Cortes con alto colágeno: cocción húmeda prolongada.',
+      ]},
+      { title:'Clasificación con ejemplos', bullets:[
+        'Primera (lomo, bife de chorizo, cuadril): se arruina más por exceso de cocción que por falta.',
+        'Segunda (bife ancho, entraña, vacío): necesita control de la cocción.',
+        'Tercera (aguja, falda, osobuco): se transforma con el tiempo, ideal para guisos y braseados.',
+      ]},
+      { title:'Métodos de cocción y transformaciones', bullets:[
+        'Seca (sin líquido, alta temperatura): genera Maillard y dorado. Húmeda: ablanda fibras y transforma el colágeno. Mixta (braseado): combina sellado y cocción en líquido.',
+        'Durante la cocción ocurre la reacción de Maillard (color y sabor), la desnaturalización de proteínas y la gelatinización del colágeno.',
+      ]},
+      { title:'Puntos de cocción y reposo', bullets:[
+        'Jugoso, a punto, tres cuartos y bien cocido son grados de jugosidad decrecientes.',
+        'Calor alto genera Maillard y costra; calor medio cocina parejo; calor bajo transforma el colágeno.',
+        'El reposo redistribuye los jugos internos y mejora la textura final.',
+      ]},
+    ],
+  },
+  {
+    id:'pollo-tecnicas-y-emulsiones',
+    title:'Pollo: técnicas, cocción y emulsiones',
+    classInfo:'Clase 02 · Fundamentos de cocina: técnicas, métodos de cocción y emulsiones · Gabriela Miconi',
+    sections:[
+      { title:'El pollo como proteína', bullets:[
+        'Está compuesto por fibras musculares, agua y grasa variable según el corte.',
+        'Pechuga: magra, cocción rápida, tiende a secarse. Muslo/contramuslo: más grasa, más jugoso, ideal para cocciones largas.',
+        'La proteína se coagula con el calor; si se excede la cocción, pierde agua y se seca.',
+      ]},
+      { title:'Métodos de cocción', bullets:[
+        'Seca (plancha, sartén, horno): sin líquido, genera Maillard; requiere superficie seca y no mover en exceso al inicio.',
+        'Húmeda (hervido, guiso, vapor): limita la temperatura a ~100 °C, ablanda fibras y no busca dorado.',
+        'Fritura (170-180 °C): el aceite genera una barrera de vapor que evita la absorción de grasa si la temperatura es correcta.',
+      ]},
+      { title:'Deshuesado', bullets:[
+        'Se trabaja siguiendo las articulaciones, no cortando hueso: se separa la carne por puntos naturales, con cuchillo filoso y movimientos precisos.',
+      ]},
+      { title:'Emulsiones', bullets:[
+        'Una emulsión une dos líquidos inmiscibles (agua y aceite) mediante un emulsionante que actúa de puente.',
+        'Mayonesa: la lecitina de la yema estabiliza el aceite; es intensa pero sensible a errores. Lactonesa: las proteínas de la leche estabilizan la emulsión; es más estable y segura al no llevar huevo crudo.',
+        'El aceite se incorpora en hilo, batiendo de forma constante; el ácido se ajusta al final. Si se corta: agregar una cucharada de agua tibia y reemulsionar.',
+      ]},
+      { title:'Equilibrio del plato', bullets:[
+        'Todo plato se construye a partir de sal, grasa, acidez y textura, ajustados durante el proceso hasta lograr armonía.',
+      ]},
+    ],
+  },
+  {
+    id:'pesca-local-fundamentos',
+    title:'Pesca local: clasificación y manejo',
+    classInfo:'Fundamentos culinarios: Pesca local · Gabriela Miconi',
+    sections:[
+      { title:'Por qué el pescado es distinto', bullets:[
+        'Es un producto delicado: estructura proteica frágil y mayor proporción de agua que otras carnes, por lo que exige precisión y cocciones breves.',
+      ]},
+      { title:'Clasificación', bullets:[
+        'Por procedencia: agua dulce (bagre, boga, dorado) o agua salada (corvina, merluza, lenguado).',
+        'Por contenido graso: poco graso (pargo, lenguado, atún bonito), moderadamente graso (anchoa, salmón rosa) y muy graso (anguila, salmón atlántico, sábalo).',
+        'Por forma: redondos (merluza, pejerrey) o planos (lenguado, halibut).',
+      ]},
+      { title:'Calidad, frescura y conservación', bullets:[
+        'Un pescado fresco tiene piel tensa y brillante, ojos convexos, branquias rojas sin mal olor y aroma a mar.',
+        'Se conserva idealmente entre 0 y 2 °C; en heladera doméstica conviene sumar hielo sin contacto directo.',
+        'Los pescados grasos duran alrededor de una semana; los magros de agua fría hasta dos semanas, y los de aguas cálidas hasta tres.',
+      ]},
+    ],
+  },
+  {
+    id:'bases-cocina-de-olla',
+    title:'Bases de cocina y comida de olla',
+    classInfo:'Sofritos · Caldos · Cocciones largas · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'El sofrito como fundación', bullets:[
+        'Es la primera transformación estructural del plato: fija el perfil de sabor y condiciona toda la cocción posterior. Un sofrito mal resuelto no se corrige al final.',
+        'Variables de control: temperatura (baja=sudado, media=desarrollo, alta=dorado con riesgo de amargor), tiempo (insuficiente=sabor crudo, excesivo=degradación) y corte (define velocidad de cocción y textura).',
+      ]},
+      { title:'El caldo', bullets:[
+        'Conecta ingredientes, distribuye sabor y estabiliza el conjunto; sin medio líquido el sistema no se organiza.',
+        'Un hervor suave da claridad y equilibrio; un hervor fuerte genera turbiedad y ruptura. Más temperatura o más tiempo no siempre mejoran el resultado.',
+      ]},
+      { title:'Cocciones largas', bullets:[
+        'Es una secuencia de transformaciones acumulativas: el colágeno se vuelve gelatina, los sabores se integran y el líquido se reduce y concentra.',
+        'El punto no está en el reloj sino en el estado del producto; cada ingrediente entra en un momento según su estructura y tiempo de cocción.',
+      ]},
+      { title:'Modelo operativo', bullets:[
+        'Toda preparación de olla sigue esta estructura: sofrito → sellado → desglasado → integración → cocción lenta → ajuste final.',
+      ]},
+    ],
+  },
+  {
+    id:'rebozados-frituras-y-huevos',
+    title:'Rebozados, frituras y huevos',
+    classInfo:'Clase 06 · Rebozados, frituras y huevos · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'El rebozado como sistema', bullets:[
+        'Cada capa cumple una función: la harina ancla, el huevo adhiere y coagula, la cobertura seca define la crocancia. La corteza no es impermeable: retrasa y regula el intercambio de humedad.',
+        'Objetivos técnicos: adhesión (sin desprendimiento), protección (interior húmedo, exterior seco), dorado uniforme, crocancia y baja absorción de aceite.',
+      ]},
+      { title:'Reposo en frío y tamaño', bullets:[
+        'El reposo (mínimo 15 minutos) deja que la humedad migre entre capas y fija la cobertura antes de freír; el frío estabiliza, pero debe ser seco, ya que la condensación reblandece el pan.',
+        'El tamaño de la pieza determina la relación superficie-volumen: las piezas pequeñas reciben calor al centro antes de quemarse; las grandes necesitan más tiempo.',
+      ]},
+      { title:'Fritura y aceite', bullets:[
+        'El rango general profesional es 165-175 °C; por debajo el rebozado absorbe grasa, por encima se quema antes de cocinar el interior.',
+        'El aceite se degrada por oxidación, hidrólisis y polimerización; conviene filtrarlo, trabajar por tandas y descartarlo ante olor rancio, humo a baja temperatura o viscosidad alta.',
+      ]},
+      { title:'Milanesa, croqueta, falafel y tortilla', bullets:[
+        'Cortar la carne contra la fibra acorta los haces musculares y mejora la terneza.',
+        'La croqueta depende de la gelatinización del almidón de la bechamel: cocinarla bien y enfriarla es lo que permite modelarla.',
+        'El falafel se hace con garbanzo crudo remojado, no cocido, porque el cocido tiene demasiada agua y se desarma.',
+        'En la tortilla española, la papa debe quedar tierna sin dorar en exceso, y no batir el huevo de más evita romper su estructura al girar.',
+      ]},
+    ],
+  },
+  {
+    id:'pastas-y-salsas-fundamentos',
+    title:'Pastas y salsas',
+    classInfo:'Clase 07 · Pastas y salsas · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'La pasta casera', bullets:[
+        'El amasado desarrolla el gluten, dando una masa elástica y extensible. El reposo posterior relaja el gluten y facilita el estirado.',
+        'Dejar orear la pasta fresca antes de cocinarla mejora su textura y evita que se pegue. Se cuece siempre en abundante agua hirviendo con sal.',
+      ]},
+      { title:'Pastas secas vs. frescas', bullets:[
+        'Las secas (harina de trigo duro y agua) tienen mayor resistencia y conservación. Las frescas, con huevo, tienen textura más delicada y sabor más complejo.',
+        'Proporción base: 100 g de harina por cada 50 g de líquido, equivalente a 1 huevo por cada 100 g de harina.',
+      ]},
+      { title:'Las salsas y el corte de vegetales', bullets:[
+        'Una salsa debe integrarse con la pasta, respetar su identidad y no cubrir ni anular su textura; la tendencia actual privilegia salsas livianas y equilibradas.',
+        'Macedonia (cubos de 5-7 mm) para cocción uniforme e integración; brunoise (cubos de 2-3 mm) para rellenos, con textura homogénea y delicada.',
+      ]},
+    ],
+  },
+  {
+    id:'cereales-arroces-fundamentos',
+    title:'Cereales · Arroces',
+    classInfo:'Fundamentos culinarios: Cereales · Arroces · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'Qué hay dentro de un grano', bullets:[
+        'El arroz está compuesto principalmente por almidón, formado por amilosa (granos más separados y firmes) y amilopectina (mayor adherencia y cremosidad).',
+        'Grano largo (basmati, jazmín): suelto y separado, ideal para pilaf o ensaladas. Grano medio (Doble Carolina): mayor absorción, textura tierna. Grano corto (Carnaroli): mayor adherencia, ideal para risotto.',
+      ]},
+      { title:'Cinco variables para cocinar arroz', bullets:[
+        'Elegir el arroz según el resultado buscado, no al revés.',
+        'Lavar retira almidón superficial (favorece granos sueltos); no lavar lo conserva (favorece cremosidad).',
+        'No existe una proporción universal de arroz-líquido: depende de la variedad, el método y el recipiente.',
+        'Mover genera fricción y libera almidón: deseable en un arroz meloso, no en uno suelto.',
+        'El reposo también cocina: al apagar el fuego, el arroz sigue absorbiendo humedad y definiendo su textura final.',
+      ]},
+    ],
+  },
+  {
+    id:'cerdo-y-cordero-fundamentos',
+    title:'Cerdo y cordero: del corte a la técnica',
+    classInfo:'Fundamentos culinarios: Cerdo y cordero · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'Cerdo, una carne con muchas estructuras', bullets:[
+        'Dentro del mismo animal conviven cortes magros y tiernos, otros más grasos y otros ricos en tejido conectivo: la técnica empieza por reconocer esa diferencia.',
+        'Solomillo: magro y muy tierno, apenas necesita tiempo. Carré y lomo: relativamente magros, se resecan rápido si se pasan de cocción. Paleta y bondiola: más grasa y colágeno, ideales para horno lento y braseados.',
+      ]},
+      { title:'Para cocinar cerdo', bullets:[
+        'Elegir primero el resultado buscado (jugoso, dorado, braseado, desmechado) y después la pieza.',
+        'Secar la superficie favorece el dorado; cortar contra la fibra mejora la percepción de terneza en cocciones breves; el tiempo es una herramienta de transformación en cortes con colágeno.',
+      ]},
+      { title:'Cordero: sabor, grasa y tejido', bullets:[
+        'La grasa del cordero participa del perfil aromático, no solo de la jugosidad; por eso el acompañamiento (yogur, limón, menta, encurtidos) también es técnica.',
+        'Paleta, cuello, pecho y falda tienen más tejido conectivo: en el braseado, el primer dorado construye sabor y luego el medio húmedo transforma el colágeno.',
+        'Al picar carne se multiplica la superficie: mezclar de más vuelve la masa demasiado compacta, hay que buscar un punto intermedio de cohesión.',
+      ]},
+      { title:'Dorado y braseado, dos etapas distintas', bullets:[
+        'Sellar no "cierra los poros": desarrolla color y sabor en la superficie. Luego, al sumar líquido y bajar la temperatura, el objetivo cambia a una cocción húmeda y prolongada.',
+      ]},
+    ],
+  },
+];
+
+const COMMENTERS = ['Cata', 'Cris', 'Euge', 'Fede', 'Gabi', 'Mahia', 'Pablo'];
+
+const CATEGORIES = [
+  { id:'carnes', label:'Carnes', color:'var(--carnes)' },
+  { id:'pollo', label:'Pollo', color:'var(--pollo)' },
+  { id:'pescados', label:'Pescados', color:'var(--pescados)' },
+  { id:'arroces', label:'Arroces', color:'var(--arroces)' },
+  { id:'pastas', label:'Pastas', color:'var(--pastas)' },
+  { id:'panes', label:'Panes', color:'var(--panes)' },
+  { id:'sopas', label:'Sopas', color:'var(--sopas)' },
+  { id:'guisos', label:'Guisos y cocina de olla', color:'var(--guisos)' },
+  { id:'conservas', label:'Conservas y encurtidos', color:'var(--conservas)' },
+  { id:'condimentos', label:'Condimentos y salsas', color:'var(--condimentos)' },
+  { id:'rebozados', label:'Rebozados y frituras', color:'var(--rebozados)' },
+  { id:'cerdo-cordero', label:'Cerdo y cordero', color:'var(--cerdo-cordero)' },
+];
+
+const RECIPES = [
+  {
+    id:'hamburguesa-casera',
+    title:'Hamburguesa casera',
+    category:'carnes',
+    classInfo:'Clase 05 · Fundamentos culinarios: Carnes · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Carne', items:[
+        '800 g carne picada (roast beef / aguja, ideal 80% magro y 20% grasa)',
+        '12 g sal fina',
+        'Pimienta negra c/n',
+      ]},
+      { title:'Para servir', items:[
+        '4 panes de hamburguesa',
+        'Queso, lechuga, tomate, cebolla y aderezos a gusto',
+      ]},
+    ],
+    steps:[
+      'Elegir un corte con buen sabor y proporción de grasa. La hamburguesa no se trabaja como una albóndiga: se busca una mezcla apenas unida, para conservar jugosidad.',
+      'Condimentar la carne con sal y pimienta justo antes de formar. Dividir en porciones y dar forma de medallones sin compactar en exceso. Marcar una pequeña hendidura en el centro para evitar que se abombe durante la cocción.',
+      'Cocinar en plancha o sartén bien caliente. Sellar de un lado hasta generar costra, dar vuelta una sola vez y terminar la cocción al punto deseado. Si se utiliza queso, incorporarlo en el último minuto para que funda.',
+    ],
+    techNote:'La carne picada necesita grasa para resultar jugosa. El calor alto favorece la reacción de Maillard y genera sabor. Si se amasa demasiado, la hamburguesa queda densa y seca.',
+  },
+  {
+    id:'caldo-de-huesos',
+    title:'Caldo de huesos',
+    category:'carnes',
+    classInfo:'Clase 05 · Fundamentos culinarios: Carnes · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Base', items:[
+        '2 kg huesos vacunos (con articulaciones y algo de médula)',
+        '3 litros agua fría',
+        '1 cebolla',
+        '1 zanahoria',
+        '1 rama de apio',
+        '1 puerro',
+        '1 hoja de laurel',
+        'Pimienta en grano c/n',
+      ]},
+    ],
+    steps:[
+      'Disponer los huesos en una olla y cubrir con agua fría. Llevar lentamente a ebullición para favorecer la extracción progresiva de sabor, gelatina e impurezas.',
+      'Cuando comience a hervir, bajar el fuego y desespumar con cuidado. Incorporar las verduras cortadas groseramente, el laurel y la pimienta. Mantener una cocción muy suave durante 4 a 6 horas.',
+      'Colar sin presionar los sólidos. Enfriar rápidamente. Si se desea, retirar la grasa de la superficie una vez frío.',
+    ],
+    techNote:'Los huesos y articulaciones aportan colágeno, que con el tiempo se transforma en gelatina. Un hervor violento enturbia el caldo y emulsiona grasa e impurezas, por eso se trabaja siempre a fuego bajo.',
+  },
+  {
+    id:'boeuf-bourguignon',
+    title:'Boeuf Bourguignon',
+    category:'carnes',
+    classInfo:'Clase 05 · Fundamentos culinarios: Carnes · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Base', items:[
+        '1 kg carne de tercera (aguja / roast beef / falda) en cubos grandes',
+        '120 g panceta',
+        '2 cebollas',
+        '2 zanahorias',
+        '2 dientes de ajo',
+        '500 ml vino tinto',
+        '500 ml caldo de carne',
+        '2 cdas harina',
+        '1 hoja de laurel',
+        '1 ramita de tomillo',
+        'Aceite, sal y pimienta c/n',
+      ]},
+      { title:'Terminación', items:[
+        'Champiñones y cebollitas glaseadas (opcional)',
+      ]},
+    ],
+    steps:[
+      'Secar bien la carne y condimentar. Sellarla en una olla amplia con poco aceite hasta dorar todas sus caras. Retirar y reservar. Dorar la panceta y luego las verduras cortadas. Incorporar el ajo al final.',
+      'Espolvorear con harina y cocinar brevemente. Desglasar con vino tinto, dejando evaporar el alcohol. Volver la carne a la olla junto con el caldo, laurel y tomillo.',
+      'Tapar y cocinar a fuego bajo u horno suave hasta que la carne esté tierna y melosa. Si se desea, agregar al final champiñones salteados y cebollitas glaseadas.',
+    ],
+    techNote:'Los cortes de tercera tienen más tejido conectivo y colágeno. La cocción lenta y húmeda transforma esa firmeza inicial en una textura untuosa. El sellado previo construye sabor y profundidad.',
+  },
+  {
+    id:'bife-papas-huevo',
+    title:'Bife con papas fritas y huevo frito',
+    category:'carnes',
+    classInfo:'Clase 05 · Fundamentos culinarios: Carnes · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Bife', items:[
+        '4 bifes (bife ancho / angosto / cuadril)',
+        'Sal gruesa o fina c/n',
+        'Pimienta negra c/n',
+        'Aceite o grasa vacuna c/n',
+      ]},
+      { title:'Papas fritas', items:[
+        '800 g papas',
+        'Aceite para freír c/n',
+        'Sal c/n',
+      ]},
+      { title:'Huevo', items:[
+        '4 huevos',
+      ]},
+    ],
+    steps:[
+      'Secar los bifes y llevarlos a temperatura ambiente unos minutos antes de cocinar. Salar. Calentar muy bien una sartén o plancha, agregar apenas grasa y sellar la carne sin mover hasta formar costra. Dar vuelta una sola vez y terminar la cocción según el punto deseado. Dejar reposar antes de servir.',
+      'Para las papas, cortar bastones parejos y lavar para retirar exceso de almidón. Secar bien. Realizar una primera fritura a temperatura media (130–160°C) para cocinar el interior. Retirar y enfriar. Hacer una segunda fritura a temperatura alta (180°C) para lograr color y crocante.',
+      'Freír los huevos en aceite o grasa caliente hasta lograr bordes dorados y yema líquida.',
+    ],
+    techNote:'Los cortes tiernos de primera se benefician de cocciones breves y calor intenso. El reposo permite redistribuir jugos. La doble fritura de la papa separa cocción interior de crocante exterior.',
+  },
+
+  {
+    id:'curry-de-pollo-arroz-aromatico',
+    title:'Curry de pollo con arroz aromático',
+    category:'pollo',
+    classInfo:'Clase 02 · Fundamentos de cocina: técnicas, cocción y emulsiones · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Curry (4 personas)', items:[
+        '500 g muslo o contramuslo de pollo, en trozos',
+        '1 cebolla grande (≈150 g)',
+        '2 dientes de ajo',
+        '1 cda jengibre fresco rallado',
+        '1 cda curry en polvo o pasta',
+        '200 g tomate triturado (opcional)',
+        '400 ml leche de coco',
+        '2 cdas aceite neutro',
+        'Sal',
+        'Opcional: jugo de ½ lima, cilantro fresco',
+      ]},
+      { title:'Arroz aromático', items:[
+        '1 taza arroz jazmín o largo fino',
+        '2 tazas agua o caldo',
+        '1 cebolla chica',
+        '1 diente de ajo',
+        '1 cda aceite + 1 cda manteca',
+        '1 cdta cúrcuma o curry suave',
+        'Sal',
+      ]},
+    ],
+    steps:[
+      'Sellar el pollo en una olla con aceite caliente, en tandas y sin mover al inicio (2 a 3 minutos por lado) para permitir Maillard. Retirar y reservar.',
+      'En la misma olla, agregar la cebolla con una pizca de sal y rehogar a fuego medio 8 a 10 minutos hasta transparente, sin dorar, buscando dulzor y una base suave.',
+      'Incorporar ajo y jengibre y cocinar 1 a 2 minutos evitando exceso de calor para no amargar. Agregar el curry y tostarlo 30 a 60 segundos en la grasa para activar los aceites esenciales.',
+      'Sumar el tomate y cocinar 5 a 7 minutos hasta concentrar. Volver el pollo, agregar la leche de coco y cocinar a fuego bajo 20 a 25 minutos hasta integrar y ablandar. Ajustar sal, sumar unas gotas de lima y finalizar con cilantro.',
+      'Para el arroz: rehogar cebolla y ajo en aceite, agregar el arroz y nacarar hasta que los granos se vean translúcidos. Incorporar el líquido caliente, salar, tapar y cocinar a fuego bajo sin revolver. Apagar, reposar 5 a 10 minutos y soltar con tenedor.',
+    ],
+    techNote:'No dorar el pollo deja el sabor plano; no tostar las especias da un aroma débil; revolver el arroz durante la cocción genera pegajosidad. El arroz nacarado libera el almidón de forma controlada y actúa como base neutra que absorbe y equilibra el curry.',
+  },
+  {
+    id:'pollo-frito-slaw',
+    title:'Pollo frito con ensalada slaw y aderezo',
+    category:'pollo',
+    classInfo:'Clase 02 · Fundamentos de cocina: técnicas, cocción y emulsiones · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Pollo (4 personas)', items:[
+        '600 g pollo en tiras o trozos',
+        '1 taza harina',
+        '1 huevo',
+        '½ taza leche',
+        'Sal y pimienta',
+        'Opcional: pimentón, ajo en polvo',
+      ]},
+      { title:'Slaw', items:[
+        '2 tazas repollo (¼ repollo mediano)',
+        '1 zanahoria',
+        '½ cebolla',
+        '1 cda jugo de limón o vinagre',
+        '1 cda aceite',
+        'Sal',
+        'Opcional: 2 cdas mayonesa',
+      ]},
+      { title:'Aderezo', items:[
+        '4 cdas mayonesa o lactonesa',
+        '1 cda jugo de limón',
+        'Sal',
+      ]},
+    ],
+    steps:[
+      'Salpimentar el pollo. Pasar por la mezcla de huevo y leche y luego por harina, logrando una cobertura uniforme.',
+      'Freír en aceite a 170–180 °C hasta dorado y crocante (5 a 7 minutos según tamaño), trabajando en tandas para no bajar la temperatura. Retirar y escurrir sobre papel.',
+      'Para el slaw: colocar los vegetales cortados en un bowl, salar y mezclar. Agregar ácido y aceite (y mayonesa si se desea) y masajear suavemente 1 a 2 minutos para ablandar fibras e integrar sabores.',
+      'Para el aderezo: mezclar mayonesa o lactonesa con jugo de limón y sal, ajustando a gusto.',
+    ],
+    techNote:'El aceite frío hace que el pollo absorba grasa; sobrecargar la fritura baja la temperatura del aceite. Trabajar en tandas y controlar los 170–180 °C mantiene el exterior crocante y seco con el interior jugoso.',
+  },
+  {
+    id:'ensalada-cesar-con-pollo',
+    title:'Ensalada César con pollo',
+    category:'pollo',
+    classInfo:'Clase 02 · Fundamentos de cocina: técnicas, cocción y emulsiones · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Ensalada (4 personas)', items:[
+        '1 pechuga de pollo',
+        'Lechuga romana',
+        '1 taza croutones',
+        '50 g queso parmesano',
+      ]},
+      { title:'Aderezo César', items:[
+        '4 cdas mayonesa',
+        '1 cda mostaza',
+        '1 cda jugo de limón',
+        '1 diente de ajo picado fino',
+        '2 anchoas (opcional)',
+        'Pimienta',
+      ]},
+    ],
+    steps:[
+      'Cocinar la pechuga en sartén caliente con poco aceite, sin mover al inicio para permitir el dorado. Dar vuelta, terminar la cocción y dejar reposar 5 minutos antes de cortar en tiras.',
+      'Mezclar mayonesa, mostaza, limón, ajo y anchoas hasta lograr una emulsión homogénea. Ajustar con pimienta.',
+      'Asegurar que las hojas de lechuga estén bien secas para que el aderezo adhiera. Mezclar la lechuga con el aderezo sin saturar, agregar el pollo, los croutones y terminar con parmesano.',
+    ],
+    techNote:'La lechuga húmeda impide que el aderezo adhiera; el exceso de aderezo vuelve el plato pesado; la sobrecocción seca el pollo. El equilibrio del plato está en la cremosidad, el frescor y lo crocante trabajando juntos.',
+  },
+  {
+    id:'escabeche-de-pollo',
+    title:'Escabeche de pollo',
+    category:'pollo',
+    classInfo:'Bases de cocina y comida de olla · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 kg de pollo limpio, en trozos regulares tamaño bocado',
+        '1 taza vinagre de manzana',
+        '1 taza de vino blanco seco',
+        '½ taza aceite de oliva',
+        '½ taza aceite neutro',
+        'Hojitas de laurel',
+        '1 cebolla cortada en pluma',
+        '1 tallo de puerro en rodajitas sesgadas',
+        '1 zanahoria en rueditas',
+        'Cáscara de 1 limón',
+        '1 chile',
+        'Pimienta negra',
+        '4 rodajitas de jengibre',
+      ]},
+    ],
+    steps:[
+      'Sellar a fuego bajo el pollo en una ollita con un fondo de aceite de oliva, dorando ligeramente de ambos lados sin terminar de cocinar. Retirar y en la misma ollita sudar los vegetales con un poco de sal.',
+      'Agregar los líquidos y los perfumes (laurel, pimienta, limón, chile y jengibre) y por último el pollo, sin revolver para no romper las piezas.',
+      'Cuando rompa el hervor, cocinar un minuto a fuego bajo y apagar. Dejar enfriar y envasar en frasco con boca ancha. Se conserva fresco en heladera durante 10 días.',
+    ],
+    techNote:'El escabeche es una marinada en caliente que conserva, aromatiza y tierniza: el ácido penetra las fibras musculares durante la cocción, y el envasado en caliente crea un medio ácido que actúa como conservante. Conviene dejarlo reposar en frío 24 horas antes de consumir.',
+  },
+
+  {
+    id:'sopa-de-pollo-miso-limon',
+    title:'Sopa de pollo, miso y limón',
+    category:'sopas',
+    classInfo:'Con garbanzos, hojas verdes y chilli crunch · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Base', items:[
+        '1 carcaza de pollo',
+        '1 cebolla mediana',
+        '1 puerro',
+        '2 zanahorias pequeñas',
+        '3 dientes de ajo',
+        '1 litro de agua',
+      ]},
+      { title:'Especias', items:[
+        '1 hoja de laurel',
+        '1 cdta semillas de coriandro',
+        '½ cdta semillas de alcaravea (o hinojo)',
+        '½ cdta curry suave',
+        '1 cdta pimienta negra en grano',
+      ]},
+      { title:'Terminación', items:[
+        'Carne recuperada de la carcaza',
+        '½ taza de garbanzos cocidos',
+        'Un puñado de espinaca o acelga',
+        '1 cda de miso blanco',
+        'Ralladura y jugo de ½ limón',
+        'Chilli crunch',
+        'Unas gotas de salsa picante',
+        'Un hilo de miel',
+        'Sal, si fuera necesario',
+      ]},
+    ],
+    steps:[
+      'Opción tradicional: colocar la carcaza en una olla, cubrir con 1 litro de agua fría y llevar lentamente a hervor. Agregar cebolla, puerro, zanahorias, ajo y especias, y cocinar a fuego suave 40 minutos. Colar y recuperar la carne.',
+      'Opción asada: disponer la carcaza y las verduras en una placa, rociar con aceite de oliva y asar a 220 °C durante 30 minutos hasta dorar. Transferir a una olla, cubrir con 1 litro de agua fría, agregar las especias y cocinar a fuego suave 40 minutos. Colar y recuperar la carne.',
+      'Llevar nuevamente el caldo al fuego, incorporar la carne desmenuzada y los garbanzos, y agregar las hojas verdes cocinando apenas unos minutos. Apagar el fuego, disolver el miso en un cucharón de caldo caliente e incorporarlo junto con la ralladura y el jugo de limón. Rectificar la sazón.',
+      'Servir terminando cada plato con una cucharada de chilli crunch, unas gotas de salsa picante y un hilo muy fino de miel.',
+    ],
+    techNote:'Partir de agua fría favorece la extracción gradual de sabor, colágeno y minerales; asar previamente huesos y verduras aporta profundidad y notas caramelizadas. El miso no debe hervirse, para preservar sus aromas. El equilibrio entre ácido, picante y dulce genera una sopa más compleja.',
+  },
+
+  {
+    id:'pescado-a-la-plancha',
+    title:'Pescado a la plancha',
+    category:'pescados',
+    classInfo:'Fundamentos culinarios: Pesca local · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Pescado', items:[
+        '300 g pescado (de piel comestible mejor)',
+        '20 g manteca clarificada (2 cdas)',
+      ]},
+      { title:'Pickle de cebolla', items:[
+        'Cebolla colorada',
+        'Sal',
+        'Vinagre de manzana',
+        'Azúcar',
+        'Coriandro',
+      ]},
+      { title:'Ensalada de legumbres', items:[
+        '50 g de legumbres remojadas y blanqueadas (lentejas, porotos, garbanzos)',
+        '½ tomate concassé',
+        '4 a 5 olivas negras en juliana',
+        'Sal y pimienta',
+        'Aceite de oliva',
+        'Gotas de tabasco o siracha',
+      ]},
+      { title:'Salsa verde', items:[
+        '1 ajo asado',
+        '1 cda vinagre de vino blanco o jugo de limón',
+        '1 cda albahaca',
+        '2 cdas perejil fresco picado',
+        '6 cdas aceite de oliva',
+      ]},
+    ],
+    steps:[
+      'Pickle de cebolla: cortar la cebolla en aros o pluma, salar como para una ensalada y dejar reposar en frío 24 horas. Escurrir y prensar bien. Tostar el coriandro en una sartén, retirar del fuego, añadir el resto de los ingredientes y volcar sobre las cebollas. Conviene hacerlo varios días antes.',
+      'Pescado: seleccionar el filete, pre salar y dejar tomar temperatura ambiente. Calentar la sartén, agregar manteca clarificada y colocar el pescado con la piel hacia abajo con un peso encima. A los pocos minutos descartar la manteca y agregar más para evitar que se queme. Si el filete es grueso, terminar en horno a 100 °C para evitar que se reseque.',
+      'Ensalada: integrar las legumbres con el tomate, las olivas y el pickle de cebolla, y condimentar con sal, pimienta, aceite y tabasco o siracha.',
+      'Salsa: procesar todos los ingredientes emulsionando con aceite de oliva, o picar bien finas las hierbas e integrar con los líquidos y el ajo asado.',
+    ],
+    techNote:'El pescado tiene una estructura proteica frágil y mayor proporción de agua que otras carnes, por lo que requiere precisión y tiempos de cocción breves. Cocinar con un peso encima y descartar la manteca quemada preserva textura y sabor sin resecar el filete.',
+  },
+  {
+    id:'ceviche',
+    title:'Ceviche',
+    category:'pescados',
+    classInfo:'Fundamentos culinarios: Pesca local · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 cda apio rallado',
+        '1 diente ajo rallado',
+        '1 cm jengibre rallado',
+        '3 cdas cilantro ciselado',
+        '1 cebolla colorada chica, ciselada',
+        '3 limas (jugo)',
+        '½ naranja (jugo)',
+        '½ pomelo (jugo)',
+        'Sal marina c/n',
+        'Pimienta negra c/n',
+        '2 ajíes en brunoise',
+        '150 g pesca fresca en cubos medianos',
+        '½ boniato en cubitos (hervido o frito)',
+        'Hielo c/n',
+      ]},
+    ],
+    steps:[
+      'Colocar la cebolla en agua con hielo y reservar.',
+      'En un bowl, agregar el pescado, ajo, jengibre, apio, sal, la mitad de los cítricos y un par de cubos de hielo, y revolver. Reservar.',
+      'Comprobar la cantidad de leche de tigre que se va generando; agregar pimienta, ajíes y un poco de agua de las cebollas.',
+      'Montar junto con la cebolla, el boniato y el cilantro.',
+    ],
+    techNote:'El pescado usado en crudo debe ser fresco y de buena procedencia. El hielo controla la temperatura durante el marinado ácido, evitando que el calor de manipulación afecte la textura del pescado.',
+  },
+  {
+    id:'fumet-claro',
+    title:'Fumet claro',
+    category:'pescados',
+    classInfo:'Fundamentos culinarios: Pesca local · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Huesos, cabezas y piel de pescado fresco: 2 kg',
+        'Agua: 1,5 kg',
+        'Cebolla: 500 g',
+        'Apio: 500 g',
+        'Puerro: 300 g',
+        'Ajo: 50 g',
+        'Laurel: 1 hoja',
+        'Tallos de perejil: 50 g',
+        'Coriandro: 20 g',
+        'Semillas de hinojo: 1 cda',
+        'Aceite de oliva c/n',
+        'Sal y pimienta c/n',
+        'Vino blanco: 300 ml',
+      ]},
+    ],
+    steps:[
+      'Tostar las semillas y añadir las verduras con un poco de sal y parte del aceite de oliva. Cocinar a fuego suave hasta que estén tiernas.',
+      'Agregar el pescado y el vino, y dejar evaporar el alcohol. Agregar agua fría y las hierbas.',
+      'Continuar la cocción a fuego suave durante 1 hora desde que rompe hervor, manteniendo siempre un hervor suave para evitar turbiedad y amargor. Espumar el fondo para mayor claridad.',
+    ],
+    techNote:'Un hervor fuerte enturbia y amarga el fumet. El hervor suave y sostenido, junto con el espumado, es lo que mantiene la claridad del caldo.',
+  },
+  {
+    id:'papillote-de-pescado',
+    title:'Papillote de pescado',
+    category:'pescados',
+    classInfo:'Fundamentos culinarios: Pesca local · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '300 g pescado',
+        '½ limón',
+        '½ naranja',
+        '30 ml vermut',
+        '1 rama de cedrón',
+        'Aceite de oliva',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Cortar un rectángulo de papel manteca o aluminio. Disponer en el centro una base opcional de vegetales.',
+      'Colocar el pescado y salpimentar. Agregar los cítricos, el vermut, el cedrón y un hilo de aceite de oliva.',
+      'Cerrar el papillote sellando bien los bordes para que no escape el vapor. Llevar a horno precalentado a 180 °C durante 10 a 15 minutos según el espesor del pescado. Servir inmediatamente.',
+    ],
+    techNote:'El papillote cocina al vapor dentro de su propio paquete sellado, concentrando aromas y preservando la humedad del pescado sin necesidad de grasa adicional.',
+  },
+  {
+    id:'mezcla-para-freir-tempura',
+    title:'Mezcla para freír (símil tempura)',
+    category:'pescados',
+    classInfo:'Fundamentos culinarios: Pesca local · Gabriela Miconi',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Harina de arroz: 225 g',
+        'Agua: 225 g (varía según la harina de arroz)',
+        'Huevo: 45 g (mezclado)',
+        'Bicarbonato de sodio: 6,5 g',
+        'Almidón de maíz: 45 g',
+      ]},
+    ],
+    steps:[
+      'Tamizar y mezclar los ingredientes secos. Agregar removiendo primero el agua, luego el huevo, integrando bien.',
+      'Conservar frío hasta su uso. Se puede especiar a gusto.',
+    ],
+    techNote:'El almidón de maíz y el bicarbonato aligeran la mezcla, generando una cobertura crocante y liviana característica de la tempura.',
+  },
+  {
+    id:'escabeche-de-pescado',
+    title:'Escabeche de pescado',
+    category:'pescados',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 kg de pescado firme (cazón, angelito o similar), en trozos tamaño bocado',
+        '1 taza vinagre de manzana',
+        '1 taza de vino blanco seco',
+        '½ taza aceite de oliva',
+        '½ taza aceite neutro',
+        'Hojitas de laurel',
+        '1 cebolla cortada en pluma',
+        '1 tallo de puerro en rodajitas sesgadas',
+        '1 zanahoria en rueditas',
+        'Cáscara de 1 limón',
+        '1 chile',
+        'Pimienta negra',
+        '4 rodajitas de jengibre',
+      ]},
+    ],
+    steps:[
+      'Sellar a fuego bajo el pescado en una ollita con un fondo de aceite de oliva y dorar ligeramente de ambos lados sin terminar de cocinar. Retirar el pescado y en la misma ollita sudar los vegetales con un poco de sal.',
+      'Agregar los líquidos y los perfumes (laurel, pimienta, limón, chile y jengibre) y por último el pescado, sin revolver para no romper las piezas.',
+      'Cuando rompa hervor, cocinar un minuto a fuego bajo y apagar. Dejar que baje la temperatura, envasar en frasco de boca ancha y guardar en heladera. Se conserva fresco por 10 días.',
+    ],
+    techNote:'Sellar el pescado antes de sumergirlo en el líquido ácido ayuda a que las piezas mantengan estructura durante la cocción y el envasado en caliente.',
+  },
+  {
+    id:'croquetas-de-pescado',
+    title:'Croquetas de pescado',
+    category:'pescados',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '700 g de filetes de pescado blanco',
+        '400 cc de leche de vaca o vegetal',
+        '400 g de papas peladas',
+        '2 ajos picados',
+        '3 cdas de ciboulette o perejil picado finamente',
+        'Panko c/n',
+        '3 huevos',
+        '2 limones',
+        'Aceite vegetal para freír c/n',
+        'Sal y pimienta a gusto',
+      ]},
+    ],
+    steps:[
+      'Cortar el filete de pescado despinado de forma regular. En una ollita colocar la leche y pochar los trozos de pescado durante 10 minutos. Retirar del fuego y colar.',
+      'Una vez frío, desmenuzar el pescado con la mano y salpimentar. Hervir las papas en agua con sal y hacer un puré seco sin agregados.',
+      'Colocar el pescado en un bowl con el ajo, las hierbas picadas y el puré. Unir todo con las manos y rectificar condimentos. Reservar en la heladera.',
+      'Una vez fría la preparación, porcionar piezas de 50 g y moldear con la mano. Pasar por huevo salpimentado y luego apanar en panko. Freír en abundante aceite y secar en papel absorbente. Servir con gajos de limón.',
+    ],
+    techNote:'Es una preparación comodín para aprovechar recortes de pescado y aumentar su rendimiento con papa. Enfriar bien la mezcla antes de moldear ayuda a que las croquetas mantengan la forma al freír.',
+  },
+
+  {
+    id:'risotto-de-hongos',
+    title:'Risotto de hongos',
+    category:'arroces',
+    classInfo:'Bases de cocina y comida de olla · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Receta base (1 porción)', items:[
+        '50 g arroz carnaroli',
+        '6–7 g hongos',
+        '30 g cebolla',
+        '½ diente ajo',
+        '15 ml vino blanco',
+        '150–180 ml caldo caliente',
+        '10 g manteca',
+        '10 g parmesano',
+      ]},
+    ],
+    steps:[
+      'Saltear los hongos hasta dorar y reservar (si son hongos secos, hidratar previamente). Cortar cebolla y ajo en brunoise.',
+      'Rehogar cebolla y ajo, y nacarar el arroz. Desglasar con vino blanco hasta evaporar el alcohol.',
+      'Agregar el caldo progresivamente, revolviendo constantemente. Incorporar los hongos a mitad de cocción. Cocinar al dente y mantecar fuera del fuego.',
+    ],
+    techNote:'El nacarado recubre el grano de grasa y controla la absorción del líquido, permitiendo una liberación progresiva de almidón. El desglasado aporta acidez estructural que equilibra la grasa, y el mantecado fuera del fuego genera la emulsión final que da brillo y cohesión. Errores frecuentes: agregar todo el líquido junto, no revolver, o mantecar con el fuego encendido.',
+  },
+
+  {
+    id:'humita-crocante-salsa-picante',
+    title:'Humita crocante con salsa picante',
+    category:'guisos',
+    classInfo:'Bases de cocina y comida de olla · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Humita', items:[
+        '2 choclos',
+        '1 cda de manteca',
+        '½ cebolla',
+        '½ morrón rojo',
+        '½ chile sin semilla',
+        '1 diente de ajo picado',
+        '1 pizca de pimentón dulce',
+        '1 pizca de canela',
+        '1 cdita de azúcar',
+        '70 cc de leche',
+        '1 yema',
+        '2 cdas de cilantro picado',
+        '100 g de queso fresco tipo cuartirolo',
+        '5 hojas de kale',
+      ]},
+      { title:'Salsa', items:[
+        '1 tomate',
+        '½ cebolla de verdeo',
+        '1 chile',
+        'Aceite de oliva c/n',
+        '1 cda de vinagre de manzana',
+        '1 cdita de miel',
+        '½ lima (jugo y ralladura)',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Asar el kale en una asadera rociado con aceite de oliva, salpimentar y reservar. Rallar los choclos y reservar la pulpa.',
+      'Picar la cebolla y el morrón en brunoise y rehogar en manteca junto con el ajo. Salpimentar. Agregar el chile picado y la pulpa de choclo, revolver e incorporar la leche, el pimentón, la canela y el azúcar. Cocinar a fuego bajo 5 minutos.',
+      'Retirar del fuego, agregar el cilantro picado y, una vez fría la preparación, sumar el queso fresco en cubos, el huevo y terminar con el kale crocante. Servir en bowls o en la chala del choclo.',
+      'Salsa: picar el tomate en cubos sin piel y el chile y la cebolla en brunoise. Mezclar con aceite de oliva, vinagre, lima y miel, y salpimentar.',
+    ],
+    techNote:'Cocinar el sofrito de cebolla y morrón antes de sumar el choclo establece la base aromática del plato: un sofrito mal resuelto no se corrige al final.',
+  },
+  {
+    id:'curry-de-vegetales-legumbres-hongos',
+    title:'Curry de vegetales, legumbres y hongos',
+    category:'guisos',
+    classInfo:'Bases de cocina y comida de olla · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '½ cebolla',
+        '½ puerro',
+        '2 dientes de ajo',
+        '3 cdas de aceite neutro',
+        '½ boniato',
+        '½ zanahoria',
+        'Un puñado de chauchas o judías verdes',
+        '¼ de coliflor',
+        '½ cda de cúrcuma o garam masala',
+        '½ cda de coriandro',
+        '1 cm de jengibre fresco picado',
+        '150 cc de leche de coco',
+        '1 tomate concassé',
+        '100 g de garbanzos cocidos y escurridos',
+        '150 cc de caldo de vegetales',
+        '150 g de hongos frescos',
+        'Un puñado de cilantro fresco',
+      ]},
+    ],
+    steps:[
+      'Cortar la cebolla en brunoise y el puerro en paisana. Picar el ajo. Cortar el boniato en cubos de 1 cm, el coliflor en arbolitos y picar las chauchas.',
+      'En una olla, colocar el aceite y agregar la cebolla, el puerro y el ajo, salpimentar. Incorporar el resto de los vegetales, la cúrcuma, el coriandro y el jengibre. Cocinar un minuto y sumar la leche de coco y el tomate concassé, cocinando a fuego bajo 5 minutos más.',
+      'Agregar el caldo y cocinar 10 minutos más, luego sumar los garbanzos. Aparte, saltear a fuego fuerte los hongos y agregarlos al final junto con el cilantro fresco y la ralladura y jugo de ½ limón.',
+    ],
+    techNote:'Cada ingrediente entra en un momento determinado según su estructura y tiempo de cocción: los vegetales de cocción más larga van primero, los hongos salteados aparte se suman al final para no perder textura.',
+  },
+  {
+    id:'carbonada-criolla',
+    title:'Carbonada criolla',
+    category:'guisos',
+    classInfo:'Bases de cocina y comida de olla · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '500 g de paleta + 2 ruedas de osobuco',
+        '1 cebolla',
+        '1 zanahoria',
+        '2 dientes de ajo',
+        '3 choclos en trozos',
+        '8 damascos deshidratados',
+        '1 boniato grande',
+        '1 trozo grande de zapallo',
+        '1 papa mediana',
+        '1 morrón',
+        '4 cdas de grasa',
+        '500 cc de caldo de verduras',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Picar la carne en cubos, la cebolla y el ajo bien chiquitos. Cortar el choclo en ruedas, hidratar y picar los damascos a grosso modo, y cortar la papa, el boniato y la zanahoria en cubos irregulares. Cortar el morrón en cubos o tiritas.',
+      'En la olla con un poco de grasa, sellar bien la carne hasta caramelizar y reservar fuera del fuego. En la misma olla, con un poco más de grasa, saltear la cebolla, luego el ajo y el morrón.',
+      'Incorporar la carne, el caldo, la zanahoria, el choclo y la papa. Cocinar 10 minutos y agregar el boniato, la calabaza, los damascos, sal y pimienta. Tapar y cocinar 20 minutos más sin revolver para que no se rompan los vegetales.',
+      'Apagar el fuego y dejar reposar 10 minutos como mínimo. Servir en un zapallo cabutiá ahuecado y asado con leche y una cucharada de azúcar.',
+    ],
+    techNote:'Sellar la carne hasta caramelizar antes de incorporar el resto construye la base de sabor del guiso. Todos los guisos son más ricos recalentados al día siguiente.',
+  },
+  {
+    id:'guiso-de-lentejas',
+    title:'Guiso de lentejas',
+    category:'guisos',
+    classInfo:'Bases de cocina y comida de olla · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes (4 porciones)', items:[
+        '1 kg carne',
+        '240 g lentejas',
+        '120 g panceta',
+        '500–600 g papa',
+        '1 cebolla',
+        '1 zanahoria',
+        '1 rama de apio',
+        '2–3 dientes de ajo',
+        '300 g tomate',
+        '1,5 l caldo',
+        'Laurel',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Fundir la panceta desde frío hasta dorar levemente. Retirar y reservar. Sellar la carne en esa grasa, en tandas, y retirar.',
+      'Sofreír cebolla, zanahoria, apio y ajo. Desglasar con tomate. Incorporar la carne, la panceta, las lentejas, el laurel y el caldo. Cocinar 30 minutos.',
+      'Agregar la papa en cubos y continuar la cocción 20 a 30 minutos. Ajustar sal y pimienta, y dejar reposar antes de servir.',
+    ],
+    techNote:'El sellado correcto de la carne y el uso de la grasa de panceta son puntos clave, junto con un fuego bajo constante para controlar la cocción de la papa sin que se deshaga.',
+  },
+
+  {
+    id:'membrillos-en-almibar-especiado',
+    title:'Membrillos en almíbar especiado',
+    category:'conservas',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 kg membrillos',
+        '3 limones',
+        '800 g azúcar',
+        '1 litro agua',
+        '1 chile entero',
+        '5 g de cardamomo (semillas y cáscara para infusionar)',
+        '1 anís estrellado',
+      ]},
+    ],
+    steps:[
+      'Elegir membrillos firmes de tamaño pequeño. Pelarlos y sacar las semillas, reservando. Cortar en sextos y rociar con jugo de limón.',
+      'Colocar en una olla el agua, el azúcar y, en un paño o bolsita de tela, las cáscaras y centros con semillas de los membrillos. Llevar a ebullición suave; cuando burbujee lentamente, colar y quedarse solo con el almíbar.',
+      'Volcar en el almíbar el chile y las especias, y los gajos de fruta, hasta que los membrillos estén apenas tiernos, cambien de color y el almíbar esté a punto jalea. Introducir la fruta y el almíbar en frascos esterilizados.',
+      'Se conserva en frío con una duración de tres meses cerrado y 15 días una vez abierto, siempre cubierto por el almíbar. Sugerido: servir con una cucharada de queso mascarpone, hojas y flores de salvia.',
+    ],
+    techNote:'Infusionar las cáscaras y semillas del membrillo en el almíbar antes de colar aporta pectina natural, ayudando a que el almíbar llegue a punto jalea.',
+  },
+  {
+    id:'limones-en-conserva',
+    title:'Limones en conserva',
+    category:'conservas',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '6 limones sin encerar (orgánicos o de árbol)',
+        '6 cucharadas de sal gruesa',
+        '2 ramas de romero o tomillo',
+        '1 chile rojo grande',
+        'Zumo de 6 limones',
+        'Aceite de oliva',
+      ]},
+    ],
+    steps:[
+      'Esterilizar un frasco lo bastante grande llenándolo con agua hirviendo, dejarla un minuto y vaciarlo. Dejar secar al aire, sin trapo, para que se mantenga limpio.',
+      'Lavar los limones y hacerles un corte profundo desde la parte superior hasta unos 2 cm de la base. Rellenar cada uno con una cucharada de sal y colocarlos en el frasco, presionándolos entre sí.',
+      'Cerrar el recipiente y dejar en reposo, como mínimo, una semana. Destapar, apretar los limones para que suelten jugo, y añadir el romero, el chile y el zumo de limón. Cubrir con una fina capa de aceite de oliva.',
+      'Volver a cerrar el frasco y conservar en un lugar fresco durante al menos cuatro semanas. Cuanto más tiempo reposen, mejor.',
+    ],
+    techNote:'La sal extrae el agua de los limones y crea un medio salino que los conserva mientras ablanda la cáscara, el ingrediente que finalmente se usa en la cocina.',
+  },
+  {
+    id:'limones-en-conserva-rapido',
+    title:'Limones en conserva (modo rápido)',
+    category:'conservas',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes (1 frasco grande, aprox. 1 kg)', items:[
+        '½ chile rojo picado',
+        '3 cdas de jugo de limón',
+        '3 limones sin encerar, pequeños o medianos, en rodajas muy finas',
+        '35 g de azúcar',
+        '½ cda de sal de mar',
+        '1 diente de ajo picado',
+        '1 cdita de pimentón dulce',
+        '¼ cdita de comino molido',
+        '½ cdita de cúrcuma molida',
+      ]},
+    ],
+    steps:[
+      'En un mortero, aplastar el chile con una cucharadita de jugo de limón hasta obtener una pasta algo grumosa.',
+      'Pasar la mezcla a un bol grande y añadir el resto de los ingredientes. Mezclar bien con las manos para que las rodajas de limón se impregnen de todos los aromas.',
+      'Tapar y dejar reposar toda una noche. Al día siguiente, pasar la preparación a un frasco esterilizado y cerrar herméticamente. Conservar en la heladera hasta dos semanas.',
+    ],
+    techNote:'A diferencia de la conserva clásica, esta versión usa rodajas finas y un reposo corto: gana sabor por contacto directo de las especias en vez de por curado prolongado con sal.',
+  },
+
+  {
+    id:'dukkah',
+    title:'Dukkah',
+    category:'condimentos',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '70 g de avellanas con piel',
+        '2 cdas de semillas de girasol',
+        '1 cdita de semillas de hinojo',
+        '1 cda de semillas de comino',
+        '1 cda de granos de pimienta verde secos (o blanca)',
+        '3 cdas de semillas de coriandro',
+        '1½ cdas de semillas de sésamo',
+        '½ cdita de sal de mar',
+        '1 cdita de pimentón dulce',
+      ]},
+    ],
+    steps:[
+      'Precalentar el horno a 160 °C. Hornear las avellanas 20 minutos, agregando las semillas de girasol a los 10 minutos, manteniéndolas separadas. Retirar y dejar enfriar.',
+      'Calentar una sartén de fondo grueso a fuego medio. Tostar las semillas de hinojo 30 segundos, agregar el comino y dorar 30 segundos más. Reservar. Tostar la pimienta verde hasta que salte, unos 30 segundos, y reservar aparte.',
+      'Tostar las semillas de coriandro hasta 1 minuto. Bajar el fuego al mínimo y tostar el sésamo, removiendo, hasta que esté dorado.',
+      'Frotar las avellanas entre las manos para quitar parte de la piel y picarlas en un mortero. Machacar ligeramente el comino y el hinojo y agregarlos, repetir con el coriandro y la pimienta verde, y por último incorporar las semillas de girasol, el sésamo, la sal y el pimentón. Mezclar bien.',
+    ],
+    techNote:'Templar cada especia por separado antes de mezclarlas activa sus aceites esenciales sin quemarlas. No triturar demasiado en el mortero conserva la textura característica del dukkah. Se conserva hermético hasta un mes.',
+  },
+  {
+    id:'mostaza-casera',
+    title:'Mostaza casera',
+    category:'condimentos',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '200 g de semillas de mostaza amarilla',
+        '100 g de semillas de mostaza negra',
+        '400 ml de vinagre',
+        '300 ml de agua',
+        '6 cdas de miel',
+        '2 cditas de cúrcuma',
+        '3 g de sal',
+        'Opcional: 1 cdita de goma xantana para mejorar la textura al licuar',
+      ]},
+    ],
+    steps:[
+      'Colocar las semillas de mostaza en una olla con agua fría, llevar a hervor, colar y repetir el proceso entre 5 y 7 veces: cuantas más veces se hiervan, más suave el sabor y menor el amargor.',
+      'Mezclar el vinagre, el agua, la miel, la cúrcuma y la sal, y entibiar ligeramente. Colocar las semillas hervidas en un frasco hermético y cubrir con el líquido.',
+      'Dejar 1 día a temperatura ambiente y luego guardar en heladera durante 1 semana. Colar las semillas y procesarlas con un poco del líquido de maceración: apenas para una mostaza rústica, o licuar hasta lograr una crema lisa para una mostaza tipo Dijon.',
+      'Guardar en un frasco hermético en la heladera. Ideal para sándwiches de pollo, hamburguesas, vinagretas, pastrami y carnes.',
+    ],
+    techNote:'Hervir y colar las semillas varias veces reduce progresivamente el amargor natural de la mostaza antes de macerarlas en el líquido final.',
+  },
+  {
+    id:'salsa-macha-de-mani',
+    title:'Salsa macha de maní',
+    category:'condimentos',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '100 g de maní tostado sin sal',
+        '20 g de chile ancho seco',
+        '5–10 g de chile de árbol, según el picor deseado',
+        '3 dientes de ajo',
+        '15 g de semillas de sésamo',
+        '220 ml de aceite neutro',
+        '20 ml de vinagre de manzana',
+        '1 cdita de azúcar mascabo',
+        'Sal a gusto',
+      ]},
+    ],
+    steps:[
+      'Retirar los cabitos de los chiles; para una salsa menos picante, quitar parte de las semillas. Calentar el aceite a fuego bajo y dorar suavemente los ajos. Retirar y reservar.',
+      'En el mismo aceite, freír los chiles apenas unos segundos, sin dejar que se oscurezcan demasiado porque pueden amargar. Retirar. Tostar ligeramente el sésamo.',
+      'Procesar los chiles, ajo, maní y sésamo con el aceite, sin procesar del todo: la salsa queda mejor con textura y pequeños trozos. Agregar el vinagre, el azúcar mascabo y sal, ajustando acidez y picante.',
+      'Dejar reposar unas horas antes de servir para que se integren los sabores. Rinde aproximadamente 350–400 g.',
+    ],
+    techNote:'Tip Gaucha: reservar una parte del maní y del sésamo sin procesar y agregarlos al final apenas picados — queda más crocante y visualmente más atractiva.',
+  },
+
+  {
+    id:'milanesa-de-peceto',
+    title:'Milanesa de peceto',
+    category:'rebozados',
+    classInfo:'Clase 06 · Rebozados, frituras y huevos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes (rinde 8 a 10 milanesas)', items:[
+        '1 kg peceto limpio',
+        '4 huevos',
+        '2 dientes de ajo',
+        '3 cdas perejil picado',
+        '1 cda mostaza',
+        'Sal y pimienta c/n',
+        'Ralladura de limón (opcional)',
+        '150 g harina',
+        '400–500 g pan rallado o mezcla de rebozado',
+        'Aceite para freír c/n',
+      ]},
+    ],
+    steps:[
+      'Limpiar el peceto retirando membranas y reconocer el sentido de la fibra. Cortar bifes transversalmente de 7 a 10 mm y uniformar el espesor con golpes suaves hasta 4-6 mm.',
+      'Batir los huevos solo hasta homogeneizar, agregar ajo, perejil, mostaza, sal, pimienta y ralladura. Incorporar la carne y refrigerar entre 2 y 12 horas.',
+      'Retirar la carne y dejar escurrir el exceso de marinada. Pasar por una capa fina de harina, sacudir el exceso, humedecer nuevamente con huevo si es necesario y cubrir con la cobertura seca presionando de manera uniforme.',
+      'Disponer en bandeja sin superponer y refrigerar al menos 30 minutos. Calentar el aceite a 170-175 °C y freír pocas piezas por vez, dando vuelta una sola vez cuando la primera cara esté firme y dorada. Escurrir sobre rejilla y servir de inmediato.',
+    ],
+    techNote:'Cortar la carne transversalmente a la fibra acorta los haces musculares y mejora la terneza. El reposo en frío tras empanar es lo que fija la cobertura: sin él, el vapor puede levantarla antes de que coagule. No freír desde congelado ni sobrecargar la sartén evita que se queme afuera mientras el interior queda crudo.',
+  },
+  {
+    id:'croquetas-de-lomito-ahumado',
+    title:'Croquetas de lomito ahumado con mermelada de cebollas',
+    category:'rebozados',
+    classInfo:'Clase 06 · Rebozados, frituras y huevos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Croquetas', items:[
+        '500 ml de leche',
+        '75 g de harina',
+        '75 g de manteca',
+        '25 g de queso rallado',
+        '50 g de lomito ahumado',
+        '1 cebolla',
+        '1 diente de ajo',
+        'Nuez moscada, sal y pimienta',
+        'Harina, huevo y pan/panko/polenta para empanar',
+      ]},
+      { title:'Mermelada de cebollas', items:[
+        '300 g de cebollas',
+        '150 g de azúcar rubia',
+        '4 cdas de vinagre de manzana',
+        'Pimienta negra',
+        'Una pizca de cardamomo',
+      ]},
+    ],
+    steps:[
+      'Cortar cebolla y ajo en brunoise y cocinar a fuego bajo hasta que estén tiernos y ligeramente dorados. Calentar la leche por separado.',
+      'Fundir la manteca, incorporar la harina y cocinar el roux claro 1 a 2 minutos. Agregar la leche caliente en varias tandas, batiendo para evitar grumos, hasta obtener una masa espesa que se separe parcialmente de las paredes.',
+      'Incorporar el lomito, la cebolla, el ajo y el queso, rectificar la sazón, extender en una fuente para acelerar el enfriamiento, cubrir y refrigerar.',
+      'Formar piezas de 25 a 35 g, empanar con harina, huevo y cobertura seca. Refrigerar al menos 15 minutos (y llevar 10 a 20 minutos al freezer si la masa está muy blanda) y freír a 170-175 °C hasta dorar y calentar el centro.',
+      'Mermelada: cortar las cebollas en pluma y cocinar a fuego bajo con azúcar y especias hasta que estén tiernas y doradas. Agregar el vinagre y reducir hasta lograr una consistencia untuosa.',
+    ],
+    techNote:'La bechamel espesa es un ejercicio de gelatinización de almidón: cocinarla lo suficiente elimina el sabor a harina cruda y, al enfriarse, la red de almidón y la grasa se vuelven firmes y permiten modelar. La acidez de la mermelada equilibra la grasa y el carácter lácteo de la croqueta.',
+  },
+  {
+    id:'falafel-de-zanahorias-asadas',
+    title:'Falafel de zanahorias asadas',
+    category:'rebozados',
+    classInfo:'Clase 06 · Rebozados, frituras y huevos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '500 g de garbanzos secos',
+        '4 cebollas de verdeo',
+        '4 dientes de ajo',
+        '4 cdas de perejil',
+        '2 cdas de cilantro',
+        '5 zanahorias asadas',
+        'Comino, coriandro, cardamomo y cayena',
+        '½ cda de polvo de hornear',
+        '1½ cda de sémola o almidón',
+        'Sal y pimienta',
+        'Sésamo (opcional)',
+      ]},
+    ],
+    steps:[
+      'Remojar los garbanzos entre 8 y 12 horas en abundante agua fría. Escurrir y secar muy bien.',
+      'Procesar en tandas con cebolla, ajo, hierbas y zanahoria hasta obtener una textura fina pero no líquida. Agregar especias, sal, polvo de hornear y sémola o almidón, mezclar y refrigerar al menos 30 minutos.',
+      'Formar piezas de 20 a 30 g con manos húmedas, presionando para unir. Freír a 165-175 °C, comenzando con una pieza de prueba: si se abre, revisar humedad y compactación. Escurrir sobre rejilla o papel un tiempo breve.',
+    ],
+    techNote:'El falafel se hace con garbanzo crudo remojado, no cocido: el garbanzo cocido tiene más agua y almidón ya gelatinizado y produce una masa que se desarma. Si la masa se abre al freír, el problema suele ser exceso de humedad o poca compactación.',
+  },
+  {
+    id:'lactonesa',
+    title:'Lactonesa',
+    category:'rebozados',
+    classInfo:'Clase 06 · Rebozados, frituras y huevos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '100 ml de leche',
+        '200 ml de aceite',
+        '1 diente de ajo asado',
+        'Ralladura de 2 limones',
+        '1 cda de jugo de limón',
+        '2 cdas de hierbas picadas',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Colocar la leche y el ajo en un vaso alto. Comenzar a mixear e incorporar el aceite gradualmente hasta obtener la viscosidad buscada.',
+      'Agregar sal, pimienta, hierbas, ralladura y jugo de limón. Refrigerar inmediatamente.',
+    ],
+    techNote:'Es una emulsión de aceite en agua estabilizada por las proteínas de la leche en lugar del huevo, por eso es más estable y segura. Incorporar el aceite gradualmente mientras se mixea evita que las gotas se unan y la emulsión se corte.',
+  },
+  {
+    id:'tortilla-espanola',
+    title:'Tortilla española',
+    category:'rebozados',
+    classInfo:'Clase 06 · Rebozados, frituras y huevos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '600 g de papas',
+        '1 cebolla en pluma',
+        '2 dientes de ajo',
+        '6 a 8 huevos',
+        'Aceite de oliva o aceite adecuado',
+        'Sal',
+      ]},
+    ],
+    steps:[
+      'Cortar las papas en láminas o medias lunas de 3 a 4 mm, todas del mismo tamaño. Cocinar en aceite a 140-160 °C sin buscar un dorado intenso. Agregar la cebolla y el ajo y cocinar hasta que estén tiernos. Escurrir, reservando parte del aceite.',
+      'Batir los huevos solo hasta homogeneizar y sazonar. Incorporar las papas todavía calientes pero no chorreando aceite, y reposar entre 5 y 15 minutos.',
+      'Calentar una sartén adecuada con una pequeña cantidad de aceite, volcar la mezcla, formar la base a fuego medio y reducir. Despegar los bordes y girar con plato o tapa en un movimiento firme. Cocinar el segundo lado hasta el punto deseado y reposar unos minutos antes de cortar.',
+    ],
+    techNote:'La papa debe quedar tierna y cremosa, no crocante: si se dora en exceso, la integración con el huevo disminuye. No batir el huevo en exceso evita incorporar aire que rompa la estructura. Girar solo cuando la base esté firme es lo que permite que la tortilla no se rompa.',
+  },
+
+  {
+    id:'faina-cebollas-caramelizadas-brie',
+    title:'Faina con cebollas caramelizadas, tomillo y brie',
+    category:'panes',
+    classInfo:'Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '250 g de harina de garbanzos',
+        '3 cucharadas de aceite de oliva',
+        '750 ml de agua fría',
+        'Sal y pimienta negra a gusto',
+        '4 cebollas',
+        'Tomillo a gusto',
+        'Una horma de Brie o 100 g de queso azul',
+      ]},
+    ],
+    steps:[
+      'En un bowl, mezclar la harina con sal y pimienta, agregar el aceite e ir incorporando el agua muy de a poco, revolviendo constantemente con un batidor. Dejar reposar una hora.',
+      'Cortar la cebolla en pluma y llevar a una sartén a fuego medio. Agregar sal y pimienta y cocinar hasta dorar.',
+      'Llevar la faina a una asadera y hornear a 180 °C hasta dorar la superficie. Servir con las cebollas caramelizadas, tomillo y cuñas de queso brie o roquefort.',
+    ],
+    techNote:'La faina es una masa sin gluten basada en harina de garbanzo: el reposo de una hora hidrata bien el almidón y evita una textura arenosa antes de hornear.',
+  },
+
+  {
+    id:'fetuccini-ragout-de-carne',
+    title:'Fetuccini con ragout de carne (estofado)',
+    category:'pastas',
+    classInfo:'Clase 07 · Pastas y salsas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Masa base (1 porción)', items:[
+        '100 g harina 0000',
+        '1 huevo',
+        '1 g sal',
+      ]},
+      { title:'Ragout', items:[
+        '200 g carne (cuadril o paleta, pieza entera)',
+        '40 g cebolla en macedonia',
+        '30 g zanahoria en macedonia',
+        '20 g apio en macedonia',
+        '50 g tomate',
+        '60 ml vino blanco',
+        '150 ml caldo',
+        '1 hoja de laurel',
+        '10 ml aceite',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Masa: formar una corona con la harina y la sal, incorporar el huevo e integrar desde los bordes. Amasar hasta lograr una masa lisa, reposar 30 minutos y estirar según el uso. Cortar cintas de 5 mm para los fetuccini.',
+      'Ragout: secar la carne y sellarla entera hasta dorar. Retirar y rehogar los vegetales en macedonia. Reincorporar la carne, desglasar con vino, agregar el tomate, el caldo y el laurel, y cocinar tapado a fuego bajo entre 1 y 1,5 horas.',
+      'Retirar la carne, cortarla y reincorporarla a la salsa. Cocer la pasta en agua con sal, retirarla al dente e integrarla con el ragout agregando un poco de agua de cocción para emulsionar.',
+    ],
+    techNote:'Sellar la pieza entera antes de estofarla construye sabor por Maillard antes de que la cocción húmeda ablande el corte. Agregar agua de cocción de la pasta al integrar ayuda a emulsionar el almidón con la grasa de la salsa.',
+  },
+  {
+    id:'lasagna-de-carne-y-hongos',
+    title:'Lasagna de carne y hongos',
+    category:'pastas',
+    classInfo:'Clase 07 · Pastas y salsas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Relleno', items:[
+        '200 g carne picada',
+        '20 g hongos secos hidratados',
+        '60 g cebolla en macedonia',
+        '40 g zanahoria en macedonia',
+        '30 g apio en macedonia',
+        '100 g tomate',
+        '60 ml vino blanco',
+        '200 ml caldo',
+        '1 hoja de laurel',
+        '15 ml aceite',
+        'Sal y pimienta',
+      ]},
+      { title:'Salsa bechamel', items:[
+        '500 ml leche',
+        '50 g manteca',
+        '50 g harina',
+        'Sal, pimienta y nuez moscada',
+      ]},
+      { title:'Salsa de tomate', items:[
+        '200 g tomate',
+        '20 g cebolla en brunoise',
+        '5 ml aceite',
+        'Sal y pimienta',
+      ]},
+      { title:'Además', items:[
+        'Láminas de masa fresca',
+        'Queso rallado',
+        'Cubos de manteca',
+      ]},
+    ],
+    steps:[
+      'Relleno: rehogar los vegetales, agregar la carne y sellar. Desglasar con vino, incorporar el tomate y los hongos, agregar el caldo y cocinar 30 a 40 minutos, ajustando el condimento.',
+      'Bechamel: fundir la manteca, incorporar la harina, cocinar el roux, agregar la leche caliente y cocinar hasta espesar. Condimentar con sal, pimienta y nuez moscada.',
+      'Salsa de tomate: rehogar la cebolla, agregar el tomate y cocinar 15 a 20 minutos. Condimentar.',
+      'Armar en capas: base de salsa de tomate, lámina de masa, relleno, bechamel, salsa de tomate, y repetir. Finalizar con bechamel, salsa de tomate, queso rallado y cubos de manteca. Hornear a 180 °C entre 25 y 30 minutos, gratinando. Reposar 10 minutos antes de cortar.',
+    ],
+    techNote:'La manteca sobre la última capa aporta dorado y sabor durante el gratinado. El reposo post-horno es lo que permite que las capas se asienten y la lasagna se corte limpia.',
+  },
+  {
+    id:'raviolones-berenjena-papa-tomillo',
+    title:'Raviolones de berenjena, papa y tomillo',
+    category:'pastas',
+    classInfo:'Clase 07 · Pastas y salsas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Relleno', items:[
+        '120 g berenjena',
+        '80 g papa',
+        '80 g cebolla en brunoise',
+        '5 ml aceite',
+        'Tomillo',
+        'Sal y pimienta',
+      ]},
+      { title:'Salsa: manteca noisette de salvia', items:[
+        '80 g manteca',
+        'Hojas de salvia',
+      ]},
+    ],
+    steps:[
+      'Asar la berenjena, retirar la pulpa y escurrirla. Hervir la papa y hacer un puré. Rehogar la cebolla en brunoise a fuego bajo. Integrar todo y ajustar textura y condimento.',
+      'Estirar la masa fina, disponer el relleno, humedecer los bordes, cerrar retirando el aire y cortar los raviolones. Cocer en agua con sal hasta que floten.',
+      'Salsa: fundir la manteca y llevarla a punto avellana, incorporando la salvia. Pasar los raviolones a la manteca, integrar suavemente y servir de inmediato.',
+    ],
+    techNote:'Escurrir bien la berenjena y la papa antes de rellenar evita que el relleno humedezca la masa y dificulte el cierre. La manteca noisette (punto avellana) desarrolla notas tostadas que compensan la dulzura del relleno.',
+  },
+
+  {
+    id:'ensalada-persa-de-basmati',
+    title:'Ensalada persa de basmati',
+    category:'arroces',
+    classInfo:'Fundamentos culinarios: Cereales · Arroces · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Arroz', items:[
+        '1½ taza de arroz basmati',
+        '2¼ tazas de agua caliente',
+        '1 cda generosa de ghee',
+        '½ cdta de semillas de comino',
+        '½ cdta de cúrcuma',
+        'Sal',
+      ]},
+      { title:'Ensalada', items:[
+        '1 coliflor mediana',
+        '6–7 dátiles',
+        '½ taza de aceitunas negras',
+        '½ taza de almendras',
+        '½ cebolla morada',
+        '1 pepino pequeño',
+        'Un puñado de menta',
+        'Un puñado de perejil',
+        'Eneldo (opcional)',
+        'Aceite de oliva',
+      ]},
+      { title:'Aliño', items:[
+        'Jugo de 1½–2 limones',
+        '5 cdas de aceite de oliva',
+        '1½ cdta de sumac',
+        'Sal y pimienta negra',
+      ]},
+    ],
+    steps:[
+      'Lavar el basmati 3 o 4 veces hasta que el agua salga casi transparente, para retirar el almidón superficial y favorecer granos separados. Escurrir muy bien.',
+      'Calentar el ghee a fuego medio, incorporar el comino y cocinar 20-30 segundos hasta que desprenda aroma, agregar la cúrcuma unos segundos después. Incorporar el basmati escurrido y cocinar 1-2 minutos, moviendo suavemente para envolver cada grano sin dorarlo.',
+      'Agregar el agua caliente con cuidado, salar, llevar a hervor, bajar a fuego mínimo y tapar. Cocinar 10-12 minutos sin revolver ni destapar. Apagar y reposar 10 minutos más, tapado. Destapar y separar los granos con un tenedor.',
+      'Hornear la coliflor en floretes con aceite, sal y comino a 220 °C durante 15-20 minutos y enfriar. Cortar la cebolla morada fina y macerarla con limón y sal. Cortar dátiles, aceitunas y pepino, tostar y picar las almendras.',
+      'Mezclar limón, sumac, sal y pimienta, incorporar el aceite y emulsionar. Con el arroz frío, sumar la coliflor, el pepino, los dátiles, las aceitunas y la cebolla. Aliñar, incorporar las hierbas al final y terminar con las almendras.',
+    ],
+    techNote:'Lavar, marcar en grasa, no mover durante la cocción por absorción y reposar tapado son las decisiones que, en conjunto, mantienen el basmati suelto y separado: es el arroz de mayor contenido de amilosa entre los usados en la clase.',
+  },
+  {
+    id:'arroz-meloso-negro-calamaretti',
+    title:'Arroz meloso negro con calamaretti, hinojo y limón',
+    category:'arroces',
+    classInfo:'Fundamentos culinarios: Cereales · Arroces · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '500 g de arroz Carnaroli',
+        '700 g de calamaretti limpios',
+        '1,7–2 litros de fumet de pescado, aproximadamente',
+        '8–12 g de tinta de calamar',
+        '1 cebolla',
+        '½ bulbo de hinojo',
+        '2 dientes de ajo',
+        '150 ml de vino blanco',
+        '½ atado de perejil fresco',
+        'Aceite de oliva',
+        'Sal marina de limón, para terminar',
+        'Pimienta negra',
+        'Sal, con moderación',
+      ]},
+    ],
+    steps:[
+      'Mantener el fumet caliente durante toda la cocción, cuidando la sal ya que la tinta también aporta salinidad. Diluir la tinta de calamar en un cucharón de fumet caliente y reservar.',
+      'Secar bien los calamaretti y marcarlos en una sartén muy caliente con apenas aceite, vuelta y vuelta, de forma intensa y breve, buscando dorado y ternura. Retirar y reservar.',
+      'Picar finamente la cebolla y dos tercios del hinojo (reservar el resto para el final) y cocinarlos lentamente en aceite de oliva con una pizca de sal hasta que estén tiernos, sin tomar demasiado color. Incorporar el ajo y cocinar brevemente.',
+      'Agregar el arroz sin lavar y cocinar 1-2 minutos hasta que los bordes se vean translúcidos. Desglasar con el vino blanco hasta que se reduzca a la mitad.',
+      'Incorporar fumet caliente hasta cubrir apenas el arroz y mantener una cocción constante, sin hervor violento, agregando más fumet progresivamente. Sumar la tinta diluida después de las primeras incorporaciones y continuar agregando fumet. Revolver regularmente para favorecer la liberación de almidón.',
+      'Cuando el exterior del grano esté tierno y el centro conserve una pequeña resistencia, reincorporar los calamaretti en los últimos instantes. Apagar el fuego cuando el arroz esté un poco más fluido de lo deseado, agregar aceite de oliva y perejil picado, y terminar con hinojo fresco muy fino y sal marina de limón.',
+    ],
+    techNote:'A diferencia del basmati, el Carnaroli no se lava: se conserva su almidón superficial para construir melosidad. El movimiento constante genera la fricción que libera ese almidón, y el arroz sigue absorbiendo líquido después de apagar el fuego, por lo que el punto se decide un poco antes de servir.',
+  },
+  {
+    id:'arroz-con-leche-thai',
+    title:'Arroz con leche thai',
+    category:'arroces',
+    classInfo:'Fundamentos culinarios: Cereales · Arroces · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '250 g de arroz Doble Carolina',
+        '700 ml de leche',
+        '500 ml de leche de coco',
+        '100–130 g de azúcar',
+        '1 rama de canela',
+        '4 vainas de cardamomo ligeramente abiertas',
+        '1 trozo pequeño de jengibre fresco',
+        'Piel de 1 lima',
+        '1 pizca de sal',
+        'Para terminar: coco tostado, ralladura de lima, sésamo tostado y/o fruta fresca',
+      ]},
+    ],
+    steps:[
+      'Colocar la leche, 350 ml de la leche de coco, el cardamomo, el jengibre, la piel de lima, la canela y la sal en una olla. Calentar lentamente, sin hervor fuerte, para infusionar el líquido.',
+      'Incorporar el Doble Carolina sin lavar al líquido caliente y cocinar a fuego bajo, revolviendo regularmente, dejando que el almidón se libere y espese la preparación.',
+      'Cuando el arroz esté avanzando en su hidratación, incorporar 100 g de azúcar; probar hacia el final y sumar hasta 130 g si se busca más dulzor. Incorporar progresivamente los 150 ml de leche de coco restantes según lo que el arroz vaya necesitando, durante unos 30 a 40 minutos, priorizando el punto sobre el reloj.',
+      'Cocinar hasta que el arroz esté completamente tierno, más allá del punto al dente. Retirar el cardamomo, el jengibre y la piel de lima. Apagar cuando la preparación todavía se vea cremosa, brillante y bastante fluida, ya que espesa al enfriarse. Terminar con ralladura de lima, coco tostado y, opcionalmente, sésamo o fruta fresca.',
+    ],
+    techNote:'El Doble Carolina no se lava, para aprovechar su alto contenido de amilopectina y lograr una textura completamente cremosa. Agregar el azúcar recién cuando el arroz ya avanzó en su hidratación evita ralentizar la cocción del grano, y el punto final se decide en frío porque la preparación gana cuerpo al enfriarse.',
+  },
+
+  {
+    id:'koftas-de-cordero-y-vaca',
+    title:'Koftas de cordero y vaca',
+    category:'cerdo-cordero',
+    classInfo:'Fundamentos culinarios: Cerdo y cordero · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Koftas', items:[
+        '350 g carne picada de cordero',
+        '350 g carne picada de vaca',
+        '130 g cebolla muy fina',
+        '2 dientes de ajo',
+        '45 g almendras tostadas y picadas',
+        '30 g perejil',
+        '1 chile rojo pequeño (opcional)',
+        '1¼ cdta canela',
+        '1¼ cdta pimienta de Jamaica',
+        '¾ cdta nuez moscada',
+        '1¼ cdta pimienta negra',
+        '1½ cdta sal aproximadamente',
+      ]},
+      { title:'Tabulé de burgol', items:[
+        '120 g burgol fino',
+        'Tomate',
+        'Pepino',
+        'Cebolla morada',
+        'Abundante perejil y menta',
+        'Limón',
+        'Aceite de oliva',
+        'Sal',
+      ]},
+      { title:'Salsa de yogur', items:[
+        '250 g yogur espeso',
+        '½ pepino rallado y escurrido',
+        'Limón',
+        'Menta',
+        'Aceite de oliva',
+        'Sal',
+        'Sumac',
+      ]},
+    ],
+    steps:[
+      'Picar la cebolla muy fina; si está muy acuosa, presionarla ligeramente, ya que una mezcla demasiado húmeda pierde cohesión y dificulta el dorado. Integrar las carnes con la sal, las especias, el ajo, el perejil y las almendras, trabajando con las manos hasta que la mezcla empiece a sostenerse, sin llegar a una masa elástica y compacta.',
+      'Pesar porciones de 50 g y dar forma alargada, buscando un peso parejo para que todas alcancen el punto en tiempos similares. Reposar en frío para que la grasa se afirme.',
+      'Dorar por tandas en sartén bien caliente con poco aceite y espacio entre piezas, dejando formar costra antes de girar. Si el exterior toma color antes que el centro, terminar brevemente en horno. Dejar reposar unos minutos y servir con elementos frescos y ácidos.',
+      'Tabulé: hidratar el burgol, escurrir muy bien, enfriar y mezclar con el tomate, el pepino y la cebolla morada, incorporando las hierbas al final.',
+      'Salsa: mezclar el yogur con el pepino escurrido, limón, menta, aceite y sal, ajustando el sumac y el limón al final. El pepino se escurre para no diluir la salsa.',
+    ],
+    techNote:'La sal y el trabajo manual favorecen la extracción de proteínas que ayudan a ligar la mezcla; detenerse antes de que se vuelva elástica evita una kofta demasiado compacta. La uniformidad de tamaño, el control de humedad y una sartén bien caliente son lo que da control real sobre el punto de cocción.',
+  },
+  {
+    id:'empanadas-de-cordero-braseado',
+    title:'Empanadas de cordero braseado',
+    category:'cerdo-cordero',
+    classInfo:'Fundamentos culinarios: Cerdo y cordero · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Masa', items:[
+        '1 kg de harina',
+        '20 g de sal',
+        '200 g de grasa de vaca o cerdo',
+        '400 cc de agua hirviendo',
+      ]},
+      { title:'Breseado de cordero', items:[
+        '1 kg de paleta o gigot de cordero',
+        '2 cebollas',
+        '1 puerro',
+        '½ zanahoria',
+        '1 rama de apio',
+        '5 dientes de ajo',
+        '2 hojas de laurel',
+        'Tomillo',
+        'Perejil',
+        '300 cc de vino tinto',
+        'Aceite de oliva c/n',
+        'Sal y pimienta negra a gusto',
+      ]},
+      { title:'Relleno', items:[
+        'Cordero braseado',
+        '1½ cebolla',
+        '½ morrón rojo',
+        '4 dientes de ajo',
+        'Comino',
+        'Pimentón ahumado',
+        'Menta',
+        'Aceite de oliva',
+        'Jugo de cocción',
+        'Sal y pimienta',
+      ]},
+      { title:'Mojo picón', items:[
+        '1 choclo',
+        '1 cebolla de verdeo',
+        '1 tomate',
+        'Un puñado de perejil',
+        'Un puñado de cilantro',
+        '2 dientes de ajo',
+        'Ralladura y jugo de 1 lima',
+        '1 chile',
+        'Una pizca de pimentón',
+        'Aceite neutro c/n',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Masa: hacer una corona de harina con la sal. Fundir la grasa a fuego bajo, hervir el agua y comenzar a tomar la masa. Incorporar de inmediato la grasa fundida y continuar amasando, terminar de hidratar con el agua restante y amasar bien. Dejar reposar hasta que enfríe.',
+      'Breseado: porcionar el cordero en partes iguales, picar en mirepoix la cebolla, el puerro, el apio y la zanahoria, y aplastar los ajos con cáscara. Armar un bouquet garni con laurel, tomillo y tallos de perejil.',
+      'Sellar el cordero de todos sus lados a fuego fuerte, retirar y dorar parejo las verduras. Volver el cordero, desglasar con vino tinto dejando evaporar el alcohol, cubrir con caldo, sumar el atado de hierbas y llevar a hervor. Cubrir con papel aluminio y hornear a 160 °C entre 3 y 4 horas. Retirar el cordero, desmenuzar y reducir el jugo de cocción.',
+      'Relleno: desmenuzar el cordero braseado. Transparentar la cebolla y el morrón en brunoise, agregar el ajo picado fino, sumar el cordero desmenuzado y el jugo de cocción, y cocinar lento. Condimentar con comino y pimentón ahumado, y agregar la menta fresca picada al enfriar la preparación. Armar las empanadas y hornear fuerte para dorar la masa.',
+      'Mojo picón: asar el choclo hasta dorar y desgranar. Cortar fino la cebolla de verdeo, escaldar y pelar el tomate y cortarlo en concassé, ciselar las hierbas y picar chico el ajo y el chile. Mezclar todo en un bol y cubrir con aceite.',
+    ],
+    techNote:'Sellar la carne no "cierra los poros": construye color y sabor en la superficie antes de la cocción húmeda. El fondo reducido se incorpora de a poco al relleno hasta lograr un relleno jugoso pero sin líquido libre, porque el exceso de humedad debilita la masa y dificulta el cierre.',
+  },
+  {
+    id:'solomillo-de-cerdo-al-wok',
+    title:'Solomillo de cerdo al wok',
+    category:'cerdo-cordero',
+    classInfo:'Fundamentos culinarios: Cerdo y cordero · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '500 g solomillo',
+        'Zanahoria, morrón rojo y amarillo, cebolla',
+        '100 g chauchas o brócoli',
+        'Verdeo',
+        '15 g jengibre',
+        '1 diente de ajo',
+      ]},
+      { title:'Salsa', items:[
+        '3 cdas de salsa de soja',
+        '1 cda de miel',
+        '1 cda de vinagre de arroz',
+        '½ lima',
+        '1 cdta de aceite de sésamo',
+      ]},
+    ],
+    steps:[
+      'Limpiar membranas y cortar el solomillo en piezas finas y parejas, perpendicularmente a la fibra, para controlar el punto de cocción. Ordenar la mise en place: carne, vegetales por dureza, aromáticos y salsa.',
+      'Calentar el wok vacío hasta temperatura alta y agregar aceite recién antes de la carne. Sellar por tandas en una sola capa, sin revolver de inmediato, y retirar en cuanto tome color, antes de completar la cocción.',
+      'Saltear los vegetales entrando primero los más duros, manteniendo movimiento y alta temperatura, buscando cocción con mordida. Agregar el ajo y el jengibre al final para evitar que amarguen, reincorporar el cerdo, sumar la salsa y reducir apenas hasta que recubra. Retirar del fuego y terminar con lima, sésamo y verdeo.',
+    ],
+    techNote:'La salsa entra al final y se reduce rápido: el objetivo es que el wok no se convierta en un guiso. Cortar en piezas finas y parejas es lo que permite un punto de cocción parejo a fuego muy alto.',
+  },
+  {
+    id:'pulled-pork-de-bondiola',
+    title:'Pulled pork de bondiola',
+    category:'cerdo-cordero',
+    classInfo:'Fundamentos culinarios: Cerdo y cordero · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Bondiola', items:[
+        '800 g bondiola',
+        '1 cebolla',
+        '2 dientes de ajo',
+        '1 cdta pimentón ahumado',
+        '1 cdta comino',
+        '1 cdta coriandro',
+        '1 cda azúcar rubia',
+        '1 cda mostaza',
+        '150 ml cerveza o sidra',
+        '250 ml caldo aproximadamente',
+        'Sal y pimienta',
+      ]},
+      { title:'Fajitas de trigo', items:[
+        '250 g harina',
+        '4 g sal',
+        '30 g aceite',
+        '140–150 ml agua tibia',
+      ]},
+      { title:'Encurtido fresco', items:[
+        'Cebolla morada',
+        '¼ repollo',
+        'Zanahoria',
+        '80 ml vinagre',
+        '80 ml agua',
+        '1 cda azúcar',
+        '1 cdta sal',
+        '½ lima',
+      ]},
+    ],
+    steps:[
+      'Condimentar la bondiola y secar bien la superficie. Dorar en una olla caliente hasta conseguir color profundo en varias caras, buscando sabor y no sellar jugos.',
+      'Retirar la carne y cocinar la cebolla y el ajo en la misma olla, agregando las especias brevemente para despertar aromas sin quemarlas. Desglasar con la cerveza o sidra, raspar el fondo y reducir. Sumar el caldo y la mostaza, y devolver la carne.',
+      'Tapar y cocinar a 150–160 °C alrededor de 3 horas, girando la pieza si el líquido no la cubre parejo. El punto llega cuando las fibras se separan con facilidad. Retirar la carne, desgrasar y reducir el líquido de cocción hasta lograr sabor concentrado.',
+      'Desmechar en hebras siguiendo la estructura natural, sin triturar. Reintegrar los jugos reducidos progresivamente hasta que la carne quede húmeda y brillante, sin líquido acumulado.',
+      'Fajitas: mezclar los ingredientes, amasar hasta alisar y descansar 30 minutos. Dividir en 8 a 10 bollos, estirar fino y cocinar en sartén seca y caliente pocos segundos por lado. Apilar y mantener tapadas para conservar flexibilidad.',
+      'Encurtido: cortar fino la cebolla, el repollo y la zanahoria, cubrir con la salmuera de vinagre, agua, azúcar, sal y lima, y reposar al menos 30 minutos. Escurrir al servir.',
+    ],
+    techNote:'Tierno no significa necesariamente jugoso: en una carne desmechada, la jugosidad final se construye al reincorporar progresivamente el fondo reducido, no solo con la cocción lenta.',
+  },
+  {
+    id:'guiso-de-cordero',
+    title:'Guiso de cordero',
+    category:'cerdo-cordero',
+    classInfo:'Fundamentos culinarios: Cerdo y cordero · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '800 g cordero para guisar, en cubos grandes',
+        '1 cebolla',
+        '1 puerro',
+        '2 zanahorias',
+        '2 dientes de ajo',
+        '400 g tomate triturado o tomate fresco maduro',
+        '150 ml vino tinto',
+        '500 ml caldo, aproximadamente',
+        '300 g papas',
+        '1 cdta pimentón',
+        '½ cdta comino',
+        'Romero o tomillo',
+        'Aceite de oliva, sal y pimienta',
+        'Perejil fresco',
+      ]},
+    ],
+    steps:[
+      'Elegir un corte apto para cocción prolongada (paleta, cuello o similar) y cortar piezas relativamente grandes y parejas. Secar la carne, salar y dorar en una olla amplia, trabajando en tandas para no bajar la temperatura.',
+      'En la misma olla, cocinar la cebolla, el puerro y la zanahoria, agregando el ajo, el pimentón y el comino al final para que no se quemen. Desglasar con el vino, raspar el fondo y reducir hasta que desaparezca el aroma alcohólico.',
+      'Agregar el tomate, el caldo y las hierbas, y volver a incorporar el cordero. Llevar a hervor suave, bajar el fuego y cocinar tapado, controlando el nivel de líquido y girando las piezas de tanto en tanto.',
+      'Cuando el cordero esté avanzado pero todavía necesite cocción, sumar las papas para que no se desarmen antes de tiempo. Comprobar el punto de la carne con un tenedor: debe ceder con facilidad.',
+      'Cuando la carne y las papas estén listas, destapar si es necesario para reducir el líquido hasta que tenga cuerpo suficiente. Apagar, reposar 10 a 15 minutos y recién entonces corregir sal, pimienta y acidez. Terminar con perejil fresco.',
+    ],
+    techNote:'En un guiso, cada ingrediente tiene su propio reloj: cocinar todo desde el comienzo no simplifica la receta, hace perder control sobre el punto individual de cada ingrediente. Un hervor violento puede endurecer la percepción de las fibras en lugar de ablandarlas.',
+  },
+  {
+    id:'chow-fan-de-vegetales',
+    title:'Chow fan de vegetales',
+    category:'arroces',
+    classInfo:'Clase 01 · Bases de la cocina · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes (4 personas)', items:[
+        '2 tazas de arroz jazmín',
+        '4 tazas de agua',
+        '1 cebolla',
+        '1 zanahoria',
+        '1 zucchini',
+        '1 tallo de apio',
+        '2 huevos',
+        '2 cebollas de verdeo',
+        '2 cucharadas de salsa de soja',
+        '3 cucharadas de aceite neutro',
+        '1 cucharadita de aceite de sésamo o semillas',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Cocinar el arroz y dejar enfriar por completo. Cocinar el huevo revuelto y reservar aparte.',
+      'Con la sartén bien caliente, saltear primero la zanahoria y el apio. Agregar la cebolla y luego el zucchini.',
+      'Incorporar el arroz frío y condimentar con la salsa de soja. Reincorporar el huevo revuelto.',
+      'Finalizar con la cebolla de verdeo y el aceite de sésamo.',
+    ],
+    techNote:'El arroz debe estar frío y la sartén muy caliente: el arroz recién cocido y tibio libera demasiada humedad y el resultado queda pastoso en vez de suelto. No sobrecargar la sartén y cocinar rápido es lo que mantiene la textura de cada grano.',
+  },
+];
+
+function normalize(s){
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+}
+function categoryOf(id){ return CATEGORIES.find(c=>c.id===id); }
+function ingredientsText(recipe){
+  return normalize(recipe.ingredientGroups.map(g=>g.items.join(' ')).join(' '));
+}
+
+let activeCategory = 'all';
+let searchTerm = '';
+let currentRecipeId = null;
+let currentView = 'recetas';
+
+const gridEl = document.getElementById('grid');
+const chipsEl = document.getElementById('categoryChips');
+const overlayEl = document.getElementById('overlay');
+const detailEl = document.getElementById('detailPanel');
+const searchInput = document.getElementById('searchInput');
+const viewToggleEl = document.getElementById('viewToggle');
+const controlsBarEl = document.getElementById('controlsBar');
+
+function renderChips(){
+  const allChip = `<button class="chip ${activeCategory==='all'?'active':''}" data-cat="all">Todas</button>`;
+  const chips = CATEGORIES.map(c=>`<button class="chip ${activeCategory===c.id?'active':''}" data-cat="${c.id}">${c.label}</button>`).join('');
+  chipsEl.innerHTML = allChip + chips;
+  chipsEl.querySelectorAll('.chip').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      activeCategory = btn.dataset.cat;
+      renderChips();
+      renderView();
+    });
+  });
+}
+
+viewToggleEl.querySelectorAll('.view-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    currentView = btn.dataset.view;
+    viewToggleEl.querySelectorAll('.view-btn').forEach(b=>b.classList.toggle('active', b===btn));
+    controlsBarEl.style.display = currentView === 'recetas' ? 'flex' : 'none';
+    controlsBarEl.style.flexDirection = 'column';
+    renderView();
+  });
+});
+
+function renderView(){
+  if(currentView === 'recetas'){
+    renderGrid();
+  } else {
+    renderFundamentosGrid();
+  }
+}
+
+function renderFundamentosGrid(){
+  if(FUNDAMENTOS.length === 0){
+    gridEl.innerHTML = `<div class="empty-state"><h3>Todavía no hay fundamentos cargados</h3><p>Se van a ir sumando a medida que suban las clases teóricas.</p></div>`;
+    return;
+  }
+  gridEl.innerHTML = FUNDAMENTOS.map(f=>{
+    const preview = f.sections.map(s=>s.title).join(' · ');
+    return `
+      <div class="card" style="--cat-color:var(--fundamentos)" data-fund-id="${f.id}">
+        <p class="cat-label">Fundamentos</p>
+        <h3>${f.title}</h3>
+        <p class="meta">${f.classInfo}</p>
+        <p class="ing-preview">${preview}</p>
+        <p class="comment-count" data-count-for="${f.id}"></p>
+      </div>
+    `;
+  }).join('');
+
+  gridEl.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('click', ()=> openFundamentoDetail(card.dataset.fundId));
+  });
+
+  FUNDAMENTOS.forEach(async f=>{
+    const n = await commentCount(f.id);
+    const el = gridEl.querySelector(`[data-count-for="${f.id}"]`);
+    if(el) el.textContent = n===0 ? 'Sin comentarios todavía' : (n===1 ? '1 comentario' : n+' comentarios');
+  });
+}
+
+async function openFundamentoDetail(id){
+  const fund = FUNDAMENTOS.find(f=>f.id===id);
+  if(!fund) return;
+  currentRecipeId = id;
+
+  const sectionsHtml = fund.sections.map(s=>`
+    <div class="fund-section">
+      <h5>${s.title}</h5>
+      <ul>${s.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+
+  detailEl.innerHTML = `
+    <div class="detail-head" style="--cat-color:var(--fundamentos)">
+      <button class="close" id="closeBtn" aria-label="Cerrar">&times;</button>
+      <p class="cat-label">Fundamentos</p>
+      <h2>${fund.title}</h2>
+      <p class="meta">${fund.classInfo}</p>
+    </div>
+    <div class="detail-body">
+      ${sectionsHtml}
+    </div>
+    <div class="comments-section">
+      <h4 style="border:none; margin-bottom:12px;">Comentarios de la clase</h4>
+      <div id="commentsList"></div>
+      <div class="comment-form">
+        <select id="commentName">
+          <option value="" disabled selected>Elegí tu nombre</option>
+          ${COMMENTERS.map(n=>`<option value="${n}">${n}</option>`).join('')}
+        </select>
+        <textarea id="commentText" placeholder="Dudas, aportes, lo que quieras sumar..."></textarea>
+        <p class="form-note" id="formError" style="display:none; color:#8B3A2B;"></p>
+        <button id="submitComment">Comentar</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('closeBtn').addEventListener('click', ()=>{
+    overlayEl.classList.add('hidden');
+    document.body.style.overflow = '';
+    currentRecipeId = null;
+    renderView();
+  });
+  overlayEl.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  refreshComments(id);
+
+  const savedName = await getSavedName();
+  if(savedName) document.getElementById('commentName').value = savedName;
+
+  document.getElementById('submitComment').addEventListener('click', async ()=>{
+    const nameInput = document.getElementById('commentName');
+    const textInput = document.getElementById('commentText');
+    const errorEl = document.getElementById('formError');
+    const name = nameInput.value.trim();
+    const text = textInput.value.trim();
+    errorEl.style.display = 'none';
+
+    if(!name){
+      errorEl.textContent = 'Elegí tu nombre de la lista.';
+      errorEl.style.display = 'block';
+      return;
+    }
+    if(!text){
+      errorEl.textContent = 'Escribí un comentario.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const btn = document.getElementById('submitComment');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    try{
+      await saveComment(id, name, text);
+      await saveName(name);
+      textInput.value = '';
+      await refreshComments(id);
+    }catch(e){
+      errorEl.textContent = 'No se pudo guardar el comentario. Probá de nuevo.';
+      errorEl.style.display = 'block';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Comentar';
+  });
+}
+
+async function commentCount(recipeId){
+  try{
+    const { count, error } = await supabaseClient
+      .from('comments')
+      .select('id', { count: 'exact', head: true })
+      .eq('recipe_id', recipeId);
+    if(error) throw error;
+    return count || 0;
+  }catch(e){
+    console.error('commentCount error:', e);
+    return 0;
+  }
+}
+
+async function renderGrid(){
+  const term = normalize(searchTerm.trim());
+  let filtered = RECIPES.filter(r=>{
+    const catOk = activeCategory==='all' || r.category===activeCategory;
+    const searchOk = term==='' || ingredientsText(r).includes(term) || normalize(r.title).includes(term);
+    return catOk && searchOk;
+  });
+
+  if(filtered.length===0){
+    gridEl.innerHTML = `<div class="empty-state"><h3>No hay recetas</h3><p>Probá con otro ingrediente o categoría.</p></div>`;
+    return;
+  }
+
+  gridEl.innerHTML = filtered.map(r=>{
+    const cat = categoryOf(r.category);
+    const preview = r.ingredientGroups.map(g=>g.items.join(', ')).join(', ');
+    return `
+      <div class="card" style="--cat-color:${cat.color}" data-id="${r.id}">
+        <p class="cat-label">${cat.label}</p>
+        <h3>${r.title}</h3>
+        <p class="meta">${r.classInfo}</p>
+        <p class="ing-preview">${preview}</p>
+        <p class="comment-count" data-count-for="${r.id}"></p>
+      </div>
+    `;
+  }).join('');
+
+  gridEl.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('click', ()=> openDetail(card.dataset.id));
+  });
+
+  filtered.forEach(async r=>{
+    const n = await commentCount(r.id);
+    const el = gridEl.querySelector(`[data-count-for="${r.id}"]`);
+    if(el) el.textContent = n===0 ? 'Sin comentarios todavía' : (n===1 ? '1 comentario' : n+' comentarios');
+  });
+}
+
+async function loadComments(recipeId){
+  try{
+    const { data, error } = await supabaseClient
+      .from('comments')
+      .select('name, text, created_at')
+      .eq('recipe_id', recipeId)
+      .order('created_at', { ascending: false });
+    if(error) throw error;
+    return (data || []).map(c => ({ name: c.name, text: c.text, ts: new Date(c.created_at).getTime() }));
+  }catch(e){
+    console.error('loadComments error:', e);
+    return [];
+  }
+}
+
+async function saveComment(recipeId, name, text){
+  const { error } = await supabaseClient
+    .from('comments')
+    .insert({ recipe_id: recipeId, name, text });
+  if(error) throw error;
+}
+
+async function getSavedName(){
+  try{
+    return localStorage.getItem('gaucha-recetario-username') || '';
+  }catch(e){
+    return '';
+  }
+}
+async function saveName(name){
+  try{
+    localStorage.setItem('gaucha-recetario-username', name);
+  }catch(e){}
+}
+
+function formatDate(ts){
+  const d = new Date(ts);
+  return d.toLocaleDateString('es-ES', { day:'numeric', month:'short' }) + ' · ' + d.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' });
+}
+
+async function openDetail(id){
+  const recipe = RECIPES.find(r=>r.id===id);
+  if(!recipe) return;
+  currentRecipeId = id;
+  const cat = categoryOf(recipe.category);
+
+  const ingGroupsHtml = recipe.ingredientGroups.map(g=>`
+    <div class="ing-group">
+      ${recipe.ingredientGroups.length>1 ? `<p class="grp-title">${g.title}</p>` : ''}
+      <ul>${g.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+
+  const stepsHtml = recipe.steps.map(s=>`<p>${s}</p>`).join('');
+
+  detailEl.innerHTML = `
+    <div class="detail-head" style="--cat-color:${cat.color}">
+      <button class="close" id="closeBtn" aria-label="Cerrar">&times;</button>
+      <p class="cat-label">${cat.label}</p>
+      <h2>${recipe.title}</h2>
+      <p class="meta">${recipe.classInfo}</p>
+    </div>
+    <div class="detail-body">
+      <section>
+        <h4>Ingredientes</h4>
+        ${ingGroupsHtml}
+      </section>
+      <section class="steps">
+        <h4>Preparación</h4>
+        ${stepsHtml}
+      </section>
+      <section>
+        <div class="tech-note" style="--cat-color:${cat.color}">
+          <strong>Fundamento técnico</strong>
+          ${recipe.techNote}
+        </div>
+      </section>
+    </div>
+    <div class="comments-section">
+      <h4 style="border:none; margin-bottom:12px;">Comentarios de la clase</h4>
+      <div id="commentsList"></div>
+      <div class="comment-form">
+        <select id="commentName">
+          <option value="" disabled selected>Elegí tu nombre</option>
+          ${COMMENTERS.map(n=>`<option value="${n}">${n}</option>`).join('')}
+        </select>
+        <textarea id="commentText" placeholder="Contá cómo te salió, qué le cambiarías, tips..."></textarea>
+        <p class="form-note" id="formError" style="display:none; color:#8B3A2B;"></p>
+        <button id="submitComment">Comentar</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('closeBtn').addEventListener('click', closeDetail);
+  overlayEl.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  refreshComments(id);
+
+  const savedName = await getSavedName();
+  if(savedName) document.getElementById('commentName').value = savedName;
+
+  document.getElementById('submitComment').addEventListener('click', async ()=>{
+    const nameInput = document.getElementById('commentName');
+    const textInput = document.getElementById('commentText');
+    const errorEl = document.getElementById('formError');
+    const name = nameInput.value.trim();
+    const text = textInput.value.trim();
+    errorEl.style.display = 'none';
+
+    if(!name){
+      errorEl.textContent = 'Elegí tu nombre de la lista.';
+      errorEl.style.display = 'block';
+      return;
+    }
+    if(!text){
+      errorEl.textContent = 'Escribí un comentario.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const btn = document.getElementById('submitComment');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    try{
+      await saveComment(id, name, text);
+      await saveName(name);
+      textInput.value = '';
+      await refreshComments(id);
+    }catch(e){
+      errorEl.textContent = 'No se pudo guardar el comentario. Probá de nuevo.';
+      errorEl.style.display = 'block';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Comentar';
+  });
+}
+
+async function refreshComments(id){
+  const listEl = document.getElementById('commentsList');
+  if(!listEl) return;
+  const comments = await loadComments(id);
+  if(comments.length===0){
+    listEl.innerHTML = `<p class="no-comments">Todavía no hay comentarios. Sé el primero en dejar un tip.</p>`;
+    return;
+  }
+  listEl.innerHTML = comments
+    .sort((a,b)=>b.ts-a.ts)
+    .map(c=>`
+      <div class="comment">
+        <p class="who">${c.name}<span>${formatDate(c.ts)}</span></p>
+        <p class="txt">${c.text}</p>
+      </div>
+    `).join('');
+}
+
+function closeDetail(){
+  overlayEl.classList.add('hidden');
+  document.body.style.overflow = '';
+  currentRecipeId = null;
+  renderView();
+}
+
+overlayEl.addEventListener('click', (e)=>{
+  if(e.target === overlayEl) closeDetail();
+});
+
+searchInput.addEventListener('input', (e)=>{
+  searchTerm = e.target.value;
+  renderGrid();
+});
+
+renderChips();
+renderView();
+</script>
+</body>
+</html>
