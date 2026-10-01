@@ -26,6 +26,7 @@
     --condimentos:#8A7B3F;
     --rebozados:#D6A536;
     --cerdo-cordero:#9C4A5C;
+    --mariscos:#2A4D6E;
     --fundamentos:#4A4038;
     --muted:#6B6155;
   }
@@ -316,7 +317,7 @@
 <div class="controls" id="controlsBar">
   <div class="search-wrap">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input id="searchInput" type="text" placeholder="Buscar por ingrediente, ej: panceta, huevo, vino..." />
+    <input id="searchInput" type="text" placeholder="Buscar por ingrediente, ej: panceta, huevo, vino..." autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" />
   </div>
   <div class="chips" id="categoryChips"></div>
 </div>
@@ -333,7 +334,9 @@ const SUPABASE_ANON_KEY = 'sb_publishable_C5rzs1B2-HR8o8GoG1AyXw_AaP1Ix7l';
 let supabaseClient = null;
 try{
   if(typeof supabase !== 'undefined'){
-    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+    });
   } else {
     console.error('Supabase library did not load — comments will be unavailable.');
   }
@@ -611,6 +614,39 @@ const FUNDAMENTOS = [
       ]},
     ],
   },
+  {
+    id:'mariscos-fundamentos',
+    title:'Mariscos: producto, limpieza y cocción',
+    classInfo:'Fundamentos culinarios: Mariscos · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'Una familia amplia', bullets:[
+        '"Mariscos" agrupa crustáceos (langostinos, camarones, cangrejos, langostas) y moluscos: bivalvos (mejillones, almejas) y cefalópodos (calamar, chipirón, sepia, pulpo).',
+        'Cada familia tiene una anatomía distinta y necesita una cocción distinta: un mejillón protegido por valvas no se cocina igual que un calamar de carne magra y muscular.',
+      ]},
+      { title:'Frescura y conservación', bullets:[
+        'Deben tener aroma limpio y marino, nunca penetrante o amoniacal, y textura firme y húmeda, no viscosa.',
+        'En bivalvos vivos como el mejillón, las valvas deben estar cerradas (o cerrarse al tocarlas); se descartan los rotos, los que no cierran y, después de cocidos, los que no se abrieron.',
+        'Los cefalópodos congelados dan buen resultado si se descongelan lento en heladera y se secan bien antes de cocinar.',
+      ]},
+      { title:'Mejillones y bivalvos', bullets:[
+        'Se cepillan y se les retiran las barbas antes de cocinar; no conviene dejarlos mucho tiempo sumergidos en agua dulce.',
+        'La cocción es rápida: poca cantidad de líquido, recipiente tapado y fuego vivo, para que el vapor abra las valvas sin endurecer la carne.',
+      ]},
+      { title:'Calamar y chipirón: el punto', bullets:[
+        'Se limpian separando cabeza y cuerpo, retirando vísceras, pluma y pico, y secando bien el interior; la tinta puede reservarse para arroces y salsas.',
+        'La regla central es el tiempo: 1-2 minutos de cocción muy breve y potente (plancha, salteado, fritura), o 20-30 minutos de cocción prolongada para ablandar las fibras. El punto intermedio los vuelve gomosos.',
+        'En plancha, el enemigo es el exceso de agua: producto seco, sartén muy caliente y sin sobrecargar.',
+      ]},
+      { title:'Fritura', bullets:[
+        'El calamar debe secarse muy bien antes de enharinar, con una capa fina de harina o harina con fécula.',
+        'El aceite debe estar alrededor de 180 °C, friendo en tandas pequeñas; se sala apenas sale del aceite y se sirve sin espera.',
+      ]},
+      { title:'Mise en place y errores frecuentes', bullets:[
+        'Conviene tener todo listo antes de cocinar: la cocción de los mariscos es tan breve que no da tiempo a picar nada a último momento.',
+        'Errores comunes: cocinar "por las dudas" unos minutos de más (endurece calamar y chipirón), una sartén fría (el producto larga agua y hierve en vez de dorarse), y sobrecargar la sartén u olla.',
+      ]},
+    ],
+  },
 ];
 
 const COMMENTERS = ['Cata', 'Cris', 'Euge', 'Fede', 'Gabi', 'Mahia', 'Pablo'];
@@ -628,6 +664,7 @@ const CATEGORIES = [
   { id:'condimentos', label:'Condimentos y salsas', color:'var(--condimentos)' },
   { id:'rebozados', label:'Rebozados y frituras', color:'var(--rebozados)' },
   { id:'cerdo-cordero', label:'Cerdo y cordero', color:'var(--cerdo-cordero)' },
+  { id:'mariscos', label:'Mariscos', color:'var(--mariscos)' },
 ];
 
 const RECIPES = [
@@ -2057,6 +2094,154 @@ const RECIPES = [
     ],
     techNote:'El arroz debe estar frío y la sartén muy caliente: el arroz recién cocido y tibio libera demasiada humedad y el resultado queda pastoso en vez de suelto. No sobrecargar la sartén y cocinar rápido es lo que mantiene la textura de cada grano.',
   },
+  {
+    id:'mejillones-al-vino-blanco',
+    title:'Mejillones al vino blanco, manteca y hierbas',
+    category:'mariscos',
+    classInfo:'Fundamentos culinarios: Mariscos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes (7 degustaciones)', items:[
+        '1,5 kg de mejillones enteros con valva',
+        '150 ml de vino blanco seco',
+        '60 g de manteca fría, en cubos',
+        '2–3 dientes de ajo, laminados',
+        '1 cebolla chica o 2 echalotes, picados finos',
+        '2 cucharadas de aceite de oliva',
+        '1 manojo pequeño de perejil',
+        '1 limón',
+        'Pimienta negra',
+        '250–300 g de pan para tostar',
+      ]},
+    ],
+    steps:[
+      'Revisar los mejillones: descartar los que tengan la valva rota y los que permanezcan abiertos después de tocarlos. Cepillar las conchas y retirar las barbas.',
+      'Calentar una olla amplia con el aceite y sudar suavemente la cebolla y el ajo, sin que tomen demasiado color.',
+      'Subir el fuego, incorporar los mejillones y el vino blanco, y tapar inmediatamente.',
+      'Cocinar 2 a 4 minutos, sacudiendo la olla una o dos veces. Retirar los mejillones a medida que se abren y descartar los que permanezcan cerrados.',
+      'Colar el líquido si fuera necesario, reducir brevemente y, fuera del fuego, incorporar la manteca fría para emulsionar. Terminar con perejil, ralladura o unas gotas de limón y pimienta negra. Servir con pan tostado.',
+    ],
+    techNote:'El mejillón se abre por acción del vapor generado en una olla tapada con poco líquido: la carne queda jugosa y libera un líquido marino que se suma a la salsa. Cocinar de más concentra y endurece la carne, por eso cada pieza se retira apenas abre.',
+    tips:[
+      'No cubrir los mejillones de líquido: necesitamos vapor, no hervido.',
+      'Retirar cada pieza cuando abre para evitar sobrecocción.',
+      'Probar el fondo antes de salar: el propio mejillón ya aporta salinidad.',
+    ],
+  },
+  {
+    id:'rabas-crocantes-alioli-limon',
+    title:'Rabas crocantes con alioli de limón',
+    category:'mariscos',
+    classInfo:'Fundamentos culinarios: Mariscos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Rabas (7 degustaciones)', items:[
+        '1 kg de calamar entero o tubos de calamar',
+        '160 g de harina',
+        '80 g de fécula de maíz',
+        'Sal fina y pimienta',
+        'Aceite neutro, cantidad necesaria para freír',
+        '2 limones',
+      ]},
+      { title:'Alioli', items:[
+        '1 huevo',
+        '1 diente de ajo pequeño',
+        '200 ml de aceite neutro',
+        '30 ml de aceite de oliva',
+        'Jugo y ralladura de ½ limón',
+        'Sal',
+      ]},
+    ],
+    steps:[
+      'Si el calamar está entero, separar cabeza y cuerpo. Retirar vísceras, pluma y pico, limpiar el interior y reservar los tentáculos. Secar muy bien.',
+      'Cortar los tubos en anillos de aproximadamente 1 cm. Mantener fríos y secos hasta el momento de freír.',
+      'Mezclar la harina y la fécula. Pasar las rabas por la mezcla justo antes de freír y sacudir bien el excedente.',
+      'Calentar el aceite a 180-185 °C y freír en tandas pequeñas durante 60 a 90 segundos, hasta que la cobertura esté apenas dorada y crocante. Retirar a rejilla o papel absorbente y salar de inmediato.',
+      'Para el alioli, colocar el huevo, el ajo, el limón y la sal en un vaso alto, incorporar los aceites y emulsionar hasta obtener una textura cremosa. Ajustar acidez y sal. Servir las rabas de inmediato con el alioli y gajos de limón.',
+    ],
+    techNote:'El calamar es un molusco magro cuya textura depende casi exclusivamente del tiempo de cocción: una cocción muy breve y potente lo deja tierno, mientras que un punto intermedio lo vuelve gomoso. Secar bien antes de enharinar y mantener el aceite a 180-185 °C es lo que logra una cobertura fina y crocante sin que absorba grasa.',
+    tips:[
+      'Secar es tan importante como calentar correctamente el aceite.',
+      'No sobrecargar la fritura: cada tanda debe recuperar rápidamente la temperatura.',
+      'Con el calamar: cocción breve y potente, o cocción prolongada — evitar el tiempo intermedio.',
+    ],
+  },
+  {
+    id:'chipirones-a-la-lionesa',
+    title:'Chipirones a la lionesa con papas al pimentón',
+    category:'mariscos',
+    classInfo:'Fundamentos culinarios: Mariscos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes (7 degustaciones)', items:[
+        '600 g de chipirones limpios',
+        '1 kg de papas',
+        '500 g de cebolla, cortada en pluma',
+        '2–3 dientes de ajo',
+        '50 g de manteca',
+        'Aceite de oliva, cantidad necesaria',
+        '1 cucharadita de pimentón dulce',
+        '½ cucharadita de pimentón ahumado (opcional)',
+        '1–2 limones',
+        'Perejil fresco',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Limpiar los chipirones si fuera necesario, separar cuerpos y tentáculos, y secarlos muy bien.',
+      'Cocinar las papas con piel en agua salada hasta que estén tiernas pero firmes. Escurrir, dejar evaporar y cortar o romper en trozos grandes.',
+      'Dorar las papas en sartén con aceite de oliva y ajo. Retirar del fuego e incorporar el pimentón dulce y, si se desea, un toque de pimentón ahumado. Reservar calientes.',
+      'Cocinar la cebolla en pluma con aceite de oliva y una pizca de sal a fuego medio-bajo hasta que esté tierna, dulce y bien dorada. Incorporar la manteca al final.',
+      'Calentar otra sartén o plancha a fuego muy fuerte. Aceitar ligeramente los chipirones y cocinarlos en tandas pequeñas, 45 a 60 segundos por lado, hasta que doren.',
+      'Integrar los chipirones con la cebolla recién al final. Terminar con perejil, limón, pimienta y ajustar la sal. Servir sobre o junto a las papas al pimentón.',
+    ],
+    techNote:'Los cefalópodos y las cebollas requieren lógicas de cocción opuestas: la cebolla necesita tiempo y temperatura moderada para caramelizar, mientras que el chipirón necesita calor muy alto y muy poco tiempo. Cocinarlos por separado y unirlos recién al final respeta el punto de cada uno.',
+    tips:[
+      'Cebolla y chipirón necesitan tratamientos opuestos: lento y moderado / rápido e intenso.',
+      'No salar los chipirones con demasiada anticipación ni amontonarlos en la sartén.',
+      'Agregar el pimentón fuera del fuego o a temperatura moderada para evitar que se queme y amargue.',
+    ],
+  },
+  {
+    id:'cazuela-de-mariscos',
+    title:'Cazuela de mariscos',
+    category:'mariscos',
+    classInfo:'Fundamentos culinarios: Cazuela de mariscos · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '350 g de calamar limpio, en anillos o trozos',
+        '350 g de mejillones con valva, limpios',
+        '250 g de langostinos enteros',
+        '1 cebolla grande, picada',
+        '1 morrón rojo pequeño, picado',
+        '2 dientes de ajo, picados',
+        '400 g de tomate triturado o tomate fresco concassé',
+        '150 ml de vino blanco seco',
+        '500 ml de fumet de pescado o mariscos',
+        '1 cucharadita de pimentón dulce',
+        '½ cucharadita de pimentón ahumado (opcional)',
+        '1 hoja de laurel',
+        'Aceite de oliva',
+        'Perejil fresco',
+        '1 limón',
+        'Sal y pimienta',
+        'Opcional para hacerla más saciadora: 500 g de papas en cubos, o arroz',
+      ]},
+    ],
+    steps:[
+      'Calentar una cazuela amplia con aceite de oliva. Agregar la cebolla y el morrón con una pizca de sal, y cocinar a fuego medio hasta que estén tiernos y dulces. Sumar el ajo y cocinar 1 minuto más.',
+      'Bajar el fuego o retirar momentáneamente la cazuela. Agregar el pimentón y mezclar sin dejar que se queme. Incorporar el vino blanco y dejar evaporar el alcohol.',
+      'Agregar el tomate, el laurel y el fumet. Cocinar destapado 10 a 15 minutos a fuego medio-bajo para integrar y concentrar. Si se usan papas, incorporarlas en este punto.',
+      'Agregar el calamar y cocinar suavemente 20 a 30 minutos, o hasta que esté nuevamente tierno, manteniendo un hervor muy suave y sumando un poco más de fumet si se seca.',
+      'Cuando el calamar esté tierno, incorporar los mejillones. Tapar y cocinar 2 a 4 minutos, retirándolos a medida que se abran y descartando los que permanezcan cerrados.',
+      'Incorporar los langostinos y cocinar apenas 2 a 3 minutos, hasta que la carne esté opaca y jugosa, sin prolongar la cocción. Fuera del fuego, agregar perejil fresco, unas gotas de limón, pimienta y un hilo de aceite de oliva. Probar recién ahora y ajustar la sal.',
+    ],
+    techNote:'Cada marisco tiene su propio reloj: el calamar necesita una cocción húmeda prolongada (20-30 minutos) para volver a ablandarse después de la dureza inicial, los mejillones solo el tiempo necesario para abrir (2-4 minutos), y los langostinos apenas 2-3 minutos para no pasarse. Por eso entran a la cazuela en ese orden y no todos juntos.',
+    tips:[
+      'No poner todos los mariscos desde el comienzo.',
+      'Evitar un hervor fuerte durante toda la cocción.',
+      'No cocinar de más los mejillones ni los langostinos.',
+      'Cuidado con quemar el pimentón: se vuelve amargo.',
+      'No salar demasiado pronto: los mejillones y el fumet ya aportan salinidad.',
+    ],
+  },
 ];
 
 function normalize(s){
@@ -2238,7 +2423,7 @@ async function commentCount(recipeId){
     if(error) throw error;
     return count || 0;
   }catch(e){
-    console.error('commentCount error:', e);
+    console.error('commentCount error: ' + (e && (e.message || e.details || e.hint || e.code) || JSON.stringify(e)));
     return 0;
   }
 }
@@ -2292,7 +2477,7 @@ async function loadComments(recipeId){
     if(error) throw error;
     return (data || []).map(c => ({ name: c.name, text: c.text, ts: new Date(c.created_at).getTime() }));
   }catch(e){
-    console.error('loadComments error:', e);
+    console.error('loadComments error: ' + (e && (e.message || e.details || e.hint || e.code) || JSON.stringify(e)));
     return [];
   }
 }
