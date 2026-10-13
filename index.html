@@ -647,6 +647,36 @@ const FUNDAMENTOS = [
       ]},
     ],
   },
+  {
+    id:'conservas-fundamentos',
+    title:'Conservas: principios y técnicas',
+    classInfo:'Fundamentos de cocina: Conservas · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'Por qué conservar', bullets:[
+        'Conservar es crear un ambiente donde los microorganismos que descomponen el alimento no pueden desarrollarse o lo hacen muy lentamente, extendiendo su vida útil mucho más allá de lo fresco.',
+        'Además de seguridad, conservar es una herramienta de sabor: concentra, transforma y permite aprovechar excedentes de estación (frutas, verduras) en otro momento del año.',
+      ]},
+      { title:'Los cuatro agentes de conservación', bullets:[
+        'Sal: reduce el agua disponible para los microorganismos por ósmosis (salazones, encurtidos salados).',
+        'Azúcar: cumple una función similar a la sal, "secuestrando" agua disponible; es la base de las mermeladas y confituras.',
+        'Ácidos (vinagre, cítricos): bajan el pH del medio, dificultando el desarrollo de bacterias; es el principio detrás de escabeches y pickles.',
+        'Temperatura: tanto el calor (cocción, esterilizado) como el frío (heladera, freezer) frenan o eliminan microorganismos y enzimas.',
+        'La mayoría de las conservas combinan más de un agente a la vez (por ejemplo, ácido + calor en un escabeche, o azúcar + calor en una mermelada), lo que las hace más seguras y estables que si dependieran de uno solo.',
+      ]},
+      { title:'Seguridad: pH y Clostridium botulinum', bullets:[
+        'El punto de referencia de seguridad es un pH de 4.6: por debajo de ese valor (medio ácido), no se desarrolla Clostridium botulinum, la bacteria responsable del botulismo.',
+        'Los alimentos poco ácidos (muchas verduras, carnes) necesitan ácido agregado (vinagre, cítricos) o un proceso térmico adecuado para ser seguros fuera de la heladera.',
+        'El baño María (hervir los frascos ya cerrados, sumergidos en agua, durante un tiempo determinado) ayuda a eliminar microorganismos y a generar el vacío que sella la tapa, prolongando la vida útil de la conserva envasada.',
+        'Ante la duda sobre la acidez o el proceso de una conserva casera, lo más seguro es guardarla en heladera y consumirla en un plazo corto, en vez de dejarla a temperatura ambiente por tiempo prolongado.',
+      ]},
+      { title:'Mermeladas y el punto de cocción', bullets:[
+        'Una mermelada combina fruta, azúcar y acidez, concentrados mediante cocción: el azúcar no solo endulza, también interviene en la textura y en la conservación, y junto con la pectina natural de la fruta y el ácido es lo que le da su cuerpo gelificado.',
+        'Como referencia, el punto final de muchas mermeladas suele rondar los 104-105 °C, aunque varía según la fruta y la formulación: conviene usar la temperatura como guía y no solo el tiempo de cocción.',
+        'El punto también se verifica con la prueba del plato frío: se enfría un plato en el freezer, se coloca una cucharadita de mermelada caliente y se la deja reposar unos segundos; si al empujarla con el dedo se arruga levemente en la superficie, alcanzó el punto. Si queda líquida, falta cocción.',
+        'Cocinar de más concentra en exceso y puede quemar o endurecer la mermelada; cocinar de menos deja una conserva más líquida y con menor vida útil.',
+      ]},
+    ],
+  },
 ];
 
 const COMMENTERS = ['Cata', 'Cris', 'Euge', 'Fede', 'Gabi', 'Mahia', 'Pablo'];
@@ -901,9 +931,9 @@ const RECIPES = [
     steps:[
       'Sellar a fuego bajo el pollo en una ollita con un fondo de aceite de oliva, dorando ligeramente de ambos lados sin terminar de cocinar. Retirar y en la misma ollita sudar los vegetales con un poco de sal.',
       'Agregar los líquidos y los perfumes (laurel, pimienta, limón, chile y jengibre) y por último el pollo, sin revolver para no romper las piezas.',
-      'Cuando rompa el hervor, cocinar un minuto a fuego bajo y apagar. Dejar enfriar y envasar en frasco con boca ancha. Se conserva fresco en heladera durante 10 días.',
+      'Cuando rompa el hervor, bajar el fuego y cocinar suavemente hasta que el pollo esté completamente cocido (el tiempo depende del tamaño de los trozos; conviene verificar antes de apagar). Dejar enfriar y envasar en frasco con boca ancha, cubriendo bien el pollo con el líquido. Se conserva en heladera durante 10 días.',
     ],
-    techNote:'El escabeche es una marinada en caliente que conserva, aromatiza y tierniza: el ácido penetra las fibras musculares durante la cocción, y el envasado en caliente crea un medio ácido que actúa como conservante. Conviene dejarlo reposar en frío 24 horas antes de consumir.',
+    techNote:'El escabeche es una marinada en caliente que conserva, aromatiza y tierniza: el ácido penetra las fibras musculares durante la cocción, y el envasado en caliente crea un medio ácido que actúa como conservante. Lo importante es que el pollo llegue a cocción completa en el líquido antes de apagar el fuego, nunca solo un hervor breve. Conviene dejarlo reposar en frío 24 horas antes de consumir.',
   },
 
   {
@@ -2242,6 +2272,207 @@ const RECIPES = [
       'No salar demasiado pronto: los mejillones y el fumet ya aportan salinidad.',
     ],
   },
+  {
+    id:'escabeche-de-pollo-en-su-marinada',
+    title:'Escabeche de pollo en su marinada (conservas)',
+    category:'conservas',
+    classInfo:'Fundamentos de cocina: Conservas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 kg de pollo limpio, cortado en trozos regulares tamaño bocado',
+        '1 taza de vinagre de manzana',
+        '1 taza de vino blanco seco',
+        '1 taza de caldo de ave',
+        '½ taza de aceite de oliva',
+        '½ taza de aceite neutro',
+        '1 cebolla cortada en pluma',
+        '1 puerro en rodajas al bies',
+        '1 zanahoria en rodajas al bies',
+        'Cáscara de 2 limones, sin la parte blanca',
+        '4 rodajas de jengibre fresco',
+        '1 chile',
+        '2 hojas de laurel',
+        'Pimienta negra en grano',
+        'Sal',
+      ]},
+    ],
+    steps:[
+      'Sellar ligeramente el pollo en una olla con un fondo de aceite, sin terminar su cocción. Retirar y reservar.',
+      'En la misma olla, sudar la cebolla, el puerro y la zanahoria con una pizca de sal, procurando que conserven algo de textura.',
+      'Agregar el vinagre, el vino blanco, el caldo de ave y los aceites. Incorporar el laurel, la pimienta, la cáscara de limón, el chile y el jengibre.',
+      'Cuando el líquido rompa el hervor, reincorporar el pollo y cocinar suavemente hasta que esté completamente cocido.',
+      'Retirar del fuego y dejar entibiar dentro de la misma marinada, para que se integren los sabores.',
+      'Envasar cubriendo completamente el pollo y los vegetales con el líquido. Enfriar, guardar en heladera y dejar reposar 24 horas antes de consumir.',
+    ],
+    techNote:'Esta versión cocina al pollo íntegramente dentro del medio ácido y aromático, y lo deja entibiar sumergido en la marinada antes de envasar: eso profundiza el sabor y favorece la conservación. El pollo siempre debe llegar a cocción completa dentro del líquido, nunca con un simple hervor breve.',
+    tips:[
+      'Mantener siempre el pollo y los vegetales cubiertos por el líquido, tanto al envasar como en la heladera.',
+      'Dejarlo entibiar dentro de la marinada en vez de retirarlo en caliente mejora la integración de sabores.',
+    ],
+  },
+  {
+    id:'pickles-rapidos-pepino-cebolla-rabanito',
+    title:'Pickles de pepino, cebolla morada y rabanitos',
+    category:'conservas',
+    classInfo:'Fundamentos de cocina: Conservas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Vegetales', items:[
+        '1 cebolla morada, en láminas finas',
+        '1 pepino chico, en rodajas finas',
+        '5 rabanitos, en rodajas finas',
+        '2 dientes de ajo, fileteados',
+      ]},
+      { title:'Líquido', items:[
+        '100 ml de agua',
+        '200 ml de vinagre blanco o de manzana',
+        '100 ml de vino blanco',
+        '200 g de azúcar',
+        '40 g de sal',
+        '2 hojas de laurel',
+        '1 cda de pimienta negra en grano',
+      ]},
+    ],
+    steps:[
+      'Cortar la cebolla en láminas finas, y el pepino y los rabanitos en rodajas finas.',
+      'Colocar los vegetales en un frasco limpio junto con el ajo, el laurel y la pimienta.',
+      'En una olla, llevar a hervor el agua, el vinagre, el vino, el azúcar y la sal, hasta disolver completamente el azúcar y la sal.',
+      'Verter el líquido caliente sobre los vegetales, cubriéndolos por completo.',
+      'Dejar enfriar, llevar a la heladera y reposar al menos 24 horas antes de consumir.',
+    ],
+    techNote:'El vinagre acidifica el medio y transforma sabor y textura de los vegetales, que conservan parte de su frescura y crocancia. Verter el líquido bien caliente ayuda a que penetre rápido mientras el vegetal mantiene cierta firmeza.',
+    tips:[
+      'Cortar los vegetales parejos y finos para que el líquido penetre de forma uniforme.',
+      'Respetar las 24 horas de reposo en frío antes de probarlos: el sabor sigue evolucionando.',
+    ],
+  },
+  {
+    id:'chutney-de-peras-y-manzanas',
+    title:'Chutney de peras y manzanas',
+    category:'conservas',
+    classInfo:'Fundamentos de cocina: Conservas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '3 manzanas, peladas y en cubos pequeños',
+        '3 peras, peladas y en cubos pequeños',
+        '3 cdas de ghee',
+        '1 cda de jengibre fresco picado',
+        '1 cdta de anís en grano',
+        '1 cdta de cúrcuma en polvo',
+        '1 cda de canela en polvo',
+        '1 chile fresco picado (o ¼ cdta de cayena)',
+        '1 taza de jugo de naranja',
+        '½ taza de vinagre de manzana',
+        '8 cdas de azúcar mascabo',
+        '1 cdta de sal',
+      ]},
+    ],
+    steps:[
+      'Calentar el ghee en una olla y sofreír brevemente el jengibre y las especias, para liberar sus aromas.',
+      'Incorporar las manzanas y las peras y cocinar unos 5 minutos.',
+      'Agregar el jugo de naranja, el vinagre, el azúcar mascabo y la sal.',
+      'Llevar a hervor y luego cocinar a fuego bajo, sin tapa, unos 30 a 40 minutos, revolviendo de tanto en tanto.',
+      'Debe quedar húmedo y untuoso, pero conservando algunos trozos de fruta reconocibles: no se busca una textura de mermelada.',
+      'Dejar enfriar, envasar y conservar refrigerado.',
+    ],
+    techNote:'El chutney combina fruta, ácido, azúcar y especias concentrados por cocción prolongada: el vinagre y el azúcar actúan como conservantes, mientras las especias enteras y el ghee aportan un perfil cálido y especiado. A diferencia de una mermelada, se detiene la cocción antes de que la fruta se deshaga del todo.',
+    tips:[
+      'No cocinar de más: debe quedar untuoso pero con trozos de fruta, no hecho puré.',
+      'Sofreír bien las especias en el ghee al inicio para que liberen todo su aroma.',
+    ],
+  },
+  {
+    id:'ketchup-de-remolacha',
+    title:'Ketchup de remolacha',
+    category:'conservas',
+    classInfo:'Fundamentos de cocina: Conservas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '500 g de remolachas asadas, peladas y en cubos',
+        '½ cebolla en pluma',
+        '2 tallos de apio en cubos',
+        '1 taza de vinagre de manzana',
+        '½ taza de azúcar rubia',
+        '1 cdta de sal marina',
+        '1 cda de semillas de coriandro',
+        '1 cda de semillas de hinojo (o 2 unidades de anís estrellado)',
+        '4-5 clavos de olor',
+        '1 chipotle o 2 chiles',
+        '½ taza de aceite neutro, aproximadamente',
+      ]},
+    ],
+    steps:[
+      'Asar previamente las remolachas hasta que estén tiernas, pelarlas y cortarlas en cubos.',
+      'Colocar en una olla la remolacha, la cebolla, el apio, el vinagre, el azúcar, la sal y las especias.',
+      'Llevar a hervor y luego cocinar a fuego bajo, evitando una ebullición fuerte, hasta que los vegetales estén completamente tiernos y el líquido se haya reducido y concentrado.',
+      'Retirar el anís estrellado, si se utilizó. Procesar hasta lograr una preparación muy lisa.',
+      'Agregar el aceite de a poco mientras se continúa procesando, hasta lograr una textura brillante y untuosa, similar a la de un ketchup.',
+      'Rectificar sal, dulzor, acidez y picante. Envasar y conservar refrigerado.',
+    ],
+    techNote:'El color y el dulzor natural de la remolacha dan base a esta salsa, trabajando cocción, reducción, concentración y emulsión: el aceite incorporado de a poco mientras se procesa es lo que aporta el brillo y la untuosidad características del ketchup.',
+    tips:[
+      'Asar bien la remolacha antes de cocinarla en el líquido: concentra su dulzor natural.',
+      'Incorporar el aceite de a poco mientras se procesa, no de una vez, para lograr la textura emulsionada.',
+    ],
+  },
+  {
+    id:'mermelada-de-citricos',
+    title:'Mermelada de cítricos',
+    category:'conservas',
+    classInfo:'Fundamentos de cocina: Conservas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes (receta para una tanda grande; se puede reducir proporcionalmente)', items:[
+        '2 kg de naranjas',
+        '1 kg de mandarinas',
+        '1 kg de pomelos',
+        '1 kg de limones',
+        '2,8 kg de azúcar',
+        'Agua, cantidad necesaria',
+        '4 cdas de bayas de enebro',
+        'Especias a gusto',
+      ]},
+    ],
+    steps:[
+      'Lavar muy bien los cítricos con agua templada y cepillarlos.',
+      'Retirar las cáscaras. Reservar parte de ellas quitando la mayor cantidad posible de la parte blanca, y cortarlas en juliana fina.',
+      'Blanquear las cáscaras partiendo de agua fría: llevar a hervor unos 5 minutos, colar y repetir el procedimiento 3 veces, para disminuir el amargor.',
+      'Cortar la pulpa de los cítricos, retirando semillas y partes duras.',
+      'Colocar la pulpa y las cáscaras en una olla amplia. Agregar el azúcar, un poco de agua y las bayas de enebro.',
+      'Cocinar a fuego moderado-bajo, revolviendo con regularidad, hasta alcanzar aproximadamente 104-105 °C y el punto deseado (también puede verificarse con la prueba del plato frío).',
+      'Envasar en caliente en frascos limpios, enfriar y conservar refrigerada.',
+    ],
+    techNote:'Blanquear la cáscara tres veces partiendo de agua fría reduce su amargor natural antes de sumarla a la cocción con la pulpa y el azúcar. El punto de mermelada suele darse alrededor de los 104-105 °C, aunque conviene confirmarlo con la prueba del plato frío porque varía según la fruta.',
+    tips:[
+      'No saltear el blanqueado triple de la cáscara: es lo que evita que quede amarga.',
+      'Guiarse por la temperatura (104-105 °C) y la prueba del plato frío, no solo por el tiempo de cocción.',
+    ],
+  },
+  {
+    id:'mermelada-de-frutillas',
+    title:'Mermelada de frutillas',
+    category:'conservas',
+    classInfo:'Fundamentos de cocina: Conservas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes (fórmula base: 1 kg de fruta + 600 g de azúcar)', items:[
+        '1 kg de frutillas limpias',
+        '600 g de azúcar',
+        '30-40 ml de jugo de limón',
+        'Ralladura fina de ½ limón (opcional)',
+      ]},
+    ],
+    steps:[
+      'Lavar rápidamente las frutillas, retirar los cabitos y cortar las más grandes en mitades o cuartos.',
+      'Colocarlas en un recipiente con el azúcar y el jugo de limón. Mezclar y dejar macerar entre 30 minutos y 2 horas: la maceración ayuda a que la fruta largue sus jugos antes de la cocción.',
+      'Pasar todo a una olla amplia, llevar a hervor y continuar la cocción a fuego medio. Retirar la espuma superficial si es necesario.',
+      'Revolver suavemente para conservar parte de la textura de la fruta.',
+      'Hacia el final de la cocción, controlar el punto con termómetro y con la prueba del plato frío. Retirar al alcanzar aproximadamente 104-105 °C, o la consistencia buscada.',
+      'Envasar en caliente en frascos limpios, enfriar y conservar refrigerada.',
+    ],
+    techNote:'El limón aporta la acidez que, junto con la pectina natural de la frutilla y la concentración de azúcar por cocción, permite lograr la consistencia característica de la mermelada. Macerar antes de cocinar adelanta la salida de jugo y ayuda a que la fruta no se pegue al fondo al principio.',
+    tips:[
+      'Retirar la espuma durante la cocción para una mermelada más prolija y clara.',
+      'Combinar termómetro (104-105 °C) y prueba del plato frío para no pasarse de punto.',
+    ],
+  },
 ];
 
 function normalize(s){
@@ -2413,17 +2644,42 @@ async function openFundamentoDetail(id){
   });
 }
 
+function isLikelyExtensionInterference(e){
+  const msg = (e && (e.name || '') + ' ' + (e.message || '')) || '';
+  return /DataCloneError/i.test(msg) || /postMessage/i.test(msg);
+}
+
+async function withExtensionRetry(fn){
+  try{
+    return await fn();
+  }catch(e){
+    if(isLikelyExtensionInterference(e)){
+      // Probablemente una extensión del navegador (antivirus/seguridad) está
+      // interceptando el fetch y rompiendo la promesa. Reintentamos una vez.
+      await new Promise(r => setTimeout(r, 150));
+      return await fn();
+    }
+    throw e;
+  }
+}
+
 async function commentCount(recipeId){
   if(!supabaseClient) return 0;
   try{
-    const { count, error } = await supabaseClient
-      .from('comments')
-      .select('id', { count: 'exact', head: true })
-      .eq('recipe_id', recipeId);
-    if(error) throw error;
-    return count || 0;
+    return await withExtensionRetry(async () => {
+      const { count, error } = await supabaseClient
+        .from('comments')
+        .select('id', { count: 'exact', head: true })
+        .eq('recipe_id', recipeId);
+      if(error) throw error;
+      return count || 0;
+    });
   }catch(e){
-    console.error('commentCount error: ' + (e && (e.message || e.details || e.hint || e.code) || JSON.stringify(e)));
+    if(isLikelyExtensionInterference(e)){
+      console.warn('commentCount: interferencia de extensión del navegador, se omite el contador.');
+    } else {
+      console.error('commentCount error: ' + (e && (e.message || e.details || e.hint || e.code) || JSON.stringify(e)));
+    }
     return 0;
   }
 }
@@ -2469,25 +2725,33 @@ async function renderGrid(){
 async function loadComments(recipeId){
   if(!supabaseClient) return [];
   try{
-    const { data, error } = await supabaseClient
-      .from('comments')
-      .select('name, text, created_at')
-      .eq('recipe_id', recipeId)
-      .order('created_at', { ascending: false });
-    if(error) throw error;
-    return (data || []).map(c => ({ name: c.name, text: c.text, ts: new Date(c.created_at).getTime() }));
+    return await withExtensionRetry(async () => {
+      const { data, error } = await supabaseClient
+        .from('comments')
+        .select('name, text, created_at')
+        .eq('recipe_id', recipeId)
+        .order('created_at', { ascending: false });
+      if(error) throw error;
+      return (data || []).map(c => ({ name: c.name, text: c.text, ts: new Date(c.created_at).getTime() }));
+    });
   }catch(e){
-    console.error('loadComments error: ' + (e && (e.message || e.details || e.hint || e.code) || JSON.stringify(e)));
+    if(isLikelyExtensionInterference(e)){
+      console.warn('loadComments: interferencia de extensión del navegador, se omite la carga.');
+    } else {
+      console.error('loadComments error: ' + (e && (e.message || e.details || e.hint || e.code) || JSON.stringify(e)));
+    }
     return [];
   }
 }
 
 async function saveComment(recipeId, name, text){
   if(!supabaseClient) throw new Error('No se pudo conectar con el servicio de comentarios. Recargá la página e intentá de nuevo.');
-  const { error } = await supabaseClient
-    .from('comments')
-    .insert({ recipe_id: recipeId, name, text });
-  if(error) throw error;
+  await withExtensionRetry(async () => {
+    const { error } = await supabaseClient
+      .from('comments')
+      .insert({ recipe_id: recipeId, name, text });
+    if(error) throw error;
+  });
 }
 
 async function getSavedName(){
