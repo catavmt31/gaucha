@@ -27,6 +27,8 @@
     --rebozados:#D6A536;
     --cerdo-cordero:#9C4A5C;
     --mariscos:#2A4D6E;
+    --pasteleria:#A0566E;
+    --fermentados:#4F6F52;
     --fundamentos:#4A4038;
     --muted:#6B6155;
   }
@@ -192,6 +194,7 @@
   .ing-group li{ font-size:14.5px; margin-bottom:4px; line-height:1.4; }
 
   .steps p{ font-size:14.5px; line-height:1.65; margin:0 0 12px; }
+  .recipe-intro{ font-size:14.5px; line-height:1.65; margin:0 0 18px; color:var(--muted); font-style:italic; }
 
   .tech-note{
     background:rgba(139,58,43,0.08);
@@ -283,6 +286,9 @@
     background:var(--card);
     color:var(--ink);
   }
+  .taller-head{ grid-column:1/-1; margin:14px 0 0; font-family:'Fraunces', serif; font-size:18px; font-weight:600; color:var(--ink); }
+  .taller-head:first-child{ margin-top:0; }
+  .taller-sub{ grid-column:1/-1; margin:4px 0 -4px; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
   .fund-section{ margin-bottom:18px; }
   .fund-section h5{
     font-size:13.5px; font-weight:600; margin:0 0 8px;
@@ -306,12 +312,13 @@
 <header class="top">
   <p class="eyebrow">Gaucha Estudio de Cocina</p>
   <h1>Recetario del curso</h1>
-  <p class="sub">Todas las recetas de la clase, buscables por ingrediente, y los conceptos teóricos de cada clase en la pestaña "Fundamentos". Dejá tus comentarios y tips para el resto de la clase.</p>
+  <p class="sub">Todas las recetas de la clase, buscables por ingrediente, los conceptos teóricos de cada clase en la pestaña "Fundamentos", y los talleres extra (recetas y teoría) en la pestaña "Talleres". Dejá tus comentarios y tips para el resto de la clase.</p>
 </header>
 
 <div class="view-toggle" id="viewToggle">
   <button class="view-btn active" data-view="recetas">Recetas</button>
   <button class="view-btn" data-view="fundamentos">Fundamentos</button>
+  <button class="view-btn" data-view="talleres">Talleres</button>
 </div>
 
 <div class="controls" id="controlsBar">
@@ -677,6 +684,468 @@ const FUNDAMENTOS = [
       ]},
     ],
   },
+  {
+    id:'fermentacion-fundamentos',
+    title:'Fermentación: descubriendo la magia',
+    classInfo:'Descubriendo la magia de la fermentación · Docente: Giselle Brañas · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'Qué es la fermentación', bullets:[
+        'Proceso milenario que está recobrando protagonismo en la alimentación contemporánea.',
+        'Proceso biológico en el que los microorganismos descomponen sustancias orgánicas complejas. Está presente en alimentos y bebidas, y en la naturaleza misma. Ejemplos más comunes: el pan, el vino, la cerveza, el yogur, el kimchi y el chucrut.',
+        'Los microorganismos (bacterias, levaduras y hongos) son los "colaboradores invisibles" de la fermentación: participan en transformaciones bioquímicas que incluyen la producción de ácido láctico, alcohol, dióxido de carbono y otros compuestos.',
+        'Anotación de clase: levaduras, hongos y bacterias; las que buscamos en la fermentación de verduras son las bacterias de ácido láctico, que viven en las pieles de las verduras.',
+      ]},
+      { title:'Beneficios sobre los alimentos', bullets:[
+        'Al descomponer compuestos complejos los hace más digeribles.',
+        'Aumenta sensiblemente la biodisponibilidad de nutrientes como vitaminas, minerales y aminoácidos, haciéndolos más nutritivos y promoviendo el equilibrio de la microbiota y la buena salud intestinal.',
+        'Es una invitación a explorar la impredecible alquimia que ejerce sobre los sabores.',
+        'La fermentación no es solo un proceso culinario: es un arte y una ciencia que nos conecta con la naturaleza invisible que nos rodea. "El sabor está en nuestras manos…"',
+      ]},
+      { title:'Fermentación láctica: tres fases', bullets:[
+        'Inicio: durante las primeras 24 horas se producen bacterias, tanto deseables como indeseables. La primera bacteria que aparece es Leuconostoc mesenteroides, seguida por Lactobacillus plantarum si la temperatura es adecuada (anotación de clase: 18 a 22 °C).',
+        'Producción de ácido: en uno o dos días, las mesenteroides producen tanto ácido que el pH del cultivo baja de 7 a menos de 6, eliminando la mayoría de los microorganismos nocivos.',
+        'Dominio de Lactobacillus plantarum: después de una semana domina el cultivo debido a su tolerancia al ácido. Se alimenta del azúcar de las verduras y el pH sigue disminuyendo hasta menos de 4,1, indicando que la fermentación está completa.',
+        'Condiciones: temperatura de 18 a 25 °C y oscuridad durante aproximadamente 14 días para completar la fermentación.',
+        'Nota de verificación (fuera del librillo): extensiones universitarias de EE. UU. citan 18–22 °C (65–72 °F) como el rango de mejor calidad para chucrut, y 21–24 °C (70–75 °F) como rango habitual de trabajo; por encima de ~24 °C el fermento tiende a ablandarse y perder sabor, y por debajo de ~15 °C la fermentación es lenta. Por eso las recetas usan 18–22 °C. Un chucrut terminado ronda pH 3,5.',
+      ]},
+      { title:'Formas de fermentar: con su propio líquido', bullets:[
+        'Se frota la verdura con sal para generar líquido propio del vegetal (anotación de clase: chucrut y kimchi).',
+        'Es importante mantener las verduras siempre sumergidas en el líquido.',
+        'Si falta líquido, se puede hacer una salmuera con menos sal y agregarla hasta cubrir las verduras.',
+        'Siempre se coloca peso sobre las verduras para mantenerlas sumergidas. Ejemplos: chucrut, kimchi, remolachas y hojas.',
+      ]},
+      { title:'Formas de fermentar: verdura y salmuera', bullets:[
+        'Se prepara una salmuera para agregar a las verduras limpias y cortadas según se desee. Ejemplos: zanahorias y pepinillos.',
+        'Anotación de clase: el porcentaje de sal va entre un 2 y un 3 % respecto al peso de la verdura, pero a veces se pone más si, por ejemplo, es una verdura hueca o un coliflor, donde tiene que penetrar. El azúcar de la verdura también es importante.',
+      ]},
+      { title:'Producción de vinagres', bullets:[
+        'El vinagre se produce mediante un proceso de dos fases.',
+        'Fermentación inicial: se inocula levadura en frutas dulces u hortalizas y se deja fermentar durante 10 a 14 días hasta alcanzar una graduación alcohólica del 6-7 %. Se filtra el alcohol y se calienta a 70 °C para eliminar los restos de levadura.',
+        'Transformación en vinagre: se transfiere el líquido a tarros de conserva y se agrega vinagre de una tanda anterior. Se utiliza una bomba de aire unida a una piedra difusora para permitir la fermentación del alcohol en ácido acético.',
+      ]},
+    ],
+  },
+  {
+    id:'miso-koji-fundamentos',
+    title:'Miso y koji: el tiempo también cocina',
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'Presentación del taller', bullets:[
+        'Una jornada de profundización en el universo del koji y del miso, dirigida a profesionales de la gastronomía y amantes del buen alimento. Lema: “El tiempo también cocina”.',
+        'En Gaucha interesa cocinar entendiendo qué sucede detrás de cada transformación. Por eso se vuelve una y otra vez a los fermentos: obligan a observar, registrar, probar, esperar y construir criterio.',
+        'El koji y el miso aparecen como herramientas especialmente potentes para desarrollar profundidad, umami, dulzor, nuevas texturas y otras maneras de mirar ingredientes cotidianos.',
+        'Se busca acercarse a estas técnicas desde el conocimiento y no desde la repetición: entender su lógica para llevarla a la propia cocina, a los productos, a la despensa y al territorio.',
+        'Referencias: el trabajo de Noma y su laboratorio fue una referencia importante para pensar el koji, los misos, los garums, los vinagres y los lactofermentos no como recetas cerradas, sino como herramientas para investigar y construir sabor. Gaucha abre un nuevo capítulo a partir de la alianza con Oryzae, para seguir explorando el universo del koji.',
+        'El repartido reúne conceptos, procesos y preparaciones para seguir practicando, observando y transformando.',
+      ] },
+      { title:'01 · Koji: el punto de partida', bullets:[
+        'El koji se obtiene inoculando un cereal —habitualmente arroz o cebada— con el hongo Aspergillus oryzae.',
+        'Durante su desarrollo produce enzimas, principalmente amilasas y proteasas, capaces de transformar almidones en azúcares y proteínas en aminoácidos.',
+        'Esa capacidad enzimática lo convierte en una herramienta biológica de transformación: permite convertir moléculas complejas en otras más pequeñas que se perciben como dulzor, umami, aromas y cambios de textura.',
+        'Está en el origen de elaboraciones fundamentales de la cocina japonesa: miso, shoyu, sake, amazake y shio koji.',
+      ] },
+      { title:'02 · Las enzimas: donde empieza la transformación', bullets:[
+        'Amilasas: actúan sobre los almidones y los transforman progresivamente en azúcares más simples.',
+        'Proteasas y peptidasas: actúan sobre las proteínas, generando péptidos y aminoácidos. Entre ellos está el glutamato, especialmente importante para nuestra percepción del umami.',
+        'Otras enzimas: también intervienen lipasas y otras enzimas capaces de actuar sobre diferentes componentes de los alimentos.',
+        'El koji no aporta solamente “sabor a fermentado”: transforma la materia prima y crea nuevas posibilidades de sabor, aroma y textura.',
+        'Almidón → azúcares. Proteínas → péptidos → aminoácidos.',
+      ] },
+      { title:'03 · Del koji al umami', bullets:[
+        'El proceso puede imaginarse como una cadena. El umami es una de las consecuencias sensoriales más interesantes de este proceso.',
+        'Está particularmente relacionado con la presencia de glutamato y puede intensificarse por la interacción con determinados nucleótidos presentes en otros alimentos.',
+        'Por eso ingredientes fermentados como el miso y el shoyu pueden aportar una profundidad de sabor enorme, incluso utilizados en pequeñas cantidades.',
+        'Cadena: sustrato + Aspergillus oryzae → koji → enzimas → transformación → sabor.',
+      ] },
+      { title:'04 · Miso', bullets:[
+        'Pasta fermentada que, en términos generales, combina koji, legumbre, sal, agua y tiempo.',
+        'Tradicionalmente la legumbre es soja, aunque el principio puede aplicarse a otros ingredientes.',
+        'Durante la fermentación, las enzimas del koji actúan sobre proteínas y almidones mientras microorganismos distintos pueden participar en el desarrollo del producto.',
+        'La sal cumple un papel fundamental: además de aportar sabor, modifica el ambiente microbiológico y contribuye a controlar el proceso.',
+        'El resultado final depende del tipo y proporción de koji, la materia prima, la cantidad de sal, la humedad, la temperatura y el tiempo de maduración. Por eso no existe un único miso: existe un enorme universo de misos.',
+        'El koji es la herramienta; el miso, una de sus posibles transformaciones. Miso = koji + legumbre + sal + agua + tiempo.',
+      ] },
+      { title:'05 · Aprender a formular', bullets:[
+        'Una de las claves para dejar de seguir recetas y empezar a comprender una fermentación es aprender a pensar en proporciones.',
+        'Koji: una mayor o menor proporción cambia la disponibilidad enzimática y puede modificar velocidad, dulzor y perfil aromático.',
+        'Sal: no es solamente un condimento. Interviene directamente en la selección microbiana, la conservación y la evolución del fermento.',
+        'Humedad: condiciona la textura y también la manera en que se desarrolla el proceso.',
+        'Temperatura: afecta la actividad enzimática y microbiana.',
+        'Tiempo: un miso joven y uno de larga maduración son productos sensorialmente muy diferentes.',
+        'Formular = diseñar el resultado que queremos obtener.',
+      ] },
+      { title:'06 · Familias de miso', bullets:[
+        'Hay una enorme diversidad según el koji utilizado, la materia prima y el tiempo de maduración.',
+        'Kome miso: elaborado con koji de arroz. Mugi miso: elaborado con koji de cebada. Mame miso: elaborado principalmente a partir de soja.',
+        'También se pueden pensar por su perfil sensorial: los jóvenes suelen ser más claros, suaves y frecuentemente más dulces; los madurados, más oscuros, profundos, complejos e intensos.',
+        'La degustación comparativa permite comprender algo que la teoría sola no puede explicar: cómo el tiempo transforma el sabor.',
+      ] },
+      { title:'07 · Aminopastas', bullets:[
+        'En la cocina contemporánea se utiliza el término aminopasta para describir ciertas pastas saladas en las que se aprovecha la actividad proteolítica del koji sobre ingredientes ricos en proteínas.',
+        'No existe una única fórmula universal. Se puede trabajar, por ejemplo, con arvejas, garbanzos, lentejas, porotos, maní, semillas y otros ingredientes ricos en proteínas.',
+        'Pregunta interesante para la cocina: ¿qué otros ingredientes podemos transformar utilizando la lógica del miso?',
+        'Proteína + koji + sal + tiempo → péptidos + aminoácidos + sabor.',
+      ] },
+      { title:'08 · Shoyu: mucho más que “salsa de soja”', bullets:[
+        'El shoyu tradicional japonés es el resultado de un proceso fermentativo complejo.',
+        'Su elaboración comienza con un koji preparado habitualmente a partir de soja y trigo, que luego se combina con una salmuera. Esta mezcla recibe el nombre de moromi.',
+        'Durante meses —y en algunas elaboraciones durante períodos considerablemente más largos— las enzimas y microorganismos transforman progresivamente las materias primas. Finalmente el moromi se prensa y el líquido obtenido continúa su proceso hasta convertirse en shoyu.',
+        'En el taller se trabaja: qué diferencia a un shoyu fermentado de muchas salsas industriales; cómo se construye el koji específico para shoyu; qué es el moromi; qué sucede durante la maduración; cómo influyen concentración, agua, sal y tiempo; y cómo reconocer distintos perfiles de salsa de soja.',
+        'Se inicia una elaboración de shoyu para continuar observando su transformación en el tiempo.',
+      ] },
+      { title:'09 · Shio koji: cocinar con enzimas', bullets:[
+        'Combina koji, sal y agua. Es al mismo tiempo un condimento y una herramienta enzimática.',
+        'Puede utilizarse para marinar, condimentar, aportar umami, favorecer cambios de textura y construir profundidad de sabor.',
+        'Sus enzimas continúan actuando cuando entran en contacto con otros alimentos; por eso resulta particularmente interesante aplicado a carnes, pescados y vegetales.',
+        'Más no siempre significa mejor: cantidad, temperatura y tiempo de contacto deben adaptarse al alimento.',
+        'Shio koji = koji + sal + agua.',
+      ] },
+      { title:'10 · Degustar para comprender', bullets:[
+        'Parte de aprender fermentación es aprender a probar. En el taller se comparan diferentes elaboraciones para reconocer salinidad, dulzor, umami, acidez, aroma, textura y tiempo.',
+        'No se busca decidir cuál es “mejor”, sino construir un vocabulario sensorial para poder cocinar con ellas.',
+      ] },
+      { title:'11 · Del fermento al plato', bullets:[
+        'Entender una fermentación tiene sentido cuando se puede incorporar a la propia cocina.',
+        'Miso, shio koji, shoyu y aminopastas pueden funcionar como condimento, marinada, base de una salsa, aderezo, glaseado, fondo de sabor, elemento de contraste, potenciador del umami o ingrediente de una preparación dulce.',
+        'El desafío no es que todo “tenga gusto a miso”: es aprender a utilizar pequeñas cantidades para construir capas de sabor.',
+      ] },
+      { title:'12 · Leer el menú a través de la fermentación', bullets:[
+        'El menú de la jornada funciona también como una herramienta de aprendizaje.',
+        'Entrada: espárragos lactofermentados · arvejas asadas · reducción de tamari de maní · pangrattato · rabanitos frescos. La lactofermentación aporta acidez y complejidad; el tamari introduce concentración y umami; los elementos frescos permiten observar el contraste entre transformación y materia prima.',
+        'Principal: albóndigas de carne roja con shio koji y ajo · hummus de arvejas con miso de arvejas · arroz urumati · huevo frito · kimchi. El shio koji aparece como herramienta enzimática y condimento; el miso de arvejas muestra cómo trasladar la lógica del miso a ingredientes diferentes de la soja; el kimchi incorpora otra familia de fermentación y aporta acidez, frescura y complejidad.',
+        'Postre: tarta de chocolate y trigo sarraceno · caramelo de miso. Sal, dulzor, fermentación y umami se encuentran en un contexto dulce; el miso deja de funcionar como protagonista evidente para convertirse en una capa más de profundidad.',
+        'Para terminar: fruta de estación · aceite de oliva · sal. Una pequeña exploración del umami natural y una vuelta al alimento casi sin transformar: después de atravesar fermentación, enzimas, maduración y tiempo, se termina nuevamente frente a la materia prima.',
+      ] },
+      { title:'13 · Koji + otros fermentos', bullets:[
+        'El koji no reemplaza otras formas de fermentación; puede convivir con ellas. Entender las diferencias permite decidir qué herramienta utilizar y para qué.',
+        'Koji — aporta enzimas + transformación. Ejemplo / uso: miso, shoyu, amazake.',
+        'Shio koji — aporta condimento + actividad enzimática. Ejemplo / uso: marinadas, vegetales, carnes, salsas.',
+        'Miso — aporta transformación + fermentación + maduración. Ejemplo / uso: caldos, salsas, aderezos, glaseados, dulces.',
+        'Aminopastas — aportan proteólisis + concentración de sabor. Ejemplo / uso: condimentos y bases culinarias.',
+        'Lactofermentación — aporta ácidos orgánicos + transformación microbiana. Ejemplo / uso: vegetales, kimchi y otros fermentos.',
+      ] },
+      { title:'14 · Cuidar lo que nos llevamos', bullets:[
+        'Un fermento no termina cuando termina el taller: empieza. Registrar su evolución permite aprender de él.',
+        'Observar: día 0 · día 3 · día 7 · día 14 · día 30 · y luego una vez por mes.',
+        'Qué registrar: cambios de color, aromas, presencia de líquido, textura, temperatura aproximada y cualquier cambio inesperado.',
+        'No probar una preparación cuando existan dudas sobre su inocuidad. La observación y el registro son parte del aprendizaje.',
+      ] },
+      { title:'15 · Para recordar', bullets:[
+        'Koji: microorganismo + sustrato + cultivo controlado.',
+        'Enzimas: herramientas biológicas capaces de transformar moléculas.',
+        'Proteólisis: proteínas → péptidos → aminoácidos.',
+        'Amilólisis: almidones → azúcares más simples.',
+        'Umami: percepción gustativa asociada, entre otros compuestos, al glutamato.',
+        'Miso: koji + materia prima + sal + tiempo.',
+        'Shoyu: koji + salmuera + fermentación + maduración + prensado.',
+        'Shio koji: koji + agua + sal, utilizado como condimento y herramienta enzimática.',
+        'Fermentar: diseñar condiciones para que microorganismos, enzimas y tiempo transformen una materia prima.',
+        'Cocinar con koji = comprender la transformación para poder crear.',
+      ] },
+      { title:'Ideas para preparaciones con miso y koji', bullets:[
+        'El objetivo no es pensar el miso y el koji como ingredientes aislados, sino como herramientas para construir sabor, modificar texturas y potenciar materias primas.',
+        'Carnes y pescados: marinadas con shio koji para aportar sabor, jugosidad y mejorar textura.',
+        'Vegetales: glaseados de miso, mantecas de miso, vegetales asados terminados con miso o koji.',
+        'Legumbres: hummus y purés con miso; misos de arvejas, garbanzos, porotos o maní.',
+        'Arroces y cereales: condimentar arroces, risottos, bowls y rellenos con miso o shio koji.',
+        'Salsas y aderezos: vinagretas, mayonesas, emulsiones, dips y salsas con miso.',
+        'Caldos y sopas: incorporar miso al final de la cocción para sumar profundidad y umami.',
+        'Huevos: marinados, revueltos o acompañados con manteca de miso.',
+        'Panificados: usar miso en masas, rellenos, mantecas y terminaciones.',
+        'Dulces: caramelo de miso, chocolate y miso, cookies, tartas, helados y cremas.',
+        'Frutas: combinar miso con frutas de estación, especialmente en preparaciones asadas o caramelizadas.',
+        'Fermentos propios: experimentar con diferentes materias primas, proporciones de koji y tiempos de maduración. Observar · registrar · probar · esperar: en fermentación, la receta es apenas el punto de partida.',
+      ] },
+      { title:'Ficha práctica de formulación y bitácora', bullets:[
+        'Ficha de formulación (registrar la formulación permite comparar resultados y aprender de cada proceso): preparación / nombre · fecha de inicio · sustrato / materia prima · tipo de koji · peso de materia prima · peso de koji · peso de sal · agua / hidratación · porcentaje de sal · temperatura prevista · tiempo de maduración previsto · objetivo sensorial · notas de formulación.',
+        'Bitácora de seguimiento (observar, registrar y comparar; no se busca controlar todo, sino aprender a leer el proceso): para cada momento —día 0, 3, 7, 14, 30, mes 2, mes 3 y mes 6— anotar color, aroma, textura, líquido y observaciones.',
+        'Registro sensorial final: aroma · salinidad · dulzor · umami · acidez · textura · qué cambiaría en la próxima formulación.',
+      ] },
+      { title:'Anotaciones de clase (a mano)', bullets:[
+        'Aspergillus flavus → hongo tóxico domesticado → Aspergillus oryzae (lectura de la anotación; confirmar la primera palabra).',
+        'Espora para inocular cereal. Espora → arroz → koji.',
+        'El miso es solo de soja (poroto de soja). Aminopasta es más genérico: si no es soja, no se le dice miso.',
+        'Grano pulido, sin cascarilla, para que la espora entre. El grano al dente: no se puede pasar de punto porque, si no, se ahoga la espora.',
+        '1 kg de arroz seco → 1 g de espora. Empezar con poco (la cantidad se lee “100 gr” de arroz; confirmar).',
+        'Cocinar el arroz 1:1; lavado y remojado (lectura incierta). El arroz debe estar frío para poner la espora.',
+      ] },
+      { title:'Fuentes de consulta (del librillo)', bullets:[
+        'Japanese Traditional Miso and Koji Making — Journal of Fungi.',
+        'Koji Molds for Japanese Soy Sauce Brewing: Characteristics and Key Enzymes — Foods.',
+        'The ancient koji mold (Aspergillus oryzae) as a modern biotechnological tool.',
+        'Induction and Repression of Hydrolase Genes in Aspergillus oryzae — Frontiers in Microbiology.',
+        'Research advances on sake rice, koji, and sake yeast: A review — Food Science & Nutrition.',
+        'Nota del librillo: el término culinario “aminopasta” y sus formulaciones varían entre cocineros, productores y proyectos. En esta bitácora se utiliza para explicar el principio general de transformación proteolítica mediante koji y no como denominación de una receta única.',
+      ] },
+    ],
+  },
+  {
+    id:'taller-pesca-local-fundamentos',
+    title:'Taller de pesca local: por qué importa el manejo',
+    classInfo:'Taller de pesca local · Invitado: Mauricio Molina',
+    sections:[
+      { title:'Un recurso noble y subvalorado', bullets:[
+        'Uruguay tiene una generosa presencia de costas de agua dulce y salada, con su correspondiente riqueza y variedad de pescados; las personas lo usan para alimentarse desde hace más de 12000 años.',
+        'Esta proteína aún no ocupa en nuestra cultura culinaria el lugar que se merece, en parte porque su calidad depende muy especialmente de los métodos de manipulación y conservación.',
+      ]},
+      { title:'Falsos mitos: el salmón', bullets:[
+        'Hay que dejar de considerar al salmón un producto de buena calidad: la gran mayoría de lo que se comercializa es de criadero y contiene cantidades de antibióticos y otros productos químicos que distan mucho de ser saludables.',
+      ]},
+      { title:'Ikejime', bullets:[
+        'En Japón, país insular con muchas costas, el pescado tiene un lugar protagónico y la cultura culinaria se caracteriza por un manejo muy respetuoso del producto.',
+        'Los pescadores japoneses desarrollaron el ikejime, una técnica de faena que preserva mejor el sabor, la textura y las cualidades organolépticas del pescado.',
+        'Adquiere un valor especial para consumir el pescado crudo y resulta ineludible en algunas especies como el atún, la lisa, la merluza negra, el bacalao y el abadejo.',
+        'Es un método sostenible, al servicio del producto, y también se practica en nuestras costas.',
+      ]},
+      { title:'Las primeras horas', bullets:[
+        'Las condiciones del pescado durante las primeras horas son determinantes para la calidad del producto que llega al plato.',
+        'Objetivo del taller: acercarnos a conocer un recurso noble y promover un consumo más responsable, local, saludable y sabroso.',
+      ]},
+    ],
+  },
+  {
+    id:'pasteleria-invierno-fundamentos',
+    title:'Pastelería con frutas de invierno',
+    classInfo:'Taller de pastelería con frutas de invierno · Invitada: Mica Daverede',
+    sections:[
+      { title:'Una pastelería de estación', bullets:[
+        'Cada estación ofrece sus frutos: cambian los aromas, los colores, las texturas y también la manera de cocinar.',
+        'En invierno, los cítricos alcanzan su mejor expresión: quinotos, naranjas, mandarinas, pomelos y limones invitan a una pastelería de sabores sutiles.',
+        'Es una cocina que busca equilibrio y entiende que una buena elaboración empieza mucho antes de encender el horno.',
+      ]},
+      { title:'Qué busca este recetario', bullets:[
+        'Más que una colección de recetas, busca compartir una forma de cocinar: comprender el rol de cada ingrediente y cómo reemplazarlo, incorporar técnicas que puedan adaptarse a distintas preparaciones y ganar confianza para crear con criterio y libertad.',
+        'Conservas, masas, tortas, cookies y postres pensados desde una mirada simple, estacional y consciente, donde el respeto por el producto es siempre el punto de partida.',
+      ]},
+      { title:'Anotaciones de clase sobre cítricos', bullets:[
+        'Limón confitado: la técnica aplica también para pomelo y naranja.',
+        'La mandarina tiene menos pellejo (la parte blanca de la cáscara), por lo que hay que darle menos pasadas de blanqueo.',
+      ]},
+    ],
+  },
+  {
+    id:'laminados-conceptos',
+    title:'Laminados: conceptos',
+    classInfo:'Taller de laminados · Franco Fonseca',
+    sections:[
+      { title:'Presentación del taller', bullets:[
+        'Entender que la gastronomía muchas veces no se reduce a una receta es más complejo de lo que parece: el desafío y la ganancia están en algo tan básico como la prueba y error.',
+        'Tener la técnica no es suficiente si no sabemos cómo funcionan los ingredientes y, de la misma manera, tener la mejor materia prima no basta si no sabemos cómo trabajarla.',
+        'La idea del taller es fomentar la curiosidad por los laminados y familiarizarse con su elaboración.',
+      ]},
+      { title:'¿Qué es un laminado?', bullets:[
+        'Los dos ítems que componen un laminado son amasijo y empaste. Al autor le gusta agregar el tiempo como un tercer componente.',
+        'Dentro de ese concepto (amasijo, empaste, tiempo) no es lo mismo un hojaldre rápido, un hojaldre clásico francés, o una pieza de bollería, bizcochería o viennoiserie.',
+        'Existen diferentes técnicas para laminar y cada una lleva a un producto diferente: hay que tener en cuenta a qué apuntamos y con qué herramientas contamos.',
+        'Laminamos cuando, aplicando la técnica adecuada, logramos que un empaste interfiera y separe capas de masa, desarrollando el volumen de la pieza en la cocción y generando láminas de masa muy finas en el interior.',
+      ]},
+      { title:'¿Por qué crece la masa al cocinarse?', bullets:[
+        'Masas con levaduras (medialunas, croissant, etc.): crece por acción física y biológica.',
+        'Masas sin fermentos (palmeritas, jesuitas, pasteles): crece solo por acción física.',
+        'Desarrollo físico: se da por la superposición de amasijo y empaste. Cuando el agua presente en el amasijo se transforma en vapor y quiere escapar, el empaste interfiere empujando la siguiente capa de masa, y así sucesivamente.',
+        'Desarrollo biológico: cuando el amasijo lleva algún fermento, hay que lograr que la masa llegue a la cocción en el punto justo de levado. Respetar tiempos y temperaturas durante el laminado es clave para que no se fermente antes de tiempo y se pierda calidad.',
+      ]},
+      { title:'Los componentes', bullets:[
+        'Amasijo: harina, agua, sal y opcionalmente algún fermento. Se puede enriquecer (azúcar, manteca, huevos, leche, etc.) buscando la hidratación adecuada para optimizar el proceso.',
+        'Empaste: principalmente alguna materia grasa (manteca, margarina, grasa refinada, aceite); puede llevar harina o almidón para facilitar la extensibilidad de la materia grasa.',
+        'Tiempo: junto con la temperatura ambiente determina qué proceso hay que realizar. Por ejemplo, para hacer medialunas en el día seguramente haya que modificar la receta, ni que hablar si hace calor. Agregar harina al empaste o usar un porcentaje de margarina es lo que se suele hacer, pero también se traduce en perder calidad en el producto final.',
+        'Inclusión: el camino para superponer amasijo y empaste. Una vez hecha la inclusión, a la masa se la llama "pastón" o "bastón".',
+      ]},
+      { title:'Métodos de inclusión', bullets:[
+        'Directo: el amasijo envuelve al empaste y se da una serie de vueltas o pliegues para lograr el hojaldrado (medialunas, palmeras, bizcochos, masa de tartas o pasteles).',
+        'Invertido: el empaste envuelve al amasijo; se necesita trabajar con harina en el empaste y en lo posible con laminadora. Tiene una cantidad más grande de materia grasa y queda expuesta al calor de forma más directa, por lo que se nota más el sabor tostado del empaste. No se suele usar en Uruguay; en Francia e Italia se usa mucho para el napoleón y el milhojas.',
+        'Rápido: la harina va desde el comienzo con los líquidos y la materia grasa, se trabaja en frío y se da una serie de pliegues. Da una masa sin tanto detalle de hojaldrado, pero bien crocante y en poco tiempo (clásica masa de tarta o pie americano).',
+        'En el taller se trabaja con medialunas de manteca. Un punto clave es usar manteca pura en el empaste, de buena calidad, que no haya sido congelada ni derretida: lleva más trabajo, pero se traduce en calidad en el producto final.',
+      ]},
+      { title:'Medialuna y croissant', bullets:[
+        'No son lo mismo: son piezas parecidas a la vista y una deriva de la otra, pero no es simplemente la forma lo que las diferencia.',
+        'Croissant clásico francés: se busca una pieza liviana y aireada, crocante por fuera y con mucho sabor a manteca. No se suele enriquecer la masa con tantos ingredientes; es protagonista la pura manteca del empaste.',
+        'Medialuna: deriva del croissant pero se adaptó al paladar rioplatense. Se enriquece la masa con azúcar, miel, huevos y leche priorizando la humedad, y se agrega almíbar y/o jalea para "amigarnos" con el dulzor.',
+        'Las medialunas se cocinan muy juntas entre sí y se pintan con almíbar en seguida que salen del horno. La humedad es lo más buscado en la medialuna.',
+      ]},
+    ],
+  },
+  {
+    id:'laminados-proceso',
+    title:'Laminados: proceso paso a paso',
+    classInfo:'Taller de laminados · Franco Fonseca',
+    sections:[
+      { title:'Las etapas', bullets:[
+        'Amasado',
+        'Fermentación en bloque (en frío)',
+        'Inclusión',
+        'Laminado (vueltas)',
+        'Porcionado',
+        'Armado',
+        'Fermentación final (calor)',
+        'Doradura',
+        'Cocción',
+      ]},
+      { title:'Amasado en amasadora', bullets:[
+        'Existen amasadoras de gancho tipo espiral, de horquilla, de brazos, etc., y cada máquina trabaja a distintas revoluciones y genera una fricción y una temperatura diferentes: es imposible estandarizar el tiempo de amasado. Los tiempos que siguen son para una amasadora estándar con gancho de espiral, de dos velocidades.',
+        'Lo ideal es pesar los ingredientes y reservar en frío hasta el momento de amasar, o usar parte de los líquidos congelados.',
+        'Incorporar todos los ingredientes menos la manteca y amasar en velocidad baja hasta que no haya nada seco (aprox. 5 min).',
+        'Dejar la masa en frío durante 15–30 min aprox. (autolisis) para que las harinas se terminen de hidratar y se logre una mejor estructura de gluten.',
+        'Llevar de nuevo a la amasadora, agregar la manteca fría y amasar en velocidad media/rápida (aprox. 8 min) hasta alcanzar 21–23 °C.',
+      ]},
+      { title:'Amasado a mano', bullets:[
+        'Idealmente pesar los ingredientes y reservar en frío hasta el momento de amasar.',
+        'En un bowl mezclar todos los ingredientes menos la manteca, revolviendo hasta que no haya nada seco. Llevar a la heladera y dejar 15–30 min aprox. (autolisis).',
+        'Agregar la manteca blanda y amasar de manera tradicional: al principio desgarrando para que la manteca se integre, y luego girando la masa sobre sí misma sin desgarrar hasta tener un amasijo bastante liso. Con termómetro, el ideal es 21–23 °C.',
+        'Una vez amasado, a mano o en amasadora, formar un bollo y dejar 10 min aprox. o hasta que haya perdido tenacidad.',
+      ]},
+      { title:'Fermentación en bloque', bullets:[
+        'Es el descanso del amasijo previo al laminado: se necesitan varias horas para que la masa esté lo suficientemente relajada como para estirarse, plegarse y volverse a estirar.',
+        'Se hace en frío por varias razones. Evitar volumen: las levaduras trabajan mejor a una temperatura más cálida; si no se cuida el frío durante la primera fermentación, la masa se gasifica y crece en volumen, y eso dificulta el laminado.',
+        'Plasticidad: una masa fría es más consistente y plástica; si el amasijo tiene manteca o grasa, estas se endurecen en la heladera, y resulta una masa con más cuerpo y más cómoda para laminar.',
+        'Sabor: siempre que en panadería se respetan las fermentaciones largas en frío, se desarrollan sabores y colores más intensos en la pieza final.',
+        'Hay que frenar la actividad de la levadura hasta formar la pieza final: si el amasijo se fermenta antes de tiempo, se complica el laminado y se pierde calidad.',
+      ]},
+      { title:'Trabar la masa', bullets:[
+        'Con ayuda de un palote o una sobadora, estirar la masa de manera rectangular, fina y uniforme: a esto se le llama TRABAR LA MASA. Así, al llevarla a descansar a la heladera, el frío llega a la totalidad de la masa de forma pareja y se frena la actividad de la levadura lo más rápido posible.',
+        'Si se llevara a la heladera el bloque hecho un bollo, el corazón de la masa tendría más temperatura que la superficie y las levaduras trabajarían de manera diferente en distintos puntos.',
+        'Una vez en la heladera, cubierta con nylon, dejar descansar idealmente entre 12 y 24 h.',
+        'Se puede dar un golpe de 1 o 2 hs de freezer luego de trabar la masa, previo al descanso en bloque, para frenar la actividad de las levaduras.',
+        'Siempre guardar con un nylon en contacto: si el amasijo se seca por el contacto con el aire, a la hora de estirarlo queda "estriado".',
+        'Anotación de clase: no fermentar antes de laminar.',
+      ]},
+      { title:'El amasijo', bullets:[
+        'No debe ser muy blando: por lo general entre 57% y 61% de hidratación (de grasas y líquidos totales sobre la harina). Si se pasa de hidratación es probable que se rompa la masa durante el laminado y se pierdan capas; si queda muy seca, es probable que no se deje estirar tan fácil e incluso se desgarre.',
+        'Regular la levadura en base al lugar donde se hace el proceso: si hace calor o la heladera no enfría tanto, bajar la cantidad de levadura, o viceversa.',
+        'Regular la materia grasa del amasijo: cuanta más materia grasa, más consistencia toma en frío, y eso ayuda. Pero un exceso puede interferir en la plasticidad de la masa; por lo general se usa entre 8 y 15% sobre la totalidad de la harina.',
+      ]},
+      { title:'El empaste', bullets:[
+        'Usar 100% manteca.',
+        'Es más práctico encuadrar con la manteca pomada y luego mandar al frío.',
+        'Encuadrar prolijo, de grosor uniforme no mayor a 1 cm y con los vértices bien marcados. Anotación de clase: 1/2 cm de espesor.',
+        'Temperatura: 12 a 15 °C. A la vista sería cuando la manteca está "flexible" o "maleable".',
+      ]},
+      { title:'Inclusión', bullets:[
+        'Hay que intentar equiparar la consistencia del amasijo respecto al empaste, para que al estirar el pastón ambas partes corran en paralelo.',
+        'Para eso se recomienda usar la masa bien fría (0 a 5 °C) y el empaste templado (12 a 15 °C). Así, una vez integradas las dos partes, el pastón queda aprox. entre 6 y 10 °C, temperatura ideal para laminar.',
+      ]},
+      { title:'Las vueltas (pliegues)', bullets:[
+        'La vuelta o pliegue es el proceso para multiplicar y afinar las láminas de manteca y masa.',
+        'Masas con fermentos (medialuna, croissant): cuidar de no afinar tanto las capas, para evitar que al leudar la masa rompa el hojaldrado, y permitir que la pieza crezca tanto por el desarrollo físico como por los gases de la levadura. Lo recomendable es dar entre 2 y 3 vueltas, o, para ser más preciso, mínimo 19 láminas y máximo 55.',
+        'Laminados sin fermentos (jesuitas, palmeritas, etc.): dependen únicamente del desarrollo físico para lograr volumen; se recomiendan 4 vueltas cuidando que el pastón no se rompa y unifique el amasijo con el empaste.',
+        'Milhojas clásico francés: 5 a 6 vueltas para tener literalmente más de mil hojas; antes de hornear se pincha con una "pica" o tenedor para que crezca parejo.',
+        'IMPORTANTE: siempre trabajar con harina sobre la mesada, más aún si se lamina a mano; si la masa se engancha a la mesa corre riesgo de romperse. La cara que mira hacia arriba no debe tener harina: ayudarse con un cepillo o pincel para quitar los excesos antes de plegar.',
+        'Al estirar, antes de doblar, cortar los extremos del pastón procurando que se vea "masa, manteca, masa", en cada vuelta. Esos recortes se guardan y SIEMPRE se pueden volver a usar en otra receta.',
+        'Hecha la vuelta y antes de llevar a la heladera, bajar el pastón a un espesor de no más de 1,5 cm. Igual que al "trabar la masa", el pastón tiene que tener la misma temperatura de manera pareja.',
+        'Cuidado con los excesos: si al laminar se lleva demasiado fino el pastón, se corre riesgo de que el empaste y el amasijo se unifiquen y se pierdan láminas.',
+      ]},
+      { title:'Vuelta simple (x3)', bullets:[
+        'Cómo saber cuántas láminas tiene la pieza: el pastón parte compuesto por masa, manteca, masa. Cada vuelta simple multiplica x3 la lámina de manteca; las láminas de masa siempre son las de manteca más 1.',
+        'Dos vueltas simples: 9 capas de manteca (1×3×3). Tres vueltas simples: 27 capas (1×3×3×3).',
+        'Tabla (láminas de manteca / masa / totales): amasijo + empaste 1 / 2 / 3; 1 vuelta simple 3 / 4 / 7; 2 vueltas simples 9 / 10 / 19; 6 vueltas simples (milhojas) 729 / 730 / 1459.',
+        'Cómo se hace: estirar el pastón en forma de rectángulo, dividirlo imaginariamente en 3 (A, B y C) y realizar los dobleces del esquema del cuadernillo, que dejan el pastón en 3 capas (el esquema no se transcribe aquí).',
+        'Cada vuelta le da tenacidad al pastón: entre vuelta y vuelta conviene dejar descansar 20–30 min en frío.',
+      ]},
+      { title:'Vuelta doble (x4)', bullets:[
+        'Esta vez la manteca se multiplica x4.',
+        'Tabla (láminas de manteca / masa / totales): amasijo + empaste 1 / 2 / 3; 1 vuelta doble 4 / 5 / 9; 1 simple + 1 doble 12 / 13 / 25; 2 simples + 2 dobles 144 / 145 / 289.',
+        'Cómo se hace: estirar el pastón en forma de rectángulo, dividirlo imaginariamente en 4 (A, B, C y D) y realizar los dobleces del esquema del cuadernillo (el esquema no se transcribe aquí).',
+        'Entre vuelta y vuelta, dejar descansar 20–30 min en frío.',
+        'Terminadas las vueltas, el pastón queda tenso: mandarlo al frío respetando el mismo grosor con el que se venía trabajando. Descansar en frío (mínimo media hora) y queda listo para estirar y porcionar.',
+      ]},
+      { title:'Porcionado y armado', bullets:[
+        'Determina la forma y el peso de la pieza; hay que tener en cuenta el grosor al que se lleva el pastón antes del corte.',
+        'Primero llevar al grosor deseado; después descubrir el hojaldre (cortar los extremos de todos los lados) y por último marcar la medida y cortar.',
+        'Croissant grande 90–100 g: pastón a 3 mm, cortes de 9 × 30 cm.',
+        'Croissant chico 55–60 g: pastón a 3 mm, cortes de 7 × 25 cm.',
+        'Medialuna grande 120 g: pastón a 5 mm, triángulos de 12 × 20 cm.',
+        'Medialuna chica 60–65 g: pastón a 3 mm, triángulos de 9 × 24 cm.',
+        'A la medialuna se la corta con más base, para que al enrollar queden "patitas" más grandes. Si se quieren más vueltas se puede estirar la pieza hasta el doble de largo, cuidando que las láminas de manteca no se cuarteen; si pasa, dejar templar el triángulo antes de estirar.',
+        'En el croissant clásico se da más altura, para enrollar más veces y conseguir más vueltas o "anillos". Todo puede variar según la comodidad de cada uno y la pieza final; con sobadora o laminadora, acomodar el tamaño de pastón y piezas para tener menos recortes.',
+        'Todos los recortes se guardan para aprovechar en otra receta.',
+      ]},
+      { title:'Fermentación final', bullets:[
+        'Aquí nos olvidamos del frío: es cuestión de esperar agregando o no temperatura y humedad. Se puede fermentar a temperatura ambiente, en un cuarto calefaccionado o en fermentadora.',
+        'El ambiente no debe superar los 28 °C: por encima de esa temperatura la manteca se funde y escapa de la pieza.',
+        'Este es el momento justo para congelar si hay que guardar piezas sin cocinar: PREVIO A LA FERMENTACIÓN FINAL. Para fermentar una pieza congelada: pasar del freezer a la heladera y, una vez descongelada, pasar al leudado final.',
+        'A temperatura ambiente: la más fácil en casa; se adapta el tiempo a la temperatura del ambiente (es la menos estandarizable). Hay que tapar las piezas con nylon para que no se seque la superficie ni se cuarteen. Hay problemas si el ambiente está a menos de 15 °C o a más de 28 °C: hay que recurrir a calefacción o refrigeración.',
+        'Cuarto calefaccionado: se pueden regular los excesos de calor o frío con algún aparato (por ejemplo aire acondicionado); también hay que tapar con nylon. Con aire acondicionado, cuidado con el calor directo: no es lo mismo fermentar a 2 m del aire que directamente abajo.',
+        'Máquinas fermentadoras: por amplio margen la mejor opción en una panadería, la más controlable. Se puede agregar humedad y no hace falta tapar con nylon; las hay con frío y calor, programables para que toda la tanda llegue a una temperatura y fermente la misma cantidad de tiempo. Es lo más caro, pero amerita la inversión si se prioriza la estandarización y la calidad.',
+        'Punto justo de leudado: prueba y error. Idealmente el volumen debería haberse incrementado entre 2 y 2,5 veces desde que se formó la pieza, pero es muy difícil acertar el punto exacto: alguna vez nos vamos a quedar cortos y otras nos vamos a pasar. Lo que sí se puede hacer es reconocer los errores para no repetirlos.',
+      ]},
+      { title:'Doradura', bullets:[
+        'Yema o huevo batido: da brillo y profundidad de color, y aporta humedad para que la pieza desarrolle volumen y no se seque antes de tiempo o quede opaca. La superficie donde se pasa doradura queda más crujiente.',
+        'Se puede poner antes o después de fermentar; se recomienda después, para no exponer el huevo al calor por tanto tiempo.',
+        'Se usa con pincel o con pulverizador (sirve para no pinchar ni deformar la pieza ya leudada y frágil). Si se hace a granel, conviene tamizarla para que corra más fácil.',
+        'Se puede agregar agua, leche, crema de leche, sal y/o azúcar para ayudar a romper la estructura del huevo y lograr diferentes resultados de color una vez cocido.',
+      ]},
+      { title:'Horneado', bullets:[
+        'El final del proceso: un buen horneado es clave para que la pieza luzca todo el trabajo anterior.',
+        'Lo ideal: horno eléctrico convector a 170 °C con vapor durante por lo menos un minuto; después de 5 minutos de cocción, prender el ventilador.',
+        'El tiempo total varía según qué tan cargada esté la bandeja y cuántas bandejas vayan al horno. Piezas separadas entre sí: 15 a 20 min según el peso. Piezas juntas (por ej. medialunas): 25 a 35 min según el peso.',
+        'En casa se puede simular el vapor tirando un cubito de hielo en alguna parte del horno, o rociando las piezas con agua antes de cocinar.',
+        'Si se va a cocinar a 170 °C, lo ideal es precalentar el horno por encima de los 200 °C: al abrir la puerta y al meter una bandeja fría se pierde temperatura. Si no se precalienta bien, la temperatura baja un montón y la manteca se escapa de la pieza, perdiendo calidad.',
+      ]},
+      { title:'Resumen en 48 horas (dos opciones)', bullets:[
+        'La masa se puede adaptar a mis tiempos y no al revés.',
+        'Opción 1. Día 1: amasado y dejar en frío. Día 2: inclusión y vuelta doble; descanso en frío 30 min; vuelta simple; descanso en frío; estirar, cortar y armar; dejar leudando. Día 3: cocinar.',
+        'Opción 2. Día 1: amasado y dejar en frío. Día 2: inclusión y vuelta doble; descanso en frío 30 min; vuelta simple; descanso en frío; estirar y cortar; dejar en frío. Día 3: sacar a templar; armar; dejar leudando; cocinar.',
+      ]},
+    ],
+  },
+  {
+    id:'laminados-temperaturas-errores-materia-prima',
+    title:'Laminados: temperaturas, errores y materia prima',
+    classInfo:'Taller de laminados · Franco Fonseca',
+    sections:[
+      { title:'Temperaturas', bullets:[
+        'Respetar las temperaturas facilita el proceso y evita errores. ¿Respetar el frío que necesita la manteca o el calor que necesitan las levaduras? Depende. SI LA MASA LEUDA DE MÁS DURANTE EL LAMINADO, SE CRAQUELA LA MANTECA y se pierden capas.',
+        'Amasado al terminar: 21 a 23 °C.',
+        'Inclusión: masa 0 a 5 °C / manteca 12 a 15 °C.',
+        'Laminado y porcionado: 5 a 8 °C (temperatura de heladera).',
+        'Armado: 15 °C.',
+        'Leudado: máx. 26 °C (en el texto de fermentación final se indica no superar 28 °C).',
+        'Cocción: 170 °C con vapor.',
+      ]},
+      { title:'Errores comunes: falta de fermentación', bullets:[
+        'Poco volumen.',
+        'Pierden manteca en el horneado.',
+        'Quedan opacos.',
+        'Miga apretada y con apariencia a cruda.',
+        'La manteca que pierde termina "friendo" la base de la pieza.',
+      ]},
+      { title:'Errores comunes: exceso de fermentación', bullets:[
+        'Quedan chatos, como "desinflados".',
+        'Sabor ácido de más.',
+        'Corteza muy blanda.',
+        'Miga demasiado regular, tipo pancito lactal.',
+        'En vez de crecer hacia arriba, crecen hacia los costados.',
+        'Varios de estos errores también pueden venir de fallas en el amasado, laminado o armado; si se respetan tiempos y temperaturas en esos procesos, no debería pasar.',
+      ]},
+      { title:'Materia prima: por qué importa cada ingrediente', bullets:[
+        'Más allá de la técnica, todos los ingredientes aportan sabor, textura y calidad al producto; conocer el porqué de cada uno facilita crear una receta y reconocer posibles errores.',
+      ]},
+      { title:'Harina', bullets:[
+        'Hace a los cimientos de la masa: al unirse con los líquidos y aplicar fricción comienza a formarse la red de gluten, un conjunto de proteínas que retiene los gases generados por las levaduras y es responsable de la elasticidad y extensibilidad de la masa a laminar.',
+        'En Uruguay conviene usar una mezcla de harina 0000 y 000 con un porcentaje de proteínas cercano al 11%. Solo 000 puede generar una masa muy tensa; solo 0000, una masa muy floja o frágil.',
+      ]},
+      { title:'Manteca', bullets:[
+        'Esencial que sea de buena calidad: es una emulsión de grasa y agua, y cuanto mayor % de grasa, mayor calidad. En Uruguay se consiguen mantecas de 82–84% de materia grasa; en Francia existen mantecas especiales para laminados, con más del 90%.',
+        'En el amasijo: da más firmeza a la masa una vez que descansó en frío, lo que facilita el laminado porque se consigue una consistencia similar a la de la manteca.',
+        'En el empaste: independientemente del sabor, define la calidad del laminado; una manteca más flexible y plástica facilita plegar y estirar sin romperse.',
+      ]},
+      { title:'Sal, azúcar, leche, huevos, miel', bullets:[
+        'Sal: controla la tenacidad de la masa, regula el tiempo de fermentación, define el sabor y aporta color y crocante en la pieza final. Se puede usar cualquier sal; se recomienda sal fina para facilitar la incorporación al amasijo.',
+        'Azúcar: aporta humedad, color y, al igual que la sal, ayuda a regular el tiempo de fermentación.',
+        'Leche: sabor, aroma, grasa y humedad.',
+        'Huevos: aportan el color amarillento clásico de la medialuna y, además, al igual que la leche, sabor, aroma, grasa, humedad y "esponjosidad".',
+        'Miel: elasticidad, color y humedad.',
+      ]},
+      { title:'Masa madre y levadura', bullets:[
+        'Masa madre: sabor un poco más ácido e intenso, conservación y coloración más profunda. Se suele usar una masa madre sólida hidratada al 50%; se alimenta unas horas antes de amasar y se deja en un lugar cálido hasta el momento de usarse. Se puede sustituir por poolish o esponja, según los tiempos de cada panadero.',
+        'Levadura de cerveza: genera (mediante la fermentación) el gas suficiente para levar las masas. Se pueden hacer recetas con masa madre, pero se recomienda agregar levadura para facilitar el leudado, ya que la masa es muy enriquecida para depender solo de la masa madre y se correría el riesgo de acidificar de más. Se puede usar fresca o seca; el autor usa seca: demora más en hidratarse y ayuda a retardar el leudado.',
+      ]},
+      { title:'Agua y recortes', bullets:[
+        'Agua: se puede usar de la canilla siempre que no tenga un exceso muy notorio de cloro; usar siempre fría.',
+        'Recortes: siempre se usan, para agregar a un nuevo amasijo y aportar sabores de una masa ya fermentada, o, si hay una cantidad considerable, se puede re-laminar de nuevo y conseguir una masa "de segunda".',
+      ]},
+    ],
+  },
 ];
 
 const COMMENTERS = ['Cata', 'Cris', 'Euge', 'Fede', 'Gabi', 'Mahia', 'Pablo'];
@@ -695,6 +1164,8 @@ const CATEGORIES = [
   { id:'rebozados', label:'Rebozados y frituras', color:'var(--rebozados)' },
   { id:'cerdo-cordero', label:'Cerdo y cordero', color:'var(--cerdo-cordero)' },
   { id:'mariscos', label:'Mariscos', color:'var(--mariscos)' },
+  { id:'fermentados', label:'Fermentados', color:'var(--fermentados)' },
+  { id:'pasteleria', label:'Pastelería', color:'var(--pasteleria)' },
 ];
 
 const RECIPES = [
@@ -1013,7 +1484,7 @@ const RECIPES = [
     ],
     steps:[
       'Pickle de cebolla: cortar la cebolla en aros o pluma, salar como para una ensalada y dejar reposar en frío 24 horas. Escurrir y prensar bien. Tostar el coriandro en una sartén, retirar del fuego, añadir el resto de los ingredientes y volcar sobre las cebollas. Conviene hacerlo varios días antes.',
-      'Pescado: seleccionar el filete, pre salar y dejar tomar temperatura ambiente. Calentar la sartén, agregar manteca clarificada y colocar el pescado con la piel hacia abajo con un peso encima. A los pocos minutos descartar la manteca y agregar más para evitar que se queme. Si el filete es grueso, terminar en horno a 100 °C para evitar que se reseque.',
+      'Pescado: seleccionar el filete, pre salar y dejar tomar temperatura ambiente. Calentar la sartén, agregar manteca clarificada y colocar el pescado con la piel hacia abajo con un peso encima. A los pocos minutos descartar la manteca y agregar más para evitar que se queme. Si el filete es muy grueso, se puede voltear sin agregar el peso y cocinar de 1 a 2 minutos, o se puede retirar el peso y, sin voltear, llevar la sartén al horno precalentado a 100 °C para evitar que se reseque.',
       'Ensalada: integrar las legumbres con el tomate, las olivas y el pickle de cebolla, y condimentar con sal, pimienta, aceite y tabasco o siracha.',
       'Salsa: procesar todos los ingredientes emulsionando con aceite de oliva, o picar bien finas las hierbas e integrar con los líquidos y el ajo asado.',
     ],
@@ -2472,13 +2943,1129 @@ const RECIPES = [
       'Retirar la espuma durante la cocción para una mermelada más prolija y clara.',
       'Combinar termómetro (104-105 °C) y prueba del plato frío para no pasarse de punto.',
     ],
+  },  {
+    id:'vegetales-lactofermentados',
+    title:'Vegetales lactofermentados',
+    category:'fermentados',
+    categories:['fermentados', 'conservas'],
+    classInfo:'Descubriendo la magia de la fermentación · Docente: Giselle Brañas · Gaucha Estudio de Cocina',
+    intro:'Pepinos, cebolla morada, rabanitos y zanahoria fermentados en salmuera al 2 %. Sin vinagre ni azúcar: la acidez se desarrolla naturalmente durante la fermentación láctica.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 cebolla morada',
+        '1 pepino chico',
+        '5 rabanitos',
+        '1 zanahoria mediana',
+        '2 dientes de ajo (opcional)',
+        '2 hojas de laurel (opcional)',
+        '1 cucharadita de pimienta negra en grano (opcional)',
+        'Agua potable sin cloro, cantidad necesaria',
+        'Sal sin yodo ni antiaglomerantes: 2 % del peso del agua para preparar la salmuera (20 g por cada 1 litro de agua)',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Lavar los vegetales. Cortar la cebolla en pluma, el pepino y los rabanitos en rodajas, y la zanahoria en láminas finas o bastones. No es necesario pelar el pepino si su piel está sana.',
+      '<strong>2.</strong> Lavar bien el frasco y los utensilios. Acomodar los vegetales compactos, intercalando ajo, laurel y pimienta si se utilizan. Dejar unos 2–3 cm libres en la parte superior.',
+      '<strong>3.</strong> Preparar una salmuera al 2 %: disolver 20 g de sal por cada 1.000 g (aprox. 1 litro) de agua. Usar a temperatura ambiente; no hervir ni agregar vinagre o azúcar.',
+      '<strong>4.</strong> Verter la salmuera hasta cubrir completamente los vegetales. Colocar un peso de fermentación para mantenerlos siempre sumergidos.',
+      '<strong>5.</strong> Cerrar con tapa de fermentación que permita liberar gases o utilizar una tapa convencional sin ajustar completamente, liberando la presión de forma segura según el recipiente. Colocar el frasco sobre una bandeja.',
+      '<strong>6.</strong> Fermentar a temperatura ambiente moderada, idealmente entre 18 y 22 °C, fuera del sol directo. Comenzar a probar a partir del día 3; habitualmente estará listo en 5–10 días, según temperatura, corte y gusto.',
+      '<strong>7.</strong> Cuando alcance la acidez deseada, cerrar y refrigerar. Mantener los vegetales cubiertos por la salmuera y utilizar utensilios limpios al servir.',
+    ],
+    techNote:'Nota didáctica: el 2 % de esta receta corresponde al peso del agua de la salmuera. Para una formulación de 2 % de sal respecto del peso total de vegetales + agua, pesar ambos y calcular la sal sobre esa suma; son dos métodos distintos.',
+    tips:[
+      'Claves de observación: es esperable observar burbujas, una salmuera algo turbia y un aroma ácido agradable.',
+      'Descartar si aparece moho velloso o de colores, olor pútrido o textura claramente anormal.',
+      'No probar un fermento sospechoso.',
+    ],
+  },
+  {
+    id:'chucrut-repollo-manzana-verde-menta',
+    title:'Chucrut de repollo, manzana verde y menta',
+    category:'fermentados',
+    categories:['fermentados', 'conservas'],
+    classInfo:'Descubriendo la magia de la fermentación · Docente: Giselle Brañas · Gaucha Estudio de Cocina',
+    intro:'El sauerkraut es una preparación fermentada a base de repollo —principalmente— originaria de Europa central (Alemania, Suiza, Polonia). Existen muchas versiones de chucrut: con repollo colorado, blanco o ambos, con remolacha, con zanahoria, con manzana verde, etcétera. Son ideales para acompañar platos con carne, embutidos y fiambres, sándwiches y ensaladas.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 kg de repollo colorado o blanco',
+        '2 manzanas verdes',
+        'Un cuarto de atado de hojas de menta fresca (aproximadamente)',
+        '20 g de cúrcuma fresca rallada',
+        '20 g de jengibre fresco rallado',
+        '30 g de sal marina',
+      ]},
+    ],
+    steps:[
+      '<strong>Preparación.</strong> Cortar el repollo finamente. Lavar las manzanas verdes y rallarlas; rallar igual la cúrcuma y el jengibre (pelándolos previamente). Lavar las hojas de menta fresca y secarlas suavemente con papel de cocina.',
+      '<strong>Masaje del repollo.</strong> En un recipiente grande, mezclar el repollo cortado, las manzanas ralladas, las hojas de menta fresca, la cúrcuma y el jengibre. Agregar los 30 g de sal marina y comenzar a masajear la mezcla. El objetivo es que el repollo comience a soltar su propio líquido.',
+      '<strong>Enfrascado.</strong> Una vez que la mezcla haya soltado suficiente líquido, transferirla a un frasco de vidrio limpio y esterilizado. Presionar la mezcla firmemente en el frasco para eliminar cualquier bolsa de aire y asegurarse de que quede sumergida en su propio líquido. Dejar aproximadamente dos o tres dedos de espacio libre en la parte superior del frasco.',
+      '<strong>Adición de sal y peso.</strong> Espolvorear un poco más de sal marina en la parte superior de la mezcla en el frasco. Colocar una bolsa de arranque (de las que vienen en rollo y se arrancan) llena de agua sobre la mezcla para ejercer presión y mantenerla sumergida en el líquido.',
+      '<strong>Fermentación.</strong> Tapar el frasco de manera no hermética para permitir la liberación de gases durante la fermentación. Colocar el frasco en un lugar fresco y oscuro con una temperatura constante entre 18 y 22 °C. Durante el proceso de fermentación, abrir el frasco todos los días para liberar el gas acumulado y presionar suavemente la mezcla para asegurarse de que esté completamente sumergida en el líquido.',
+      '<strong>Maduración y almacenamiento.</strong> Dejar fermentar el chucrut durante al menos 2 semanas, aunque puede ser más dependiendo de las preferencias de sabor. Una vez alcanzado el nivel deseado de fermentación, transferir el chucrut a un recipiente hermético y almacenarlo en el refrigerador para prolongar su vida útil.',
+    ],
+    techNote:'La conservación del repollo se logra mediante la acción fermentativa de las bacterias que metabolizan los azúcares y producen ácido láctico, que no solo realza el sabor, sino que actúa como conservante.',
+  },
+  {
+    id:'kimchi-primavera-verano',
+    title:'Kimchi primavera / verano',
+    category:'fermentados',
+    categories:['fermentados', 'conservas'],
+    classInfo:'Descubriendo la magia de la fermentación · Docente: Giselle Brañas · Gaucha Estudio de Cocina',
+    intro:'El kimchi es la preparación más tradicional de Corea y la que mejor representa su cultura en el mundo, tanto así que en 2013 fue declarado Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO. Se trata de un fermentado de col china —hakusai— con fuerte sabor, muy picante y de color rojo característico. Existen muchas variedades y estilos de preparación, dependiendo de la receta, la estación del año y los vegetales utilizados.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '2 plantas de akusay o col china',
+        '½ taza de sal',
+      ]},
+      { title:'Para la salsa', items:[
+        '2 tazas de agua',
+        '2 cdas de harina de arroz',
+        '2 cdas de azúcar',
+        '1 trozo de jengibre',
+        '1 cabeza de ajo asada',
+        '2 zanahorias',
+        '2 nabos daikon',
+        '3 cebollas de verdeo',
+        '4 cdas de gochugaru o ají molido',
+        'Salsa de pescado (cantidad no indicada en el librillo)',
+        'Gochujang, o ajíes frescos (cantidad no indicada en el librillo)',
+      ]},
+      { title:'Opcional', items:[
+        '1 trozo de kimchi anterior',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Lavar el akusay y cortar en trozos a lo largo. Cortar el nabo en rodajas finas (¿y las zanahorias?).',
+      '<strong>2.</strong> Colocar en un recipiente o bol grande intercalando las rodajas con la sal fina. Reservar para que vaya perdiendo líquido —al menos por un par de horas.',
+      '<strong>3.</strong> En una pequeña olla cocinar revolviendo bien la harina de arroz junto con el gochugaru y 1 taza de agua hasta conseguir una consistencia cremosa de gachas o congee ligero. Dejar enfriar.',
+      '<strong>4.</strong> En una procesadora o licuadora procesar esta pasta de arroz junto con el azúcar, la cebolla de verdeo, el ajo, el jengibre, la salsa de pescado y el gochujang —o los ajíes frescos. Agregar un poco de agua que haya desprendido el akusay si fuera necesario, pero debe quedar como una pasta o salsa espesa.',
+      '<strong>5.</strong> Incorporar la mezcla anterior a las rodajas de akusay y masajear bien con las manos para que los vegetales se cubran completamente de color rojo.',
+      '<strong>6.</strong> Colocar en una fermentadora o frasco de vidrio grande con tapa, hundiendo para eliminar el aire y que todo quede comprimido y húmedo bajo la salsa. Tapar la fermentadora o frasco y guardar en un lugar fresco y oscuro.',
+      '<strong>7.</strong> La fermentación se produce de forma espontánea a partir de las siguientes horas y durante 4 o 5 días estará en su máxima actividad hasta estabilizarse.',
+      '<strong>8.</strong> Probar diariamente y, cuando se haya alcanzado el nivel de acidez deseado, refrigerar —aproximadamente a las 2 semanas.',
+    ],
+    techNote:'',
+  },
+  {
+    id:'vinagre-de-manzanas-y-peras',
+    title:'Vinagre de manzanas y peras',
+    category:'fermentados',
+    categories:['fermentados', 'condimentos'],
+    classInfo:'Descubriendo la magia de la fermentación · Docente: Giselle Brañas · Gaucha Estudio de Cocina',
+    intro:'Fermentación natural · Elaboración en dos etapas.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '3 manzanas con piel y corazón, sin partes dañadas',
+        '3 peras con piel y corazón, sin partes dañadas',
+        '1,5 litros de agua sin cloro, aproximadamente (cantidad necesaria para cubrir)',
+        '80 g de azúcar',
+        '100 ml de vinagre de manzana sin pasteurizar, con madre (opcional, para la etapa acética)',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Lavar las frutas, retirar las partes dañadas y cortar en trozos. Colocarlas en un frasco de vidrio limpio y suficientemente amplio.',
+      '<strong>2.</strong> Disolver el azúcar en el agua y verter sobre las frutas hasta cubrirlas. Dejar espacio libre en la parte superior del frasco.',
+      '<strong>3.</strong> Durante los primeros 7 días, revolver una vez al día con un utensilio limpio para humedecer las frutas y evitar que permanezcan secas en la superficie. Entre mezclas, mantener siempre el frasco cubierto con un paño limpio sujeto con una banda elástica. No cerrar herméticamente.',
+      '<strong>4.</strong> A partir del día 8, colar y retirar las frutas. Pasar el líquido a un recipiente limpio. Si se utiliza vinagre con madre, incorporarlo en este momento.',
+      '<strong>5.</strong> Dejar el recipiente cubierto con un paño limpio, sujeto con una banda elástica, para permitir la entrada de oxígeno. Continuar la fermentación acética durante aproximadamente 3 a 6 semanas, hasta desarrollar aroma y sabor avinagrados.',
+      '<strong>6.</strong> Filtrar y embotellar en recipientes limpios cuando se alcance la acidez deseada.',
+    ],
+    techNote:'El vinagre se obtiene mediante una fermentación alcohólica inicial y una posterior fermentación acética en contacto con oxígeno. Es un fermento acético, no una lactofermentación.',
+    tips:[
+      'Observaciones: los tiempos son orientativos y dependen de la temperatura, la actividad microbiana y el azúcar disponible.',
+      'Si al día 7 el líquido sigue muy dulce y no muestra signos de fermentación, la etapa alcohólica puede necesitar más tiempo antes de colar. Evitar exposición directa al sol.',
+      'Descartar si aparece moho velloso o un olor pútrido.',
+      'No utilizar vinagre casero de acidez no medida para conservas que se almacenarán a temperatura ambiente; para ese uso se requiere acidez verificada.',
+    ],
+  },  {
+    id:'shio-koji',
+    title:'Shio koji',
+    category:'fermentados',
+    categories:['fermentados', 'condimentos'],
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    intro:'Rendimiento aproximado: 2,55 kg (según el librillo).',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '500 g de koji de arroz',
+        '500 ml de agua',
+        '5 % de sal del peso total de agua y koji',
+      ] },
+    ],
+    steps:[
+      '<strong>1.</strong> Colocar el koji de arroz en un recipiente limpio.',
+      '<strong>2.</strong> Incorporar la sal.',
+      '<strong>3.</strong> Agregar el agua y procesar o mixear hasta hidratar todo el koji.',
+      '<strong>4.</strong> Pasar la preparación a un recipiente apto para fermentación.',
+      '<strong>5.</strong> Mantener a temperatura controlada, aproximadamente entre 20 y 25 °C.',
+      '<strong>6.</strong> Mezclar diariamente con un utensilio limpio y observar la evolución de la preparación.',
+      '<strong>7.</strong> Evaluar la maduración mediante el ablandamiento del arroz, el aroma y el desarrollo de las características propias del shio koji.',
+      '<strong>8.</strong> Una vez alcanzadas las características deseadas, refrigerar y conservar bajo las condiciones establecidas.',
+      '<strong>9.</strong> A los 7 días el shio koji está listo para usar.',
+    ],
+    techNote:'El shio koji combina koji, sal y agua: es al mismo tiempo un condimento y una herramienta enzimática. Sus enzimas siguen actuando cuando entran en contacto con otros alimentos, por eso es particularmente interesante aplicado a carnes, pescados y vegetales. Más no siempre significa mejor: cantidad, temperatura y tiempo de contacto deben adaptarse al alimento.',
+    tips:[
+      'Observar y registrar el fermento: día 0, 3, 7, 14, 30 y luego una vez por mes (ver Fundamentos: Miso y koji).',
+    ],
+  },
+  {
+    id:'miso-de-mani',
+    title:'Miso de maní',
+    category:'fermentados',
+    categories:['fermentados', 'condimentos'],
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Maní, cantidad según la producción deseada',
+        'Koji, según la proporción definida para la formulación',
+        'Sal equivalente al 5 % del peso combinado del maní y el koji',
+      ] },
+    ],
+    steps:[
+      '<strong>1.</strong> Procesar el maní hasta obtener una pasta.',
+      '<strong>2.</strong> Procesar el koji para desarmar los granos.',
+      '<strong>3.</strong> Mezclar el maní procesado con el koji.',
+      '<strong>4.</strong> Agregar la sal y mezclar hasta integrar todos los ingredientes.',
+      '<strong>5.</strong> Formar bolas con la preparación.',
+      '<strong>6.</strong> Colocarlas en un frasco limpio y sanitizado, compactando bien para reducir los espacios de aire.',
+      '<strong>7.</strong> Cerrar el frasco y etiquetar con el nombre de la preparación y la fecha de elaboración.',
+      '<strong>8.</strong> Mantener bajo condiciones controladas de fermentación, según la formulación validada.',
+      '<strong>9.</strong> Registrar la evolución del aroma, el aspecto, la textura y las condiciones del proceso.',
+      '<strong>10.</strong> Una vez alcanzadas las características deseadas y verificada la seguridad del producto, conservar según el procedimiento establecido.',
+    ],
+    techNote:'',
+    tips:[
+      'Observar y registrar el fermento: día 0, 3, 7, 14, 30 y luego una vez por mes (ver Fundamentos: Miso y koji).',
+    ],
+  },
+  {
+    id:'miso-de-arvejas',
+    title:'Miso de arvejas',
+    category:'fermentados',
+    categories:['fermentados', 'condimentos'],
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Arvejas, cantidad según la producción deseada',
+        'Koji, según la proporción definida para la formulación',
+        'Sal equivalente al 5 % del peso combinado de las arvejas y el koji',
+      ] },
+    ],
+    steps:[
+      '<strong>1.</strong> Cocinar las arvejas hasta que estén tiernas.',
+      '<strong>2.</strong> Escurrirlas bien y enfriarlas en condiciones higiénicas.',
+      '<strong>3.</strong> Procesar las arvejas hasta obtener una pasta.',
+      '<strong>4.</strong> Procesar el koji para desarmar los granos.',
+      '<strong>5.</strong> Mezclar las arvejas procesadas con el koji.',
+      '<strong>6.</strong> Agregar la sal y mezclar uniformemente.',
+      '<strong>7.</strong> Formar bolas con la preparación.',
+      '<strong>8.</strong> Colocarlas en un frasco limpio y sanitizado, compactando bien para reducir los espacios de aire.',
+      '<strong>9.</strong> Cerrar el frasco y etiquetar con el nombre de la preparación y la fecha de elaboración.',
+      '<strong>10.</strong> Mantener bajo condiciones controladas de fermentación, según una formulación validada para arvejas.',
+      '<strong>11.</strong> Registrar la evolución del aroma, el aspecto, la textura y las condiciones del proceso.',
+      '<strong>12.</strong> Una vez alcanzadas las características deseadas y verificada la seguridad del producto, conservar según el procedimiento establecido.',
+    ],
+    techNote:'El miso de arvejas muestra cómo trasladar la lógica del miso a ingredientes diferentes de la soja: koji + materia prima + sal + tiempo.',
+    tips:[
+      'Observar y registrar el fermento: día 0, 3, 7, 14, 30 y luego una vez por mes (ver Fundamentos: Miso y koji).',
+    ],
+  },
+  {
+    id:'esparragos-lactofermentados',
+    title:'Espárragos lactofermentados',
+    category:'fermentados',
+    categories:['fermentados', 'conservas'],
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 kg de espárragos frescos',
+        'Agua potable sin cloro, cantidad necesaria para cubrir',
+        'Sal al 2 % del peso combinado de los espárragos y el agua',
+      ] },
+    ],
+    steps:[
+      '<strong>1.</strong> Lavar los espárragos y retirar la parte fibrosa de los tallos.',
+      '<strong>2.</strong> Pesar los espárragos y el agua necesaria para cubrirlos.',
+      '<strong>3.</strong> Calcular la sal equivalente al 2 % del peso combinado.',
+      '<strong>4.</strong> Disolver la sal en el agua.',
+      '<strong>5.</strong> Colocar los espárragos en un recipiente apto para fermentación y cubrirlos completamente con la salmuera.',
+      '<strong>6.</strong> Mantenerlos sumergidos con un peso apto para uso alimentario.',
+      '<strong>7.</strong> Fermentar a temperatura controlada, idealmente entre 18 y 22 °C, siguiendo la evolución de la acidez y la textura.',
+      '<strong>8.</strong> Una vez finalizado el proceso validado, refrigerar.',
+    ],
+    techNote:'La lactofermentación aporta acidez y complejidad. Aquí el 2 % de sal se calcula sobre el peso combinado de los espárragos y el agua.',
+  },
+  {
+    id:'albondigas-shio-koji-alcaravea-ajo-asado',
+    title:'Albóndigas de carne con shio koji, alcaravea y ajo asado',
+    category:'fermentados',
+    categories:['fermentados', 'carnes'],
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '1 kg de carne picada',
+        '50 g de shio koji (5 % del peso de la carne)',
+        'Ajo asado, a gusto',
+        'Alcaravea, a gusto',
+        'Sal extra, a gusto (opcional)',
+      ] },
+    ],
+    steps:[
+      '<strong>1.</strong> Colocar la carne picada en un recipiente.',
+      '<strong>2.</strong> Incorporar el shio koji, el ajo asado y la alcaravea.',
+      '<strong>3.</strong> Mezclar hasta integrar todos los ingredientes.',
+      '<strong>4.</strong> Probar una pequeña porción cocida y ajustar la sal si fuera necesario.',
+      '<strong>5.</strong> Formar albóndigas de tamaño uniforme.',
+      '<strong>6.</strong> Disponerlas en una bandeja para horno.',
+      '<strong>7.</strong> Cocinar a 180 °C hasta que estén doradas y completamente cocidas en el centro, alcanzando una temperatura interna de 71 °C.',
+      '<strong>8.</strong> Retirar y utilizar en el montaje del plato.',
+    ],
+    techNote:'El shio koji aparece como herramienta enzimática y condimento: sus enzimas siguen actuando sobre la carne, aportando umami y modificando la textura.',
+  },
+  {
+    id:'torta-humeda-chocolate-trigo-sarraceno',
+    title:'Torta húmeda de chocolate y trigo sarraceno',
+    category:'fermentados',
+    categories:['fermentados', 'pasteleria'],
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    intro:'Oliva · Almendras · Caramelo de miso · Avellanas tostadas. Rendimiento: 1 molde redondo de 24 cm · 12 porciones. Una torta baja, intensa y de miga húmeda, donde el sarraceno aporta su nota tostada y el aceite de oliva prolonga la sensación de suavidad.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '220 g de chocolate semiamargo 60–65 %',
+        '75 g de manteca',
+        '65 g de aceite de oliva extra-virgen suave',
+        '120 g de azúcar rubia',
+        '200 g de huevos sin cáscara (aprox. 4 u.)',
+        '55 g de harina de trigo sarraceno',
+        '35 g de harina de almendras',
+        '10 g de cacao amargo',
+        '2 g de vainilla',
+        '2 g de sal fina',
+      ] },
+    ],
+    steps:[
+      '<strong>1.</strong> Precalentar el horno a 160 °C. Enmantecar y forrar la base de un molde de 24 cm con papel de hornear.',
+      '<strong>2.</strong> Fundir suavemente el chocolate con la manteca. Retirar del calor, sumar el aceite de oliva y mezclar hasta lograr una preparación lisa.',
+      '<strong>3.</strong> Mezclar los huevos con el azúcar rubia sin montar ni incorporar demasiado aire. Añadir la vainilla.',
+      '<strong>4.</strong> Incorporar gradualmente la mezcla de chocolate tibia a los huevos, revolviendo hasta homogeneizar.',
+      '<strong>5.</strong> Agregar la harina de sarraceno, la harina de almendras, el cacao y la sal. Integrar con espátula, sin batir de más.',
+      '<strong>6.</strong> Volcar en el molde y hornear aproximadamente 25–35 minutos, según el horno. Buscar bordes firmes y centro húmedo pero cocido, sin masa líquida. Para una comprobación conservadora con huevo, verificar aproximadamente 71 °C en el centro.',
+      '<strong>7.</strong> Enfriar completamente en el molde. Cubrir y refrigerar durante la noche para estabilizar la miga. Desmoldar y porcionar en frío.',
+      '<strong>8.</strong> Terminación: servir una porción de torta con caramelo de miso apenas tibio, avellanas tostadas quebradas y unos pocos cristales de sal marina Franca. Mantener la fruta de estación, oliva y sal como cierre independiente del menú.',
+    ],
+    techNote:'Sal, dulzor, fermentación y umami se encuentran en un contexto dulce: el miso (en el caramelo) deja de funcionar como protagonista evidente para convertirse en una capa más de profundidad.',
+    tips:[
+      'Criterio Gaucha: buscamos una textura densa, casi trufada, sin llegar a brownie seco. El chocolate es protagonista; el sarraceno y el oliva aparecen en el final. Servir ligeramente atemperada.',
+      'Conservación: torta y caramelo, por separado, bien cubiertos y refrigerados a 5 °C o menos. Para el taller, prepararlos el día anterior y servir dentro de 3 días. Esta pauta no equivale a una vida útil comercial validada.',
+    ],
+  },
+  {
+    id:'caramelo-de-miso',
+    title:'Caramelo de miso',
+    category:'fermentados',
+    categories:['fermentados', 'condimentos', 'pasteleria'],
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    intro:'Rendimiento: aprox. 380 g · 12 porciones.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '150 g de azúcar',
+        '40 g de agua',
+        '150 g de crema doble',
+        '20 g de manteca',
+        '18 g de miso claro (shiro miso)',
+      ] },
+    ],
+    steps:[
+      '<strong>1.</strong> Calentar la crema doble y reservar.',
+      '<strong>2.</strong> Cocinar el azúcar y el agua hasta obtener un caramelo ámbar. Evitar revolver después de que comience a hervir.',
+      '<strong>3.</strong> Retirar del fuego y agregar la crema caliente en varias veces, con cuidado: la mezcla burbujea intensamente.',
+      '<strong>4.</strong> Dejar bajar un poco la temperatura. Incorporar la manteca y el miso; emulsionar hasta que la salsa esté lisa.',
+      '<strong>5.</strong> Enfriar y conservar refrigerado. Para servir, templar suavemente la cantidad necesaria y disponer 20–25 g por porción.',
+    ],
+    techNote:'Sal, dulzor, fermentación y umami se encuentran en un contexto dulce: el miso amplía la profundidad del caramelo y aporta un final salino.',
+    tips:[
+      'Criterio Gaucha: el miso debe ampliar la profundidad del caramelo y aportar un final salino, sin dominar ni volver la salsa excesivamente salada.',
+      'Conservación: torta y caramelo, por separado, bien cubiertos y refrigerados a 5 °C o menos. Para el taller, prepararlos el día anterior y servir dentro de 3 días. Esta pauta no equivale a una vida útil comercial validada.',
+    ],
+  },
+  {
+    id:'tamari-de-aminopasta',
+    title:'Tamari de aminopasta (anotación de clase)',
+    category:'fermentados',
+    categories:['fermentados', 'condimentos'],
+    classInfo:'Taller de Fermentados 2.0 · Inmersión Miso & Koji · Guía: Giselle Brañas · Gaucha Estudio de Cocina',
+    intro:'Anotación manuscrita de la clase: no figura en el librillo impreso. En el menú del taller aparece una “reducción de tamari de maní”.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '870 ml de agua filtrada',
+        '130 g de aminopasta',
+      ] },
+    ],
+    steps:[
+      '<strong>1.</strong> Batir o licuar.',
+      '<strong>2.</strong> Llevar el recipiente al congelador por 24 h.',
+      '<strong>3.</strong> Colador y paño, y que se funda al fuego.',
+      '<strong>4.</strong> Reducir a la mitad.',
+    ],
+    techNote:'',
+  },
+  {
+    id:'fumet-oscuro',
+    title:'Fumet oscuro',
+    category:'pescados',
+    categories:['pescados','sopas'],
+    classInfo:'Taller de pesca local · Mauricio Molina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Huesos, cabezas y piel de pescado*: 2 kg',
+        'Carcazas de langostinos / cangrejo (opcional): 1 kg',
+        'Agua: 2 kg',
+        'Cebolla: 500 g',
+        'Apio: 500 g',
+        'Puerro: 300 g',
+        'Ajo: 50 g',
+        'Laurel: 1 hoja',
+        'Tallos de perejil: 50 g',
+        'Coriandro: 20 g',
+        'Anís estrellado: 1 un',
+        'Vino blanco: 300 ml',
+        'Sal / pimienta en grano c/n',
+        'Aceite de oliva: 200 cc',
+      ]},
+    ],
+    steps:[
+      'Calentar bien una olla, preferentemente de triple fondo, y agregar parte del aceite de oliva con los espinazos de pescado. Dorar bien y retirar del fuego.',
+      'Agregar las cabezas de langostinos o carcazas de cangrejo con más oliva y repetir el procedimiento.',
+      'Continuar con las especias y las verduras con más oliva.',
+      'Una vez doradas las verduras, añadir todo nuevamente a la olla, desglasar con el vino y volver los espinazos a la olla.',
+      'Agregar las hierbas y el agua fría. Cocinar a fuego suave durante 45 a 60 min. No espumar el fondo.',
+      'Se puede dejar airear en cámara de frío los espinazos, cabezas y pieles a utilizar para lograr un mejor caramelizado durante el dorado.',
+    ],
+    techNote:'Con este procedimiento se pierde claridad en el resultado final pero se gana en intensidad de sabor. Calentar bien una olla de triple fondo y dorar por etapas es lo que construye ese sabor.',
+  },
+  {
+    id:'sopa-de-pescado-y-miso',
+    title:'Sopa de pescado y miso',
+    category:'pescados',
+    categories:['pescados','sopas'],
+    classInfo:'Taller de pesca local · Mauricio Molina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Fumet oscuro: 250 mL',
+        'Miso: 30 g',
+        'Verdeo: ½ unidad',
+        'Jengibre: 15 g',
+        'Salsa de soja: 10 mL',
+      ]},
+    ],
+    steps:[
+      'Sudar la parte roja del verdeo junto con el jengibre, agregar el fondo oscuro y llevar a hervor.',
+      'Apagar el fuego. En un bowl o cuenco colocar el miso y disolver ayudándose de un poco del caldo.',
+      'Una vez aligerado, agregarlo al resto de la sopa y sumar soja para retocar la sazón.',
+      'Terminar con la parte verde del verdeo.',
+    ],
+    techNote:'El miso se disuelve fuera del fuego, con un poco de caldo, para no hervirlo.',
+  },
+  {
+    id:'chupin-de-pescado',
+    title:'Chupín de pescado',
+    category:'pescados',
+    categories:['pescados','guisos'],
+    classInfo:'Taller de pesca local · Mauricio Molina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '200 g de pescado (filets o postas)',
+        'Aceite de oliva',
+        '½ cebolla',
+        '½ morrón',
+        '1 diente de ajo',
+        '50 cc vino blanco',
+        '1 tomate perita concassé',
+        '50 cc tomate perita en lata (procesado)',
+        '1 hoja de laurel',
+        '100 cc fumet',
+        '1 papa mediana',
+        'Pimentón',
+        'Sal y pimienta',
+        'Perejil picado',
+        '1 u galleta de campaña',
+      ]},
+    ],
+    steps:[
+      'Preparación previa: cortar en pluma la cebolla y en juliana el morrón. Picar el ajo. Hacer un concassé de tomates. Pelar la papa y cortar en rodajas de ½ cm de espesor.',
+      'Sellar el pescado en oliva. Reservar.',
+      'Sudar cebolla, ajo y morrón.',
+      'Deglasar con vino blanco y evaporar el alcohol.',
+      'Agregar concassé, pulpa de tomate y pimentón; cocinar por 15 minutos.',
+      'Agregar el pescado y las papas previamente blanqueadas. Cocinar entre 8 y 10 minutos más a fuego suave.',
+      'Terminar con la galleta (sumergir en la preparación) y perejil fresco picado.',
+    ],
+    techNote:'',
+  },
+  {
+    id:'escabeche-de-pescado-taller',
+    title:'Escabeche de pescado (taller)',
+    category:'pescados',
+    categories:['pescados','conservas'],
+    classInfo:'Taller de pesca local · Mauricio Molina',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '300 g pescado fresco (angelito, cazón, pejerrey, anchoa…)',
+        '100 g cebolla de verdeo',
+        '100 g puerro',
+        '50 g zanahoria',
+        'Sal y pimienta',
+        '200 cc aceite neutro',
+        '70 cc vinagre de vino blanco o manzana',
+        '100 cc vino blanco',
+        '50 cc fumet',
+        '1 cda semillas de hinojo',
+        '2 cdas coriandro en granos',
+        '1 cda pimienta negra en granos',
+        'Hojas de laurel',
+      ]},
+    ],
+    steps:[
+      'Cortar la cebolla en pluma, el verdeo y el puerro en paisana, y la zanahoria en ruedita al sesgo.',
+      'Sellar ligeramente el pescado (salvo en casos de que sean filets pequeños, por ej. de pejerrey). Reservar.',
+      'Sudar los vegetales por orden de dureza.',
+      'Deglasar con vinagre y vino blanco hasta evaporar el alcohol.',
+      'Agregar caldo y especias (previamente tostadas). Cocinar por 10 minutos a fuego muy suave.',
+      'Colocar en frascos previamente esterilizados. Guardar en frío. Se obtiene un mejor sabor con al menos 5 días de guarda.',
+    ],
+    techNote:'Si se superan los 71 °C se modifica el ácido acético del vinagre, perdiendo un poco de intensidad; esto también puede ser intencional.',
+  },
+  {
+    id:'tartar-de-pescado-azul',
+    title:'Tartar de pescado azul con crocante de arroz y yema curada',
+    category:'pescados',
+    classInfo:'Taller de pesca local · Mauricio Molina',
+    ingredientGroups:[
+      { title:'Tartar', items:[
+        'Pescado azul: 100 g',
+        'Jengibre: 10 g',
+        'Miso: 15 g',
+        'Ají o siracha: 5 g',
+        'Cebolla de verdeo: 1 un, picada fina',
+        'Ralladura de lima: ½ unidad',
+        'Aceite de sésamo: 5 mL',
+      ]},
+      { title:'Crocante de arroz', items:[
+        'Fideos de arroz: 20 g',
+        'Aceite para freír: 100 mL',
+      ]},
+      { title:'Yema curada', items:[
+        'Yema: 1 un',
+        'Soja: 20 mL',
+      ]},
+    ],
+    steps:[
+      'Tartar: cortar el pescado en cubos pequeños y poner en un bowl con todos los ingredientes, ajustando cantidades a gusto. Idealmente dejar que los sabores se asienten unos 10 minutos a temperatura ambiente.',
+      'Crocante de arroz: calentar el aceite a 180–190 °C. Probar la temperatura con una pequeña cantidad de fideos de arroz; si se inflan rápidamente, está pronto. Freír en tandas pequeñas porque crecen mucho en volumen. Cuando estén inflados y no liberen burbujas, retirar del aceite y colocar sobre papel absorbente.',
+      'Yema curada: en un recipiente pequeño colocar salsa de soja y la yema, evitando romperla. Pasados unos minutos, mojar la parte que flota de la yema con soja. Curar como mínimo 5/10 minutos, teniendo en cuenta que a más tiempo más firme será la textura de la yema al romperse.',
+      'Emplatar usando una cintura: colocar el tartar en la base, hacer un hueco para la yema y terminar con el crocante de arroz por encima.',
+    ],
+    techNote:'Esta receta funciona mejor con pescados grasos, con mucho sabor, como la anchoa en este caso, pero también se puede adaptar la sazón para pescados más magros y suaves.',
+  },
+  {
+    id:'fish-and-chips',
+    title:'Fish & chips',
+    category:'pescados',
+    categories:['pescados','rebozados'],
+    classInfo:'Taller de pesca local · Mauricio Molina',
+    intro:'Pescado frito con masa de rebozado con cerveza · papas doble fritura · salsa tártara. Rinde: 6 porciones.',
+    ingredientGroups:[
+      { title:'Pescado', items:[
+        '1,2 kg de pescado blanco firme (merluza, brótola, corvina o pescadilla)',
+        'Sal y pimienta',
+        'Harina de arroz, c/n para enharinar',
+        'Aceite neutro, c/n para freír',
+      ]},
+      { title:'Masa de rebozado con cerveza', items:[
+        '150 g de harina de arroz',
+        '50 g de harina de trigo',
+        '50 g de almidón de maíz',
+        '1 cdta de polvo de hornear',
+        '1 cdta de sal',
+        '300–330 ml de cerveza rubia bien fría',
+      ]},
+      { title:'Papas · doble fritura', items:[
+        '1,5 kg de papas',
+        'Aceite neutro, c/n',
+        'Sal',
+      ]},
+      { title:'Salsa tártara', items:[
+        '200 g de mayonesa',
+        '30 g de pepinillos encurtidos picados',
+        '20 g de alcaparras picadas',
+        '1 cda de mostaza',
+        '1–2 cdas de jugo de limón',
+        'Perejil o ciboulette picado',
+        'Pimienta negra',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Mezclar la harina de arroz, la harina de trigo, el almidón de maíz, el polvo de hornear y la sal.',
+      '<strong>2.</strong> Incorporar la cerveza bien fría de a poco, mezclando apenas. Debe quedar una masa fluida pero con cuerpo, capaz de adherirse al pescado. No es necesario eliminar todos los grumos.',
+      '<strong>3.</strong> Preparar la mezcla a último momento y mantenerla bien fría.',
+      '<strong>4.</strong> Cortar el pescado en porciones y secarlo muy bien.',
+      '<strong>5.</strong> Salpimentar y pasar ligeramente por harina de arroz. Retirar el exceso.',
+      '<strong>6.</strong> Sumergir cada pieza en la masa y dejar caer el excedente.',
+      '<strong>7.</strong> Freír inmediatamente en abundante aceite a 180 °C, aproximadamente 4–6 minutos según el grosor.',
+      '<strong>8.</strong> Retirar cuando esté bien dorado y crocante. Escurrir sobre rejilla y salar inmediatamente.',
+      '<strong>9.</strong> Papas: pelar y cortar en bastones gruesos y parejos.',
+      '<strong>10.</strong> Enjuagar en agua fría para retirar parte del almidón superficial.',
+      '<strong>11.</strong> Secar muy bien.',
+      '<strong>12.</strong> Realizar una primera fritura a 140–150 °C durante 5–7 minutos. Deben cocinarse por dentro sin dorarse demasiado.',
+      '<strong>13.</strong> Retirar, escurrir y dejar reposar.',
+      '<strong>14.</strong> Realizar una segunda fritura a 185–190 °C hasta que estén doradas y crocantes.',
+      '<strong>15.</strong> Escurrir y salar inmediatamente.',
+      'Salsa tártara: mezclar todos los ingredientes. Rectificar sal, pimienta y acidez. Mantener refrigerada hasta servir.',
+      'Terminación: servir inmediatamente el pescado con las papas doble fritura, salsa tártara y gajos de limón. Opcional: terminar con sal marina de limón.',
+    ],
+    techNote:'Claves técnicas — Harina de arroz: aporta una cobertura más seca, ligera y crocante. Almidón de maíz: disminuye la proporción de gluten y favorece una textura quebradiza y crujiente. Harina de trigo: aporta la estructura necesaria para que el rebozado se sostenga y adhiera al pescado. Frío + calor: la masa debe estar muy fría y entrar en contacto con aceite a 180 °C. No sobremezclar: mezclar solamente hasta integrar, no buscamos desarrollar gluten. Pescado bien seco: la humedad superficial dificulta la adherencia del rebozado y genera salpicaduras durante la fritura. Doble fritura de las papas: la primera cocción cocina y ablanda el interior; la segunda desarrolla una superficie dorada y crocante.',
+  },
+  {
+    id:'tarta-vasca-quinotos',
+    title:'Tarta vasca con quinotos en almíbar',
+    category:'pasteleria',
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    ingredientGroups:[
+      { title:'Ingredientes (molde 20 cm de diámetro)', items:[
+        'Queso crema: 600 g',
+        'Azúcar: 240 g',
+        'Almidón de maíz: 15 g',
+        'Huevos: 250 g',
+        'Crema de leche: 300 g',
+      ]},
+    ],
+    steps:[
+      'Forrar la base y los laterales del molde con papel. Reservar.',
+      'Colocar en un bol el queso crema a temperatura ambiente, el azúcar y los huevos. Mixear sin levantar el mixer, pues no queremos generar aire/burbujas.',
+      'Agregar el almidón tamizado y la crema de leche; mixear hasta obtener una mezcla lisa y sin grumos.',
+      'Tamizar la mezcla y dejar descansar al menos 30 minutos, en frío o a temperatura ambiente.',
+      'Precalentar el horno a 220 °C.',
+      'Verter la preparación en el molde y golpear suavemente sobre la mesada un par de veces para eliminar burbujas grandes.',
+      'Hornear a 220 °C por 15 minutos y después bajar el horno a 170 °C; hornear por 12 minutos más.',
+      'Dejar enfriar a temperatura ambiente y luego colocar en heladera al menos 6 horas, idealmente toda la noche.',
+    ],
+    techNote:'No mixear levantando el mixer evita incorporar aire: las burbujas grandes dejarían huecos en la tarta.',
+    tips:[
+      'Anotación de clase: "los tiempos son a temperatura ambiente; si uso heladera (incluso al otro día) puede ser más".',
+      'Los quinotos en almíbar no tienen receta en el cuadernillo: en la clase eran quinotos que les regalaron.',
+    ],
+  },
+  {
+    id:'barritas-de-frutos-secos',
+    title:'Barritas de frutos secos',
+    category:'pasteleria',
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    intro:'Salen 10 barritas generosas · molde de 28 × 18 cm aprox.',
+    ingredientGroups:[
+      { title:'Masa de algarroba', items:[
+        'Harina de trigo sarraceno: 160 g',
+        'Jarabe de agave: 50 g',
+        'Aceite de coco líquido: 60 g',
+        'Harina de semillas de girasol: 40 g',
+        'Harina de lino: 20 g',
+        'Polvo para hornear: 8 g',
+      ]},
+      { title:'Relleno', items:[
+        'Ciruelas pasas: 50 g',
+        'Pasas de uva rubias: 50 g',
+        'Cranberries: 75 g',
+        'Maní tostado: 75 g',
+        'Nueces: 75 g',
+        'Almendras tostadas: 75 g',
+        'Jarabe de agave: 100 g',
+        'Agua: 40 g',
+        'Aceite de oliva: 60 g',
+        'Canela: una pizca',
+        'Extracto de vainilla c/n',
+        'Pizca de sal',
+        'Harina de arroz: 60 g',
+        'Polvo para hornear: 5 g',
+      ]},
+    ],
+    steps:[
+      'Masa: mezclar todo en un bowl y agregar agua hasta obtener una masa.',
+      'Colocar en un molde rectangular con papel manteca en la base. Estirar con ayuda de los dedos. Reservar.',
+      'Relleno: picar un poco los frutos secos y frutas pasas y colocar en un bowl.',
+      'Separar 150 g del mix y procesar.',
+      'Sumar el aceite y volver a procesar, logrando una pasta.',
+      'Agregar esta pasta al bowl con el resto del mix y sumar el agua, la harina de arroz, el polvo para hornear, la pizca de sal, la canela y el extracto.',
+      'Mezclar todo muy bien y colocar sobre la masa.',
+      'Ejercer presión con ayuda de una espátula o las manos mojadas.',
+      'Cocinar en horno a 170 °C por unos 40 minutos aprox.',
+      'Dejar enfriar bien y llevar a la heladera antes de desmoldar y porcionar.',
+    ],
+    techNote:'',
+    tips:[
+      'La masa se titula "de algarroba", pero en la lista de ingredientes no figura la algarroba.',
+    ],
+  },
+  {
+    id:'toffe-con-miso',
+    title:'Toffe con miso',
+    category:'pasteleria',
+    categories:['pasteleria','condimentos'],
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Pasta de maní (u otro fruto seco): 25 g',
+        'Agua: 100 g',
+        'Azúcar rubio: 100 g',
+        'Almidón de maíz: 25 g',
+        'Aceite de coco (opcional): 30 g',
+        'Gotitas de extracto de vainilla',
+        'Pizca de sal',
+        'Miso c/n',
+      ]},
+    ],
+    steps:[
+      'Colocar el azúcar con agua extra, hasta tapar, en una sartén y llevar al fuego.',
+      'Mezclar la pasta de fruto seco y el miso con el agua, o mixear con una licuadora de mano. La idea es formar una leche vegetal express.',
+      'Cuando el azúcar llegue a 150 °C retirar del fuego y volcar ½ de la leche vegetal. Mezclar constantemente hasta emulsionar.',
+      'Con el resto de la leche diluir el almidón y agregar a la preparación.',
+      'Volver al fuego revolviendo constantemente por unos minutos más, hasta que todo el caramelo se haya despegado de la sartén y obtengamos un caramelo con cuerpo.',
+      'Apagar el fuego, sumar el extracto, la sal y el aceite de coco (en caso de buscar un resultado más firme). Revolver hasta que se integre bien la materia grasa a la preparación.',
+      'Volcar en un recipiente y tapar con film en contacto. Reservar hasta que tome temperatura ambiente o frío de heladera y finalizar la tarta.',
+    ],
+    techNote:'Se vuelca la leche vegetal en el azúcar a 150 °C fuera del fuego y se emulsiona; el almidón le da cuerpo al caramelo.',
+  },
+  {
+    id:'torta-cafe-chocolate-cardamomo',
+    title:'Torta de café, chocolate y cardamomo',
+    category:'pasteleria',
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    ingredientGroups:[
+      { title:'Base', items:[
+        'Nueces: 200 g',
+        'Harina de almendras: 250 g',
+        'Miel de caña: 190 g',
+        'Cacao colonial: 40 g',
+        'Sal: 10 g',
+      ]},
+      { title:'Relleno', items:[
+        'Leche de coco: 400 g',
+        'Chocolate cobertura: 260 g',
+        'Vainilla: 1 cda',
+        'Sal: 5 g',
+      ]},
+      { title:'Crema de café', items:[
+        'Semillas de cardamomo: 1 g',
+        'Caju remojado: 315 g',
+        'Azúcar: 200 g',
+        'Aceite de coco: 190 g',
+        'Expresos: 3',
+        'Leche de almendras: 245 g',
+      ]},
+    ],
+    steps:[
+      'Para la base: mezclar todos los ingredientes en un bowl y procesar por partes, dejando algunas nueces enteras. Luego, dividir la masa por molde ayudándonos con una cuchara.',
+      'Para el relleno: entibiar la leche de coco y volcarla sobre el chocolate junto con la vainilla y la sal. Revolver hasta que se forme la ganache y porcionar sobre la base. Llevar a la heladera hasta que esté firme.',
+      'Por último, para la crema de café y cardamomo: hacemos el mismo procedimiento que la base y volcamos la preparación sobre cada torta. Damos golpes sobre la mesada para quitar las burbujas de aire de la crema y llevar a frío mínimo 12 horas.',
+    ],
+    techNote:'',
+  },
+  {
+    id:'cookies-chocolate-sorgo-frambuesas',
+    title:'Cookies de chocolate, sorgo y frambuesas (sin TACC)',
+    category:'pasteleria',
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Chocolate derretido: 140 g',
+        'Manteca pomada: 50 g',
+        'Azúcar integral: 190 g',
+        'Huevos: 2',
+        'Manteca de maní: 50 g',
+        'Bicarbonato: 2 g',
+        'Polvo de hornear: 3 g',
+        'Harina de sorgo: 100 g',
+        'Cacao amargo: 50 g',
+        'Frambuesas congeladas: 50 g',
+        'Chips de chocolate con leche: 100 g',
+      ]},
+    ],
+    steps:[
+      'Batir los huevos a blanco junto con el azúcar.',
+      'Derretir el chocolate, la manteca de maní y la manteca; revolver hasta integrar.',
+      'Mezclar en un bowl el bicarbonato, el polvo de hornear, el sorgo y el cacao.',
+      'Integrar los huevos con el chocolate en forma envolvente. Luego los secos y los chips de chocolate con leche.',
+      'Refrigerar la masa 1 hora. Formar bolitas del mismo tamaño y colocarlas en una placa.',
+      'Hundir 5 frambuesas a cada cookie.',
+      'Llevar al horno por 12–15 minutos a 170 °C. Dejar enfriar en la placa.',
+    ],
+    techNote:'',
+    tips:[
+      'Anotación de clase: junto a las frambuesas, "(puede ser peras o quinotos)".',
+    ],
+  },
+  {
+    id:'crocante-de-oliva',
+    title:'Crocante de oliva',
+    category:'pasteleria',
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Azúcar rubia: 180 g',
+        'Manteca pomada: 200 g',
+        'Sal: 5 g',
+        'Harina de almendras: 50 g',
+        'Polvo de hornear: 3 g',
+        'Yemas: 2',
+        'Harina 0000: 280 g',
+        'Aceite de oliva: 100 cc',
+      ]},
+    ],
+    steps:[
+      'Cremar la manteca y el azúcar, agregar las yemas y el oliva, integrar.',
+      'Luego los ingredientes secos y mezclar todo.',
+      'Estirar láminas bien finas entre dos papeles manteca bien finos; debe quedar de 2 mm. Llevar a la heladera hasta que esté bien frío.',
+      'Cocinar a 170 °C hasta que esté dorado, dejar enfriar y cortar en lajas.',
+    ],
+    techNote:'',
+  },
+  {
+    id:'muffin-limon-sin-gluten',
+    title:'Muffin de limón (sin gluten)',
+    category:'pasteleria',
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    intro:'Rinden 12 unidades pequeñas aprox.',
+    ingredientGroups:[
+      { title:'Muffins', items:[
+        'Azúcar: 200 g',
+        'Zest de limón: 1 unidad',
+        'Harina de arroz: 140 g',
+        'Harina de almendra: 100 g',
+        'Huevos: 3 u.',
+        'Yogurt: 115 g',
+        'Aceite de oliva: 110 g',
+        'Vainilla: 5 g',
+        'Polvo de hornear: 8 g',
+        'Sal: 2 g',
+        'Limón confitado: 80 g',
+      ]},
+      { title:'Glasé', items:[
+        'Azúcar impalpable: 240 g',
+        'Jugo de limón: 20,30 ml',
+      ]},
+    ],
+    steps:[
+      'Precalentar el horno a 170 grados.',
+      'Mezclar azúcar y zest de limón.',
+      'Integrar, en este orden: huevos, aceite de oliva, vainilla, y secos alternados con el yogurt.',
+      'Por último colocar los limones confitados previamente cortados en brunoise.',
+      'Verter la masa en el molde preparado y hornear durante 15 a 20 minutos o hasta que al insertar un palillo en el centro, salga limpio.',
+      'Dejar enfriar, colocar en una rejilla y agregarle el glasé. Si los muffins están tibios, el glaseado se derretirá y se escurrirá.',
+      'Glasé: en un bol mediano, mezclar el azúcar en polvo y el jugo de limón hasta que quede suave y sin grumos. Al comienzo puede parecer demasiado espeso, pero a medida que el azúcar absorbe el jugo, el glaseado se diluirá; la consistencia debe ser vertible pero no demasiado líquido.',
+    ],
+    techNote:'',
+    tips:[
+      'El cuadernillo dice "jugo de limón 20,30 ml" (probablemente 20 a 30 ml).',
+    ],
+  },
+  {
+    id:'limon-confitado',
+    title:'Limón confitado',
+    category:'pasteleria',
+    categories:['pasteleria','conservas'],
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Limones que fueron utilizados para jugo',
+        'Por cada 1 kg de cáscara: 1 kg de azúcar blanca y 2 L de agua',
+      ]},
+    ],
+    steps:[
+      'Partiendo siempre de agua fría, blanquear el cítrico 5 veces.',
+      'Al colar la última pasada dejar entibiar.',
+      'Sacar con cuchara los restos de pulpa y descartar; reservar la cáscara. ¡Importante descartar semillas!',
+      'Hacer el almíbar en una olla y colocar las cáscaras.',
+      'Cuando rompa hervor bajar el fuego, que quede hirviendo pero bajo, burbujeando suavemente. Cuando la cáscara quede translúcida, brillante y blanda, está pronto.',
+      'Dejar enfriar y guardar en heladera.',
+      'Si se llegara a reducir mucho el líquido y le falta, se le agrega agua. El tiempo del procedimiento dependerá de cuánta cáscara tengamos.',
+    ],
+    techNote:'',
+    tips:[
+      'Anotación de clase: aplica para pomelo y naranja.',
+      'Anotación de clase: la mandarina tiene menos pellejo (la parte blanca de la cáscara), entonces hay que darle menos pasadas.',
+    ],
+  },
+  {
+    id:'torta-invertida-de-mandarina',
+    title:'Torta invertida de mandarina',
+    category:'pasteleria',
+    classInfo:'Taller de pastelería con frutas de invierno · Mica Daverede',
+    ingredientGroups:[
+      { title:'Torta (molde de 24 cm)', items:[
+        'Puré de mandarina: 300 g',
+        'Huevos: 6 u.',
+        'Azúcar: 215 g',
+        'Harina de almendras: 240 g',
+        'Polvo de hornear: 6 g',
+      ]},
+      { title:'Para la base', items:[
+        'Mandarinas peladas, en rodajas (cantidad no indicada en el cuadernillo)',
+        'Papel manteca del tamaño del molde',
+      ]},
+    ],
+    steps:[
+      'Puré: cocinar las mandarinas (enteras, con cáscara) en abundante agua a fuego medio al menos 1 hora, hasta que estén tiernas.',
+      'Descartar el agua, y quitar semillas si tiene. Dejar enfriar. Procesar hasta obtener un puré liso. Reservar.',
+      'Base: cortar papel manteca del tamaño del molde y colocar en la base. Pelar las mandarinas y cortar en rodajas, sacar las semillas con cuidado y disponer ordenadas en la base del molde. Reservar.',
+      'Precalentar el horno a 150 grados.',
+      'Batir los huevos con azúcar hasta punto letra.',
+      'En otro bol mezclar la harina de almendras y el polvo para hornear.',
+      'En un bol grande, verter el puré de mandarinas y añadir los huevos batidos en dos partes, integrándose con movimientos envolventes, evitando perder la menor cantidad de aire.',
+      'Por último, incorporar los secos.',
+      'Distribuir la preparación en el molde y llevar al horno por 40 minutos o hasta que haya dorado y el centro esté cocido.',
+      'Enfriar y reservar en la heladera.',
+    ],
+    techNote:'',
+    tips:[
+      'Se puede acompañar con yogurt, inglesa de vainilla o crema batida.',
+      'Anotación de clase: "entera c/cáscara" (para cocinar las mandarinas del puré).',
+    ],
+  },
+  {
+    id:'medialunas-de-manteca',
+    title:'Medialunas de manteca',
+    category:'panes',
+    categories:['panes','pasteleria'],
+    classInfo:'Taller de laminados · Franco Fonseca',
+    intro:'El cuadernillo trae la tabla de ingredientes pero no un método escrito para esta receta: los pasos de abajo reúnen el proceso explicado en el taller (ver Fundamentos de laminados). Las medialunas se cocinan muy juntas entre sí.',
+    ingredientGroups:[
+      { title:'Amasijo (cantidades tal como figuran en el cuadernillo, sin unidad)', items:[
+        'Harina 000: 500',
+        'Harina 0000: 500',
+        'Sal: 21',
+        'Azúcar: 66',
+        'Levadura seca: 18',
+        'Agua: 85',
+        'Leche: 250',
+        'Miel: 15',
+        'Huevos: 150',
+        'Manteca (amasijo): 100',
+      ]},
+      { title:'Empaste y armado', items:[
+        'Peso del bollo: 1700',
+        'Manteca (empaste): 380',
+        '3 vueltas simples',
+      ]},
+    ],
+    steps:[
+      'Amasado: pesar los ingredientes y reservar en frío (o usar parte de los líquidos congelados). Mezclar todos los ingredientes menos la manteca hasta que no haya nada seco (en amasadora, velocidad baja, aprox. 5 min).',
+      'Autolisis: dejar la masa en frío 15–30 min.',
+      'Agregar la manteca fría y amasar en velocidad media/rápida (aprox. 8 min) hasta alcanzar 21–23 °C. A mano: agregar la manteca blanda, amasar de forma tradicional hasta un amasijo bastante liso. Formar un bollo y dejar 10 min aprox., o hasta que haya perdido tenacidad.',
+      'Trabar la masa: estirarla en forma rectangular, fina y uniforme. Opcional: 1 o 2 hs de freezer para frenar las levaduras.',
+      'Fermentación en bloque en frío: cubierta con nylon en contacto, idealmente entre 12 y 24 h.',
+      'Empaste: manteca 100% pura, pomada, encuadrada prolija de grosor uniforme (no mayor a 1 cm) y con los vértices bien marcados; llevar al frío hasta que esté entre 12 y 15 °C (flexible o maleable).',
+      'Inclusión: masa bien fría (0 a 5 °C) y empaste templado (12 a 15 °C), para que el pastón quede entre 6 y 10 °C.',
+      'Laminado: 3 vueltas simples, con 20–30 min de descanso en frío entre vuelta y vuelta. Después de cada vuelta bajar el pastón a un espesor de no más de 1,5 cm. Cortar los extremos para ver "masa, manteca, masa".',
+      'Porcionado: medialuna grande de 120 g, pastón a 5 mm y triángulos de 12 × 20 cm; medialuna chica de 60–65 g, pastón a 3 mm y triángulos de 9 × 24 cm. Armar (enrollar).',
+      'Fermentación final con calor, sin superar 28 °C, y las piezas tapadas con nylon. La pieza debería incrementar su volumen entre 2 y 2,5 veces.',
+      'Doradura (huevo y leche, ver receta) con pincel o pulverizador, después de fermentar.',
+      'Cocción: horno eléctrico convector a 170 °C con vapor al menos un minuto; después de 5 minutos prender el ventilador. Precalentar el horno por encima de los 200 °C. Piezas juntas (como medialunas): 25 a 35 min según el peso. Pintar con almíbar apenas salen del horno.',
+    ],
+    techNote:'Cada vuelta simple multiplica x3 las láminas de manteca: con 3 vueltas simples el pastón tiene 27 láminas de manteca. La masa que leuda de más durante el laminado craquela la manteca y se pierden capas.',
+    tips:[
+      'Con masa madre: bajar la levadura seca a 14 g y poner un 15% de masa madre (150 g).',
+      'Resumen de proceso en 48 h (dos opciones) en Fundamentos: Laminados · proceso paso a paso.',
+    ],
+  },
+  {
+    id:'croissant-clasico-masa-madre',
+    title:'Croissant clásico con masa madre',
+    category:'panes',
+    categories:['panes','pasteleria'],
+    classInfo:'Taller de laminados · Franco Fonseca',
+    intro:'El cuadernillo trae la tabla de ingredientes y las vueltas, sin método escrito.',
+    ingredientGroups:[
+      { title:'Amasijo (cantidades tal como figuran en el cuadernillo, sin unidad)', items:[
+        'Harina 000: 500',
+        'Harina 0000: 500',
+        'Sal: 20',
+        'Azúcar: 100',
+        'Levadura seca: 14',
+        'Masa madre: 100',
+        'Agua: 350',
+        'Leche: 80',
+        'Manteca (amasijo): 100',
+      ]},
+      { title:'Empaste y armado', items:[
+        'Peso del bollo: 1759',
+        'Manteca (empaste): 400',
+        '1 vuelta doble y 1 simple',
+      ]},
+    ],
+    steps:[
+      'Amasar, dejar en frío (autolisis y fermentación en bloque), hacer el empaste y la inclusión como en las medialunas de manteca (ver Fundamentos de laminados).',
+      'Laminar con 1 vuelta doble y 1 vuelta simple (12 láminas de manteca), con 20–30 min de descanso en frío entre vuelta y vuelta.',
+      'Porcionado: croissant grande de 90–100 g, pastón a 3 mm y cortes de 9 × 30 cm; croissant chico de 55–60 g, pastón a 3 mm y cortes de 7 × 25 cm.',
+      'Armar, fermentar (sin superar 28 °C), dorar y cocinar como las medialunas.',
+    ],
+    techNote:'En el croissant clásico francés se busca una pieza liviana y aireada, crocante por fuera y con mucho sabor a manteca: no se enriquece tanto la masa y es protagonista la pura manteca del empaste. Se da más altura al corte para enrollar más veces y conseguir más anillos.',
+    tips:[
+      'Sin masa madre: subir la levadura seca a 18 g y quitar la masa madre.',
+    ],
+  },
+  {
+    id:'crema-pastelera',
+    title:'Crema pastelera',
+    category:'pasteleria',
+    classInfo:'Taller de laminados · Franco Fonseca',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Leche: 500',
+        'Vainilla c/n',
+        'Azúcar: 150',
+        'Huevos: 50',
+        'Yemas: 65',
+        'Almidón de maíz: 20',
+        'Harina: 20',
+        'Manteca: 90',
+        'Peso total crudo: 895 g',
+      ]},
+    ],
+    steps:[
+      'Hervir la leche con la vainilla; mientras tanto mezclar los huevos y yemas con todos los secos en un bowl con un batidor de alambre.',
+      'Volcar la leche infusionada con la vainilla sobre esta pasta, tamizar y volver a la olla.',
+      'Llevar a ebullición revolviendo hasta que espese y, al probar, no se sienta áspero en la boca.',
+      'Sacar del fuego e incorporar la manteca de a poco batiendo para integrar bien y lograr una crema lisa y brillante.',
+      'Dejar enfriar y llevar a la heladera; luego pasar a una manga y usar para decorar antes o después del horno.',
+    ],
+    techNote:'',
+  },
+  {
+    id:'crema-de-almendras',
+    title:'Crema de almendras',
+    category:'pasteleria',
+    classInfo:'Taller de laminados · Franco Fonseca',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Manteca: 120',
+        'Azúcar: 120',
+        'Vainilla c/n',
+        'Huevos: 100',
+        'Polvo de almendras: 100',
+        'Harina 0000: 25',
+        'Peso total: 465 g',
+      ]},
+    ],
+    steps:[
+      'Batir la manteca con el azúcar hasta "blanquear".',
+      'Agregar la vainilla y los huevos de a poco mientras se sigue batiendo, y por último los secos.',
+      'Llevar a una manga y reservar en frío hasta su uso.',
+    ],
+    techNote:'',
+  },
+  {
+    id:'doradura-para-laminados',
+    title:'Doradura para laminados',
+    category:'pasteleria',
+    categories:['pasteleria','panes'],
+    classInfo:'Taller de laminados · Franco Fonseca',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Huevo: 100 g',
+        'Leche: 100 g',
+        'Azúcar: 1 pizca',
+        'Sal: 1 pizca',
+      ]},
+    ],
+    steps:[
+      'Batir todos los ingredientes, tamizar y reservar en heladera.',
+      'Usar con pincel o pulverizador.',
+    ],
+    techNote:'Aporta brillo, profundidad de color y humedad para que la pieza desarrolle volumen y no se seque antes de tiempo. Se recomienda aplicarla después de la fermentación para no exponer el huevo al calor por tanto tiempo; el pulverizador evita pinchar o deformar la pieza ya leudada.',
+  },
+  {
+    id:'pasta-de-canela',
+    title:'Pasta de canela',
+    category:'pasteleria',
+    classInfo:'Taller de laminados · Franco Fonseca',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Azúcar: 75',
+        'Azúcar rubio: 75',
+        'Manteca pomada: 125',
+        'Canela en polvo: 20',
+        'Sal marina: 1 pizca',
+        'Peso total: 510 g',
+      ]},
+    ],
+    steps:[
+      'Juntar todos los ingredientes y batir por 5 min a máxima velocidad.',
+    ],
+    techNote:'',
+    tips:[
+      'Las cantidades del cuadernillo suman 295, no 510 (el peso total impreso): puede faltar un ingrediente en la tabla.',
+    ],
+  },
+  {
+    id:'almibar-de-naranjas',
+    title:'Almíbar de naranjas',
+    category:'pasteleria',
+    classInfo:'Taller de laminados · Franco Fonseca',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        'Agua: 250',
+        'Azúcar: 250',
+        'Cáscaras de naranja: 2',
+      ]},
+    ],
+    steps:[
+      'Pelar las naranjas y poner las cáscaras a hervir durante 15 min con el agua y el azúcar.',
+    ],
+    techNote:'',
+    tips:[
+      'El cuadernillo termina la receta ahí. En medialunas se pinta con almíbar apenas salen del horno.',
+    ],
+  },
+  {
+    id:'peras-o-ciruelas-en-almibar-especiado',
+    title:'Peras o ciruelas en almíbar especiado',
+    category:'pasteleria',
+    categories:['pasteleria','conservas'],
+    classInfo:'Taller de laminados · Franco Fonseca',
+    ingredientGroups:[
+      { title:'Ingredientes (sin unidad en el cuadernillo)', items:[
+        'Peras o ciruelas en mitades: 5 u',
+        'Agua: 600',
+        'Vino rosado: 600',
+        'Azúcar: 1000',
+        'Cardamomo semillas: 2 u',
+        'Canela en rama: 1 u',
+        'Clavo de olor: 3 u',
+      ]},
+    ],
+    steps:[
+      'Poner las especias, agua, vino y azúcar en una olla hasta que rompa hervor.',
+      'Agregar la fruta en mitades sin semillas y hervir bien suave por espacio de 15 min o hasta que la pulpa esté apenas cocida.',
+      'Apagar el fuego y dejar enfriar tapado.',
+      'Refrigerar o poner en frascos esterilizados. Mantener en el almíbar hasta el momento de usar.',
+    ],
+    techNote:'',
   },
 ];
 
 function normalize(s){
   return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 }
+const TALLERES = [
+  { id:'pasteleria', label:'Pastelería con frutas de invierno', guest:'Mica Daverede', re:/Taller de pastelería con frutas/ },
+  { id:'pesca',      label:'Pesca local',                        guest:'Mauricio Molina', re:/Taller de pesca local/ },
+  { id:'miso',       label:'Fermentados: miso y koji',           guest:'Giselle Brañas', re:/Miso & Koji/ },
+  { id:'laminados',  label:'Laminados',                          guest:'Franco Fonseca', re:/Taller de laminados/ },
+];
+function tallerOf(item){ const t = TALLERES.find(t=>t.re.test(item.classInfo||'')); return t ? t.id : null; }
 function categoryOf(id){ return CATEGORIES.find(c=>c.id===id); }
+// Una receta puede estar en varias categorías: 'category' es la principal (define el color)
+// y 'categories' (opcional) lista todas, incluida la principal.
+function recipeCats(r){ return (r.categories && r.categories.length) ? r.categories : [r.category]; }
+function recipeCatLabel(r){ return recipeCats(r).map(id=>{ const c=categoryOf(id); return c ? c.label : ''; }).filter(Boolean).join(' · '); }
 function ingredientsText(recipe){
   return normalize(recipe.ingredientGroups.map(g=>g.items.join(' ')).join(' '));
 }
@@ -2487,6 +4074,7 @@ let activeCategory = 'all';
 let searchTerm = '';
 let currentRecipeId = null;
 let currentView = 'recetas';
+let activeTaller = 'all';
 
 const gridEl = document.getElementById('grid');
 const chipsEl = document.getElementById('categoryChips');
@@ -2497,8 +4085,23 @@ const viewToggleEl = document.getElementById('viewToggle');
 const controlsBarEl = document.getElementById('controlsBar');
 
 function renderChips(){
+  if(currentView === 'talleres'){
+    const allT = `<button class="chip ${activeTaller==='all'?'active':''}" data-taller="all">Todos</button>`;
+    const tChips = TALLERES.map(t=>`<button class="chip ${activeTaller===t.id?'active':''}" data-taller="${t.id}">${t.label}</button>`).join('');
+    chipsEl.innerHTML = allT + tChips;
+    chipsEl.querySelectorAll('.chip').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        activeTaller = btn.dataset.taller;
+        renderChips();
+        renderView();
+      });
+    });
+    return;
+  }
+  const usedCats = new Set();
+  RECIPES.filter(r=>!tallerOf(r)).forEach(r=>recipeCats(r).forEach(c=>usedCats.add(c)));
   const allChip = `<button class="chip ${activeCategory==='all'?'active':''}" data-cat="all">Todas</button>`;
-  const chips = CATEGORIES.map(c=>`<button class="chip ${activeCategory===c.id?'active':''}" data-cat="${c.id}">${c.label}</button>`).join('');
+  const chips = CATEGORIES.filter(c=>usedCats.has(c.id)).map(c=>`<button class="chip ${activeCategory===c.id?'active':''}" data-cat="${c.id}">${c.label}</button>`).join('');
   chipsEl.innerHTML = allChip + chips;
   chipsEl.querySelectorAll('.chip').forEach(btn=>{
     btn.addEventListener('click', ()=>{
@@ -2513,8 +4116,9 @@ viewToggleEl.querySelectorAll('.view-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     currentView = btn.dataset.view;
     viewToggleEl.querySelectorAll('.view-btn').forEach(b=>b.classList.toggle('active', b===btn));
-    controlsBarEl.style.display = currentView === 'recetas' ? 'flex' : 'none';
+    controlsBarEl.style.display = currentView === 'fundamentos' ? 'none' : 'flex';
     controlsBarEl.style.flexDirection = 'column';
+    renderChips();
     renderView();
   });
 });
@@ -2522,17 +4126,20 @@ viewToggleEl.querySelectorAll('.view-btn').forEach(btn=>{
 function renderView(){
   if(currentView === 'recetas'){
     renderGrid();
+  } else if(currentView === 'talleres'){
+    renderTalleresGrid();
   } else {
     renderFundamentosGrid();
   }
 }
 
 function renderFundamentosGrid(){
-  if(FUNDAMENTOS.length === 0){
+  const FUNDS = FUNDAMENTOS.filter(f=>!tallerOf(f));
+  if(FUNDS.length === 0){
     gridEl.innerHTML = `<div class="empty-state"><h3>Todavía no hay fundamentos cargados</h3><p>Se van a ir sumando a medida que suban las clases teóricas.</p></div>`;
     return;
   }
-  gridEl.innerHTML = FUNDAMENTOS.map(f=>{
+  gridEl.innerHTML = FUNDS.map(f=>{
     const preview = f.sections.map(s=>s.title).join(' · ');
     return `
       <div class="card" style="--cat-color:var(--fundamentos)" data-fund-id="${f.id}">
@@ -2549,7 +4156,7 @@ function renderFundamentosGrid(){
     card.addEventListener('click', ()=> openFundamentoDetail(card.dataset.fundId));
   });
 
-  FUNDAMENTOS.forEach(async f=>{
+  FUNDS.forEach(async f=>{
     const n = await commentCount(f.id);
     const el = gridEl.querySelector(`[data-count-for="${f.id}"]`);
     if(el) el.textContent = n===0 ? 'Sin comentarios todavía' : (n===1 ? '1 comentario' : n+' comentarios');
@@ -2684,10 +4291,82 @@ async function commentCount(recipeId){
   }
 }
 
+async function renderTalleresGrid(){
+  const term = normalize(searchTerm.trim());
+  if(activeTaller==='all' && term===''){
+    gridEl.innerHTML = TALLERES.map(t=>{
+      const nR = RECIPES.filter(r=>tallerOf(r)===t.id).length;
+      const nF = FUNDAMENTOS.filter(f=>tallerOf(f)===t.id).length;
+      return `
+      <div class="card" style="--cat-color:var(--fundamentos)" data-taller-id="${t.id}">
+        <p class="cat-label">Taller</p>
+        <h3>${t.label}</h3>
+        <p class="meta">Invitado/a: ${t.guest}</p>
+        <p class="ing-preview">${nF} ${nF===1?'fundamento':'fundamentos'} · ${nR} ${nR===1?'receta':'recetas'}</p>
+      </div>`;
+    }).join('');
+    gridEl.querySelectorAll('.card').forEach(card=>{
+      card.addEventListener('click', ()=>{ activeTaller = card.dataset.tallerId; renderChips(); renderView(); window.scrollTo({top:0}); });
+    });
+    return;
+  }
+  const talleres = TALLERES.filter(t=>activeTaller==='all' || activeTaller===t.id);
+  let html = '';
+  const countIds = [];
+  talleres.forEach(t=>{
+    const recs = RECIPES.filter(r=>tallerOf(r)===t.id && (term==='' || ingredientsText(r).includes(term) || normalize(r.title).includes(term)));
+    const funds = term==='' ? FUNDAMENTOS.filter(f=>tallerOf(f)===t.id) : [];
+    if(recs.length===0 && funds.length===0) return;
+    html += `<h2 class="taller-head">${t.label}</h2>`;
+    if(funds.length) html += `<p class="taller-sub">Fundamentos (teoría)</p>`;
+    funds.forEach(f=>{
+      countIds.push(f.id);
+      html += `
+      <div class="card" style="--cat-color:var(--fundamentos)" data-fund-id="${f.id}">
+        <p class="cat-label">Fundamentos</p>
+        <h3>${f.title}</h3>
+        <p class="meta">${f.classInfo}</p>
+        <p class="ing-preview">${f.sections.map(s=>s.title).join(' · ')}</p>
+        <p class="comment-count" data-count-for="${f.id}"></p>
+      </div>`;
+    });
+    if(recs.length) html += `<p class="taller-sub">Recetas</p>`;
+    recs.forEach(r=>{
+      countIds.push(r.id);
+      const cat = categoryOf(r.category);
+      html += `
+      <div class="card" style="--cat-color:${cat.color}" data-id="${r.id}">
+        <p class="cat-label">${recipeCatLabel(r)}</p>
+        <h3>${r.title}</h3>
+        <p class="meta">${r.classInfo}</p>
+        <p class="ing-preview">${r.ingredientGroups.map(g=>g.items.join(', ')).join(', ')}</p>
+        <p class="comment-count" data-count-for="${r.id}"></p>
+      </div>`;
+    });
+  });
+  if(html===''){
+    gridEl.innerHTML = `<div class="empty-state"><h3>No hay resultados</h3><p>Probá con otro ingrediente o taller.</p></div>`;
+    return;
+  }
+  gridEl.innerHTML = html;
+  gridEl.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      if(card.dataset.fundId) openFundamentoDetail(card.dataset.fundId);
+      else openDetail(card.dataset.id);
+    });
+  });
+  countIds.forEach(async id=>{
+    const n = await commentCount(id);
+    const el = gridEl.querySelector(`[data-count-for="${id}"]`);
+    if(el) el.textContent = n===0 ? 'Sin comentarios todavía' : (n===1 ? '1 comentario' : n+' comentarios');
+  });
+}
+
 async function renderGrid(){
   const term = normalize(searchTerm.trim());
   let filtered = RECIPES.filter(r=>{
-    const catOk = activeCategory==='all' || r.category===activeCategory;
+    if(tallerOf(r)) return false;
+    const catOk = activeCategory==='all' || recipeCats(r).includes(activeCategory);
     const searchOk = term==='' || ingredientsText(r).includes(term) || normalize(r.title).includes(term);
     return catOk && searchOk;
   });
@@ -2702,7 +4381,7 @@ async function renderGrid(){
     const preview = r.ingredientGroups.map(g=>g.items.join(', ')).join(', ');
     return `
       <div class="card" style="--cat-color:${cat.color}" data-id="${r.id}">
-        <p class="cat-label">${cat.label}</p>
+        <p class="cat-label">${recipeCatLabel(r)}</p>
         <h3>${r.title}</h3>
         <p class="meta">${r.classInfo}</p>
         <p class="ing-preview">${preview}</p>
@@ -2790,11 +4469,12 @@ async function openDetail(id){
   detailEl.innerHTML = `
     <div class="detail-head" style="--cat-color:${cat.color}">
       <button class="close" id="closeBtn" aria-label="Cerrar">&times;</button>
-      <p class="cat-label">${cat.label}</p>
+      <p class="cat-label">${recipeCatLabel(recipe)}</p>
       <h2>${recipe.title}</h2>
       <p class="meta">${recipe.classInfo}</p>
     </div>
     <div class="detail-body">
+      ${recipe.intro ? `<p class="recipe-intro">${recipe.intro}</p>` : ''}
       <section>
         <h4>Ingredientes</h4>
         ${ingGroupsHtml}
@@ -2804,10 +4484,10 @@ async function openDetail(id){
         ${stepsHtml}
       </section>
       <section>
-        <div class="tech-note" style="--cat-color:${cat.color}">
+        ${recipe.techNote ? `<div class="tech-note" style="--cat-color:${cat.color}">
           <strong>Fundamento técnico</strong>
           ${recipe.techNote}
-        </div>
+        </div>` : ''}
         ${recipe.tips && recipe.tips.length ? `
         <div class="tip-gaucha">
           <strong>💡 Tip Gaucha</strong>
@@ -2907,7 +4587,7 @@ overlayEl.addEventListener('click', (e)=>{
 
 searchInput.addEventListener('input', (e)=>{
   searchTerm = e.target.value;
-  renderGrid();
+  renderView();
 });
 
 renderChips();
