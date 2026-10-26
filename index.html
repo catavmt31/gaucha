@@ -28,6 +28,8 @@
     --cerdo-cordero:#9C4A5C;
     --mariscos:#2A4D6E;
     --pasteleria:#A0566E;
+    --tartas:#B07A3C;
+    --ensaladas:#5E8446;
     --fermentados:#4F6F52;
     --fundamentos:#4A4038;
     --muted:#6B6155;
@@ -1146,6 +1148,51 @@ const FUNDAMENTOS = [
       ]},
     ],
   },
+  {
+    id:'tartas-ensaladas-fundamentos',
+    title:'Tartas, ensaladas y aderezos: cocinar con criterio',
+    classInfo:'Fundamentos 2 · Clase 7 · Legumbres, masas, ensaladas, wraps y aderezos · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'Cocinar con criterio', bullets:[
+        'En Fundamentos no se busca aprender una colección de recetas cerradas, sino comprender cómo se construye un plato.',
+        'Las masas enseñan hidratación y estructura; las legumbres, tiempos y puntos de cocción; las ensaladas, composición; y los aderezos, equilibrio.',
+        'Cada decisión (el corte, la temperatura, el condimento o la textura) transforma el resultado.',
+        'Cuatro conceptos de referencia: BASE + FUERZA + SORPRESA + HIDRATACIÓN. En GAUCHA se suma un quinto eje transversal: LA ESTACIÓN. No son reglas rígidas: son preguntas útiles para cocinar con lo que tenemos.',
+      ]},
+      { title:'Cinco preguntas para construir una ensalada', bullets:[
+        'BASE · ¿Qué ingrediente sostiene el plato? Puede ser un conjunto de hojas, una hortaliza, un cereal o una legumbre. Lavar y secar muy bien las hojas, elegir cortes que permitan comer cómodamente y evitar que la base quede escondida bajo demasiados agregados.',
+        'FUERZA · ¿Qué le da profundidad y cuerpo? Una legumbre bien cocida, quinoa, vegetales asados, queso o un untable. Los granos deben quedar sueltos y las legumbres tiernas pero enteras; conviene condimentarlos todavía tibios para que absorban mejor el aliño.',
+        'SORPRESA · ¿Dónde aparece el contraste? Un encurtido, una fruta, una hierba aromática, un fruto seco o unas semillas especiadas. Elegir uno o dos acentos protagonistas, no muchos. Incorporar lo crocante al final para que conserve su textura.',
+        'HIDRATACIÓN · ¿Qué ingrediente une todo? La vinagreta no debe tapar la ensalada: debe conectar sus partes. Como punto de partida, probar tres partes de aceite por una de ácido y ajustar según el jugo de la fruta, el dulzor de la conserva o la intensidad de los vegetales. Agregar sal y probar siempre antes de servir.',
+        'ESTACIÓN · ¿Qué está bueno, accesible y en su mejor momento? Se parte del mercado y no de una lista inamovible. Mango puede convertirse en ciruela en conserva; una hoja amarga puede reemplazar a otra; maní o semillas pueden ocupar el lugar de frutos secos más costosos. Sustituir con criterio implica conservar la función de cada ingrediente.',
+      ]},
+      { title:'Ocho tips para llevar a la mesada', bullets:[
+        '1 · Secar bien: el agua sobre las hojas diluye el aderezo.',
+        '2 · Variar los cortes: láminas finas, gajos y trozos irregulares crean distintas sensaciones.',
+        '3 · Contrastar crudo y cocido: lo fresco da tensión; lo asado, dulzor y profundidad.',
+        '4 · Respetar temperaturas: sumar tibio sobre fresco justo antes de servir, sin marchitarlo.',
+        '5 · Equilibrar antes de mezclar: probar ácido, sal, grasa y dulzor por separado.',
+        '6 · Usar hierbas como ingrediente, no solo decoración.',
+        '7 · Cuidar la humedad: escurrir encurtidos y conservas; agregar los aliños al final.',
+        '8 · Terminar con intención: crocantes, hierbas y un último toque ácido pueden cambiar cada bocado.',
+      ]},
+      { title:'Menú y rendimientos de la clase', bullets:[
+        '01 Tarta rústica sin gluten de trigo sarraceno, cebollas moradas, acelga, tomates secos y dos quesos.',
+        '02 Ensalada tibia de quinoa roja, porotos mung, vegetales asados y hierbas.',
+        '03 Ensalada de ciruelas al rosado, palta, cherry, hierbas, cebolla encurtida y maní.',
+        '04 Wrap de masa casera con hummus de arvejas, vegetales grillados y pickles rápidos.',
+        'Aderezos: vinagreta de mostaza y limón + vinagreta de lima y jengibre.',
+        'Cada receta está calculada para 6 porciones de degustación o acompañamiento. La mise en place de granos y legumbres puede iniciarse antes de clase.',
+      ]},
+      { title:'Criterios de trabajo y organización', bullets:[
+        'Cocinar por separado los mung y la quinoa; reservarlos escurridos para que no se empasten.',
+        'Comenzar por cebollas, remolachas y zanahorias asadas; aprovechar el horno y reducir tiempos muertos.',
+        'Mantener hojas lavadas y muy secas; aliñar ensaladas apenas antes de presentar.',
+        'Comparar las dos vinagretas con ambas ensaladas: evaluar acidez, dulzor, textura y adherencia.',
+        'Para elaboración estrictamente sin gluten, la tarta requiere ingredientes certificados y utensilios sin contaminación cruzada. El wrap propuesto contiene trigo; puede sustituirse por una tortilla apta y probada aparte.',
+      ]},
+    ],
+  },
 ];
 
 const COMMENTERS = ['Cata', 'Cris', 'Euge', 'Fede', 'Gabi', 'Mahia', 'Pablo'];
@@ -1166,6 +1213,8 @@ const CATEGORIES = [
   { id:'mariscos', label:'Mariscos', color:'var(--mariscos)' },
   { id:'fermentados', label:'Fermentados', color:'var(--fermentados)' },
   { id:'pasteleria', label:'Pastelería', color:'var(--pasteleria)' },
+  { id:'tartas', label:'Tartas y masas', color:'var(--tartas)' },
+  { id:'ensaladas', label:'Ensaladas', color:'var(--ensaladas)' },
 ];
 
 const RECIPES = [
@@ -4048,6 +4097,205 @@ const RECIPES = [
       'Refrigerar o poner en frascos esterilizados. Mantener en el almíbar hasta el momento de usar.',
     ],
     techNote:'',
+  },
+  {
+    id:'tarta-rustica-sarraceno-dos-quesos',
+    title:'Tarta rústica de trigo sarraceno y dos quesos',
+    category:'tartas',
+    classInfo:'Fundamentos 2 · Clase 7 · Legumbres, masas, ensaladas, wraps y aderezos · Gaucha Estudio de Cocina',
+    intro:'1 tarta de 26–28 cm · 6 porciones · Sin gluten si todos los insumos están certificados.',
+    ingredientGroups:[
+      { title:'Masa de oliva', items:[
+        '150 g harina de trigo sarraceno',
+        '70 g harina de arroz',
+        '30 g fécula de mandioca',
+        '65 g aceite de oliva',
+        '1 huevo (aprox. 50 g)',
+        '70–90 g agua fría, agregar gradualmente',
+        '5 g sal',
+        '4 g psyllium en polvo',
+      ]},
+      { title:'Relleno', items:[
+        '500 g cebollas moradas',
+        '300 g acelga fresca',
+        '120 g ricota firme',
+        '50 g queso azul',
+        '80 g queso colonia semiduro, rallado grueso',
+        '45 g tomates secos (peso seco; hidratar y escurrir)',
+        '2 huevos',
+        '25 g aceite de oliva',
+        'Tomillo fresco, sal y pimienta negra',
+      ]},
+    ],
+    steps:[
+      'Mezclar harinas, fécula, psyllium y sal. Añadir aceite y huevo; hidratar con agua hasta obtener una masa maleable. Reposar tapada 20–30 minutos.',
+      'Cortar las cebollas en gajos y asar con aceite, tomillo y pimienta a 200 °C durante 25–35 minutos; enfriar.',
+      'Saltear la acelga apenas hasta que pierda volumen, enfriar y escurrir muy bien.',
+      'Hidratar los tomates secos en agua caliente 15–20 minutos, escurrir, secar y picar. Si están conservados en aceite, solo escurrir.',
+      'Mezclar ricota, huevos, acelga y tomates secos. Repartir el queso azul en pequeños trozos; probar el punto de sal con precaución.',
+      'Estirar la masa entre papeles a 3–4 mm. Colocar en un molde bajo de 26–28 cm, pinchar y precocinar a 190 °C durante 10–12 minutos con peso de horneado.',
+      'Rellenar, distribuir cebollas y hornear 20–25 minutos a 190 °C. Cubrir con queso colonia y terminar 10–15 minutos más, hasta gratinar y cocer la base.',
+      'Reposar 10 minutos. Terminar con tomillo fresco, pimienta y unas gotas de aceite de oliva.',
+    ],
+    techNote:'Estructura sin gluten: el sarraceno da carácter, el arroz suaviza, la mandioca cohesiona y el psyllium mejora la flexibilidad. Controlar humedad de relleno y base.',
+  },
+  {
+    id:'ensalada-tibia-quinoa-roja-mung',
+    title:'Ensalada tibia de quinoa roja y porotos mung',
+    category:'ensaladas',
+    classInfo:'Fundamentos 2 · Clase 7 · Legumbres, masas, ensaladas, wraps y aderezos · Gaucha Estudio de Cocina',
+    intro:'6 porciones · Se aliña con la Vinagreta de mostaza y limón.',
+    ingredientGroups:[
+      { title:'Ensalada', items:[
+        '150 g quinoa roja seca',
+        '180 g porotos mung secos',
+        '350 g zanahorias',
+        '250 g remolachas',
+        '80 g rúcula',
+        '20 g perejil y menta fresca',
+        '40 g semillas de girasol tostadas',
+        'Aceite de oliva, sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Lavar bien la quinoa y cocinar con agua hasta que esté tierna pero firme, unos 15–20 minutos. Escurrir y extender.',
+      'Cocinar los porotos mung en abundante agua hasta tiernos y enteros, unos 25–35 minutos; el remojo previo de 4 horas es opcional. Escurrir.',
+      'Cortar zanahorias y remolachas en tamaños similares. Asar por separado a 200 °C con poco aceite, sal y pimienta hasta dorar.',
+      'Condimentar quinoa y mung aún tibios con parte de la vinagreta de mostaza y limón.',
+      'Combinar vegetales asados con granos; sumar rúcula y hierbas justo antes de servir. Terminar con semillas y más vinagreta.',
+    ],
+    techNote:'Diferenciar cocción de granos y legumbres; aliñar tibio para favorecer absorción y sumar las hojas al final.',
+  },
+  {
+    id:'ensalada-ciruelas-palta-mani',
+    title:'Ensalada de ciruelas, palta y maní',
+    category:'ensaladas',
+    classInfo:'Fundamentos 2 · Clase 7 · Legumbres, masas, ensaladas, wraps y aderezos · Gaucha Estudio de Cocina',
+    intro:'6 porciones · Se aliña con la Vinagreta de lima y jengibre.',
+    ingredientGroups:[
+      { title:'Ensalada', items:[
+        '3 ciruelas en conserva, escurridas y cortadas cada una en 6 gajos (18 gajos en total)',
+        '250 g palta, en gajos',
+        '250 g tomates cherry, por mitades',
+        '100 g hojas verdes lavadas y bien secas',
+        '20 g cilantro fresco, hojas y tallos tiernos',
+        '50 g maní tostado sin sal, picado grueso',
+        'Lima fresca, para terminar',
+      ]},
+      { title:'Conserva de ciruelas al vino rosado · fórmula de cocción', items:[
+        '1 litro vino rosado',
+        '600 g azúcar',
+        '2 ramitas de tomillo fresco',
+        '1 limón: piel sin parte blanca y jugo',
+        '3 ciruelas frescas para esta ensalada, enteras o en mitades según tamaño',
+      ]},
+      { title:'Cebollas moradas encurtidas', items:[
+        '150 g cebolla morada, en pluma fina',
+        '80 g vinagre de manzana',
+        '80 g agua',
+        '20 g azúcar',
+        '5 g sal',
+      ]},
+    ],
+    steps:[
+      'Conserva: calentar el vino, el azúcar, las ramitas de tomillo y la piel de limón hasta disolver el azúcar. Incorporar las ciruelas y cocinar a fuego bajo, sin hervor fuerte, 8–12 minutos o hasta tiernas pero firmes. Agregar jugo de limón al gusto y enfriar dentro del líquido. Refrigerar.',
+      'Cebollas: calentar vinagre, agua, azúcar y sal. Verter sobre la cebolla; dejar reposar al menos 30 minutos y escurrir.',
+      'Escurrir y secar suavemente las 3 ciruelas; retirar carozo si corresponde y cortar cada una en 6 gajos. Reservar frías.',
+      'Lavar y secar hojas y cilantro; cortar los tomates al medio y la palta en gajos justo antes de armar.',
+      'Disponer las hojas, tomates, palta, los 18 gajos de ciruela y la cebolla escurrida. Sumar cilantro y distribuir la vinagreta de lima y jengibre.',
+      'Terminar con maní tostado al servir y gajos de lima.',
+    ],
+    techNote:'Conservas en preparaciones saladas: balance dulce/ácido y crocante/cremoso. El almíbar al vino es una fórmula de cocción, no una conserva estable de alacena; guardar siempre refrigerada.',
+  },
+  {
+    id:'wrap-hummus-arvejas-grillados-pickles',
+    title:'Wrap con hummus de arvejas, grillados y pickles',
+    category:'tartas',
+    categories:['tartas','ensaladas'],
+    classInfo:'Fundamentos 2 · Clase 7 · Legumbres, masas, ensaladas, wraps y aderezos · Gaucha Estudio de Cocina',
+    intro:'6 wraps · Masa con trigo (no apta para celíacos).',
+    ingredientGroups:[
+      { title:'Masa casera', items:[
+        '200 g harina de trigo',
+        '100 g harina integral fina',
+        '25 g aceite de oliva',
+        '175–190 g agua tibia',
+        '6 g sal',
+      ]},
+      { title:'Hummus de arvejas', items:[
+        '300 g arvejas cocidas y frías',
+        '35 g tahini',
+        '30 g jugo de limón',
+        '25 g aceite de oliva',
+        '1 diente de ajo asado pequeño',
+        '1 cdita de miel',
+        'Menta, sal y agua fría, cantidad necesaria',
+      ]},
+      { title:'Relleno y pickles rápidos', items:[
+        '350 g zucchini',
+        '250 g zanahorias',
+        '100 g hojas verdes',
+        '150 g cebolla morada',
+        '80 g vinagre',
+        '80 g agua',
+        '20 g azúcar',
+        '5 g sal',
+      ]},
+    ],
+    steps:[
+      'Mezclar ingredientes de la masa, amasar hasta alisar, tapar y reposar 30 minutos.',
+      'Dividir en seis bollos, estirar fino y cocinar en sartén caliente unos 45–60 segundos por lado. Mantener las tortillas apiladas y tapadas.',
+      'Procesar arvejas con tahini, limón, miel, aceite, ajo, menta y sal; ajustar con agua fría hasta textura untable. Se puede terminar con unos puntitos de siracha o algún picante si desean.',
+      'Cortar cebolla muy fina. Calentar vinagre, agua, azúcar y sal; volcar sobre la cebolla y dejar reposar al menos 20 minutos.',
+      'Grillar zucchini y zanahorias en cortes alargados; entibiar y evitar el exceso de humedad.',
+      'Untar tortillas, distribuir grillados, verdes y pickles bien escurridos. Enrollar plegando laterales; dorar opcionalmente en sartén.',
+    ],
+    techNote:'La masa necesita descanso para estirar. El hummus hace de barrera de humedad; los pickles aportan ácido y frescura.',
+  },
+  {
+    id:'vinagreta-mostaza-limon',
+    title:'Vinagreta de mostaza y limón',
+    category:'condimentos',
+    categories:['condimentos','ensaladas'],
+    classInfo:'Fundamentos 2 · Clase 7 · Legumbres, masas, ensaladas, wraps y aderezos · Gaucha Estudio de Cocina',
+    intro:'Rinde aprox. 110 g · Para la ensalada tibia de quinoa y mung.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '60 g aceite de oliva',
+        '25 g jugo de limón',
+        '15 g mostaza Dijon',
+        '12 g miel',
+        'Sal y pimienta',
+      ]},
+    ],
+    steps:[
+      'Mezclar mostaza, limón, miel y sal hasta homogeneizar.',
+      'Incorporar lentamente el aceite batiendo para formar una emulsión temporal.',
+      'Probar y ajustar ácido, sal o dulzor. Agitar nuevamente antes de servir.',
+    ],
+    techNote:'La mostaza ayuda a estabilizar la emulsión. Comparar el sabor antes y después del aceite.',
+  },
+  {
+    id:'vinagreta-lima-jengibre',
+    title:'Vinagreta de lima y jengibre',
+    category:'condimentos',
+    categories:['condimentos','ensaladas'],
+    classInfo:'Fundamentos 2 · Clase 7 · Legumbres, masas, ensaladas, wraps y aderezos · Gaucha Estudio de Cocina',
+    intro:'Rinde aprox. 105 g · Para la ensalada de ciruelas.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '60 g aceite de oliva suave',
+        '35 g jugo de lima',
+        '8 g jengibre fresco rallado fino',
+        'Sal, cantidad necesaria',
+      ]},
+    ],
+    steps:[
+      'Mezclar el jugo de lima, el jengibre y una pizca de sal.',
+      'Agregar el aceite en hilo mientras se bate; alternativamente, agitar en un frasco cerrado.',
+      'Probar con un trozo de ciruela: debe resultar bien ácida y fresca, sin añadir miel ni almíbar.',
+    ],
+    techNote:'Equilibrar una conserva dulce con un aliño ácido; comparar esta emulsión con la de mostaza.',
   },
 ];
 
