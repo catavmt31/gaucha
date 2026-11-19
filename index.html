@@ -31,6 +31,7 @@
     --tartas:#B07A3C;
     --ensaladas:#5E8446;
     --entradas:#9A5B3B;
+    --festiva:#8C2F3E;
     --fermentados:#4F6F52;
     --fundamentos:#4A4038;
     --muted:#6B6155;
@@ -1209,6 +1210,57 @@ const FUNDAMENTOS = [
       ]},
     ],
   },
+  {
+    id:'mesa-festiva-fundamentos',
+    title:'Mesa festiva: cocinar con anticipación',
+    classInfo:'Mesa festiva · Última clase del ciclo 2026 · Fundamentos culinarios · Gaucha Estudio de Cocina',
+    sections:[
+      { title:'La clase', bullets:[
+        'Cerramos el año alrededor de una mesa que reúne recetas conocidas y nuevas maneras de prepararlas. Una mesa de celebración también se construye con anticipación: elegir qué cocinar, ordenar los procesos y llegar al encuentro con tiempo para compartir.',
+        'En esta última clase se pone en práctica lo trabajado durante el ciclo: observar los ingredientes, comprender los métodos, reconocer los puntos de cocción y ajustar sabor y textura con criterio propio. Se revisitan clásicos de las fiestas con una mirada fresca y casera, pensada para nuestro verano.',
+        'La cocina, nuestro refugio.',
+      ]},
+      { title:'El menú', bullets:[
+        'Vitel toné de peceto asado con pickles de arándanos y cebolla morada',
+        'Paté de hongos y miso con limón y hierbas frescas',
+        'Ensalada rusa al estilo GAUCHA con zanahorias encurtidas y mayonesa al wasabi',
+        'Garrapiñadas de pecán, chocolate blanco y cacao',
+        'Torta especiada de cerveza negra y frutas confitadas',
+      ]},
+      { title:'Objetivos de la clase', bullets:[
+        'Organizar una producción con tiempos de horno, enfriado y reposo.',
+        'Aplicar cocción por calor seco y húmedo, desglasado, encurtido rápido, cristalización del azúcar, baño María y arenado.',
+        'Evaluar equilibrio entre grasa, acidez, sal, dulzor y picante.',
+        'Planificar conservación y servicio en frío.',
+        'Las recetas saladas rinden 6 porciones dentro de una mesa compartida. Los pesos de vegetales corresponden a producto limpio; el peso del peceto es en crudo. Las preparaciones dulces tienen su rendimiento indicado.',
+      ]},
+      { title:'Cantidades para un evento (anotación de clase)', bullets:[
+        'Para cualquier evento se calcula ½ kg de comida por persona: aprox. 100–150 g de entrada, unos 300 g de principal y unos 120 g de postre.',
+        'Para el peceto del vitel toné se calculan 70 g por persona.',
+      ]},
+      { title:'Antes de la clase', bullets:[
+        'Disponer de un peceto cocido y bien frío, además de la pieza cruda de demostración.',
+        'Llevar pickles y zanahorias ya encurtidos para servir y repetir una pequeña tanda en clase.',
+        'Tener una torta fría de apoyo, y todos los ingredientes pesados.',
+      ]},
+      { title:'Distribución de tareas en parejas', bullets:[
+        'Propuesta para 8 participantes, en 4 parejas. Cada pareja completa su receta y ordena su puesto. Una persona comienza con cortes y cocción; la otra pesa, prepara utensilios y registra los puntos. Intercambiar funciones durante la preparación.',
+        'Pareja 1 · Vitel toné y pickles: preparar el encurtido y la salsa, sellar y asar la pieza de demostración con la docente. Al final, cortar el peceto ya frío y montar la fuente.',
+        'Pareja 2 · Paté y garrapiñadas de pecán: hidratar los hongos desde el inicio, saltear, desglasar, procesar y enfriar. Durante el reposo del paté, garrapiñar las pecán, enfriar y cubrir con chocolate blanco y cacao.',
+        'Pareja 3 · Ensalada rusa GAUCHA: preparar la pequeña tanda de zanahorias encurtidas; cortar y cocer papas y arvejas por separado, enfriar y hacer el aderezo. Armar al final con las zanahorias previamente encurtidas.',
+        'Pareja 4 · Torta de cerveza negra: hidratar las frutas, preparar la masa y hornear primero. Mientras se enfría, preparar la crema, ordenar la mesa y apoyar las terminaciones.',
+        'La docente reúne al grupo para observar el arenado y la incorporación de los huevos a la mezcla tibia de cerveza, el punto de cocción del peceto y el desglasado. Con menos participantes, la docente puede asumir la torta de apoyo y las garrapiñadas; mantener las tareas de los alumnos en parejas.',
+      ]},
+      { title:'Cronograma simple de cuatro horas', bullets:[
+        '0 a 20 min · Presentación, reparto de tareas e hidratación de hongos y frutas.',
+        '20 a 100 min · Trabajo simultáneo por parejas: torta al horno, pickles, paté, vegetales y salsas.',
+        '100 a 180 min · Asar el peceto, terminar las garrapiñadas y enfriar las preparaciones. Completar aderezos y preparar la terminación de la torta.',
+        '180 a 210 min · Montar las fuentes con el peceto frío, la ensalada y el paté. Terminar la torta fría de apoyo y ordenar la mesa.',
+        '210 a 240 min · Degustación, ajustes de sabor y cierre del ciclo.',
+        'Uso del horno: primero la torta a 180 °C; luego el peceto a 140 °C. Las garrapiñadas se elaboran en la hornalla. El servicio se resuelve con el peceto y la torta fríos preparados previamente. Si hay dos hornos, cocinar la carne en paralelo. No cambiar la temperatura durante el horneado de la torta.',
+      ]},
+    ],
+  },
 ];
 
 const COMMENTERS = ['Cata', 'Cris', 'Euge', 'Fede', 'Gabi', 'Mahia', 'Pablo'];
@@ -1232,6 +1284,7 @@ const CATEGORIES = [
   { id:'tartas', label:'Tartas y masas', color:'var(--tartas)' },
   { id:'ensaladas', label:'Ensaladas', color:'var(--ensaladas)' },
   { id:'entradas', label:'Picadas y entradas', color:'var(--entradas)' },
+  { id:'festiva', label:'Mesa festiva', color:'var(--festiva)' },
 ];
 
 const RECIPES = [
@@ -5326,6 +5379,224 @@ const RECIPES = [
     techNote:'',
     tips:[
       'El título dice "pralineé de frutos secos", pero la receta del cuadernillo se hace con almendras.',
+    ],
+  },
+  {
+    id:'vitel-tone-de-peceto-asado',
+    title:'Vitel toné de peceto asado con pickles de arándanos y cebolla morada',
+    category:'carnes',
+    categories:['carnes','festiva'],
+    classInfo:'Mesa festiva · Última clase del ciclo 2026 · Fundamentos culinarios · Gaucha Estudio de Cocina',
+    intro:'Rinde 6 porciones · Calor seco mediante sellado y asado suave. El peso del peceto es en crudo.',
+    ingredientGroups:[
+      { title:'Peceto', items:[
+        '900 g a 1 kg de peceto limpio',
+        '9 a 10 g de sal',
+        '15 ml de aceite neutro',
+        '15 g de mostaza de Dijon',
+        '1 diente de ajo',
+        '1 cucharada de tomillo y perejil',
+        '½ cucharadita de pimentón ahumado',
+        '15 ml de aceite de oliva',
+        'Pimienta',
+      ]},
+      { title:'Salsa', items:[
+        '160 g de atún al natural escurrido',
+        '120 g de mayonesa comercial',
+        '60 ml de crema de leche',
+        '15 g de alcaparras escurridas',
+        '10 g de mostaza de Dijon',
+        '15 ml de jugo de limón',
+        '30 a 60 ml de agua fría',
+        'Pimienta',
+      ]},
+      { title:'Para terminar', items:[
+        'Perejil',
+        'Rúcula',
+        'Pickles de arándanos y cebolla morada (receta aparte)',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Secar el peceto y retirar membranas gruesas. Mezclar Dijon, ajo rallado, hierbas, pimentón, oliva y pimienta. Untar y reservar tapado en heladera de 1 a 4 horas. La marinada aromatiza la superficie; no reemplaza la cocción.',
+      '<strong>2.</strong> Precalentar el horno a 140 °C. Retirar el exceso de marinada para evitar que se queme. Salar y dorar todos los lados en sartén caliente con el aceite neutro. El sellado aporta color y sabor; no encierra los jugos.',
+      '<strong>3.</strong> Pasar a una asadera y cocinar hasta que el centro alcance 63 °C, midiendo en la parte más gruesa. Dejar reposar al menos 3 minutos. Comenzar a controlar a los 40 minutos: el tiempo total depende del grosor, la temperatura inicial y el horno; no usar 45 minutos como regla fija.',
+      '<strong>4.</strong> Enfriar rápidamente en recipiente limpio y poco profundo, sin esperar a que la pieza llegue a temperatura ambiente. Refrigerar. Para resolver la clase, disponer de una pieza cocida y fría con anticipación y realizar otra para observar el proceso.',
+      '<strong>5.</strong> Procesar atún, mayonesa, crema, alcaparras, Dijon y limón. Agregar el agua de a poco hasta lograr una salsa fluida que cubra la carne. Probar antes de salar; el atún y las alcaparras ya aportan sal.',
+      '<strong>6.</strong> Cortar el peceto frío en láminas finas, transversalmente a la fibra. Napar sin ocultar por completo la carne y terminar con pickles bien escurridos, perejil y rúcula. Mantener refrigerado hasta servir.',
+    ],
+    techNote:'Marinado superficial · reacción de Maillard · asado suave · control con termómetro · reposo · corte contra la fibra · procesado y ajuste de una salsa sobre emulsión existente. La mayonesa ya está emulsionada: aquí no hacemos una emulsión desde cero.',
+    tips:[
+      'Anotación de clase: se calculan 70 g de peceto por persona.',
+      'Anotación de clase: para cualquier evento se calcula ½ kg de comida por persona (aprox. 100–150 g de entrada, unos 300 g de principal y unos 120 g de postre).',
+    ],
+  },
+  {
+    id:'pickles-rapidos-arandanos-cebolla-morada',
+    title:'Pickles rápidos de arándanos y cebolla morada',
+    category:'conservas',
+    categories:['conservas','festiva'],
+    classInfo:'Mesa festiva · Última clase del ciclo 2026 · Fundamentos culinarios · Gaucha Estudio de Cocina',
+    intro:'Acompaña al vitel toné. Aporta acidez y frescura.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '100 g de arándanos frescos',
+        '100 g de cebolla morada en pluma fina',
+        '150 ml de vinagre de manzana con 5 % de acidez',
+        '150 ml de agua',
+        '30 g de azúcar',
+        '5 g de sal',
+        '½ cucharadita de coriandro',
+        '1 hoja de laurel',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Calentar agua, vinagre, azúcar, sal y especias hasta disolver. Colocar la cebolla en recipiente resistente al calor y verter la mezcla caliente.',
+      '<strong>2.</strong> Dejar bajar la temperatura unos minutos y añadir los arándanos para conservar mejor su forma. Enfriar rápidamente y refrigerar. Dejar reposar al menos 2 horas, idealmente hasta el día siguiente. Escurrir para servir.',
+    ],
+    techNote:'Encurtido rápido por acidificación, no fermentación. Es una preparación refrigerada; no es una conserva estable a temperatura ambiente. Usar en la semana, con utensilios limpios.',
+  },
+  {
+    id:'pate-fresco-hongos-miso',
+    title:'Paté fresco de hongos y miso con limón y hierbas frescas',
+    category:'entradas',
+    categories:['entradas','festiva'],
+    classInfo:'Mesa festiva · Última clase del ciclo 2026 · Fundamentos culinarios · Gaucha Estudio de Cocina',
+    intro:'Aporta umami y frescura.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '200 g de hongos frescos',
+        '100 g de hongos secos, pesados antes de hidratar',
+        '80 g de cebolla',
+        '1 diente de ajo',
+        '25 ml de aceite de oliva',
+        '20 g de manteca',
+        '20 g de miso blanco',
+        '30 ml de whisky o cognac',
+        '100 g de labneh natural',
+        '50 g de queso crema',
+        '30 ml de crema doble',
+        '10 a 15 ml de jugo de limón',
+        'Ralladura fina de 1 limón pequeño, solo la parte amarilla',
+        '1 cucharada de perejil y 1 cucharada de cebollín picados',
+        'Pimienta',
+        'Agua caliente para hidratar los hongos',
+        'Tostadas finas para acompañar',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Cubrir los hongos secos con agua caliente y dejar hidratar 20 a 30 minutos, o según el producto. Escurrir, revisar que no tengan restos de tierra y picar; descartar el líquido si tiene arena. Limpiar y cortar los hongos frescos. Sudar la cebolla con 10 ml de oliva; agregar el ajo y cocinar brevemente. Retirar.',
+      '<strong>2.</strong> Calentar el resto de la oliva y saltear los hongos frescos en tandas. Agregar los hongos hidratados y cocinar bien, dejando evaporar el agua hasta concentrar el sabor y lograr un dorado ligero. Reunir con la cebolla. Fuera del fuego, añadir 30 ml de whisky o cognac; volver al fuego y raspar el fondo para recuperar los jugos adheridos. Reducir hasta que no quede líquido libre. No flambear.',
+      '<strong>3.</strong> Dejar entibiar y procesar con la manteca y el miso. Enfriar rápidamente. Incorporar el labneh, el queso crema, 20 ml de crema doble, la ralladura y 10 ml de jugo de limón. Procesar brevemente. Agregar los 10 ml de crema restantes solo si hace falta aligerar: debe quedar untable, con cuerpo y sabor predominante a hongos.',
+      '<strong>4.</strong> Incorporar perejil y cebollín al final. Probar y ajustar pimienta, limón y sal solo si hace falta: el miso y el labneh ya aportan sal. Refrigerar al menos 1 hora. Servir fresco con tostadas, un hilo de oliva y cebollín.',
+    ],
+    techNote:'Hidratación, sudado, salteado por tandas, evaporación, desglasado, reducción y procesado. Concentrar los hongos antes de añadir los lácteos evita un paté aguado. El limón y las hierbas aportan frescura. El rendimiento cambia según cuánto absorban los hongos secos; alcanza para 6 a 8 porciones de picada. Usar en 3 días, refrigerado a 4 °C o menos.',
+    tips:[
+      'Anotación de clase: se pueden usar champiñones y gírgolas.',
+      'Anotación de clase: el labneh, el queso crema y la crema doble apenas se procesan, para que no se corten.',
+    ],
+  },
+  {
+    id:'ensalada-rusa-gaucha-zanahorias-encurtidas-wasabi',
+    title:'Ensalada rusa al estilo GAUCHA con zanahorias encurtidas y mayonesa al wasabi',
+    category:'ensaladas',
+    categories:['ensaladas','festiva'],
+    classInfo:'Mesa festiva · Última clase del ciclo 2026 · Fundamentos culinarios · Gaucha Estudio de Cocina',
+    intro:'Rinde 6 porciones. Con zanahorias encurtidas y mayonesa japonesa al wasabi.',
+    ingredientGroups:[
+      { title:'Ensalada', items:[
+        '700 g de papas de pulpa firme',
+        '200 g de arvejas frescas o congeladas',
+        '180 g de zanahoria limpia',
+        '10 g de cebollín picado',
+        'Sal para la cocción y pimienta a gusto',
+      ]},
+      { title:'Para encurtir', items:[
+        '100 ml de vinagre de arroz sin condimentar',
+        '100 ml de agua',
+        '20 g de azúcar',
+        '3 g de sal',
+      ]},
+      { title:'Aderezo', items:[
+        '120 g de mayonesa japonesa comercial',
+        '3 a 6 g de pasta de wasabi',
+        '10 ml de jugo de limón',
+        '10 a 20 ml de agua fría',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Cortar las zanahorias en cubos de unos 5 mm. Hervir agua, vinagre, azúcar y sal. Incorporar la zanahoria y cocinar 1 a 2 minutos: debe quedar crujiente, sin resultar dura. Pasar a un recipiente bajo con el líquido, enfriar rápidamente y refrigerar al menos 2 horas. Escurrir muy bien.',
+      '<strong>2.</strong> Pelar las papas y cortar en cubos regulares de 1,5 a 2 cm. Colocar en agua fría con sal, llevar a hervor suave y cocinar hasta que una puntilla entre sin resistencia, pero con los cubos enteros. Evitar un hervor fuerte.',
+      '<strong>3.</strong> Escurrir y extender en una bandeja poco profunda. Dejar que salga el vapor brevemente y refrigerar para enfriar con rapidez. No mezclar las papas calientes con la mayonesa.',
+      '<strong>4.</strong> Cocer las arvejas en agua hirviendo hasta tiernas y verdes, aproximadamente 1 a 3 minutos según tamaño y producto. Refrescar en agua con hielo y escurrir; secar el exceso de agua.',
+      '<strong>5.</strong> Mezclar la mayonesa con 3 g de wasabi, limón y una parte del agua. Probar y aumentar el wasabi gradualmente: su intensidad varía entre marcas. Buscar un aderezo cremoso, no líquido.',
+      '<strong>6.</strong> Mezclar suavemente papas frías, arvejas y zanahorias escurridas. Incorporar el aderezo de a poco, solo para ligar. Ajustar sal, pimienta y acidez. Terminar con cebollín y mantener refrigerado.',
+    ],
+    techNote:'Métodos y técnicas: cocción por expansión desde agua fría para las papas · cocción breve y refrescado de arvejas · cortes regulares · encurtido rápido · ajuste de una emulsión comercial · mezclado envolvente. Cocinar por separado permite respetar el punto de cada vegetal. Criterio de resultado: papas enteras y tiernas, arvejas verdes y zanahoria con mordida. El wasabi acompaña sin dominar. No sumar pepinillos, Dijon ni eneldo: la zanahoria ya aporta acidez y el perfil del plato está definido. Conservación: conservar los componentes refrigerados y unir cerca del servicio. Para esta clase, consumir la ensalada armada dentro de 48 horas. El encurtido restante se mantiene en su líquido, refrigerado, y se utiliza en la semana.',
+    tips:[
+      'Anotación de clase: la mayonesa japonesa es mayonesa tradicional + vinagre de arroz + wasabi o jengibre.',
+    ],
+  },
+  {
+    id:'garrapinadas-pecan-chocolate-blanco-cacao',
+    title:'Garrapiñadas de pecán, chocolate blanco y cacao',
+    category:'pasteleria',
+    categories:['pasteleria','festiva'],
+    classInfo:'Mesa festiva · Última clase del ciclo 2026 · Fundamentos culinarios · Gaucha Estudio de Cocina',
+    intro:'Rinde 6 porciones.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '300 g de nueces pecán',
+        '300 g de azúcar',
+        '100 cc de agua',
+        '100 g de cacao amargo',
+        '200 g de chocolate blanco derretido',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Derretir el chocolate blanco picado a baño María, sin que el agua llegue a hervir.',
+      '<strong>2.</strong> Cocinar en una olla el azúcar y el agua, cuando rompa hervor agregar los frutos secos.',
+      '<strong>3.</strong> Revolver con una cuchara de madera hasta que el almíbar comience a cristalizar.',
+      '<strong>4.</strong> Derramar las nueces sobre un silpat y dejar enfriar.',
+      '<strong>5.</strong> Agregar las nueces al chocolate blanco y revolver hasta que estén todas cubiertas, acomodarlas sobre un silpat y llevar a la heladera unos minutos.',
+      '<strong>6.</strong> Luego llevarlas a un bowl con cacao y empanarlas.',
+    ],
+    techNote:'Guardar en frascos herméticos. Se puede repetir la misma receta con cualquier fruto seco, también bañarlos en chocolate amargo o leche. Al almíbar de cocción se le pueden agregar especias o ralladura para saborizarlo.',
+    tips:[
+      'Anotación de clase: al almíbar se le puede poner cardamomo o sumac; también pueden ir en el chocolate.',
+    ],
+  },
+  {
+    id:'torta-especiada-cerveza-negra-frutas-confitadas',
+    title:'Torta especiada de cerveza negra y frutas confitadas',
+    category:'pasteleria',
+    categories:['pasteleria','festiva'],
+    classInfo:'Mesa festiva · Última clase del ciclo 2026 · Fundamentos culinarios · Gaucha Estudio de Cocina',
+    intro:'Rinde 6 porciones.',
+    ingredientGroups:[
+      { title:'Ingredientes', items:[
+        '250 cc de cerveza negra',
+        '5 g de bicarbonato',
+        '50 cc de miel',
+        '250 g de manteca',
+        '300 g de harina',
+        '200 g de azúcar negra',
+        'Especias a gusto (canela, cardamomo, anís, clavo, jengibre)',
+        '4 huevos',
+        '400 g de fruta disecada y seca (almendras, avellanas, castañas, pistachos, damascos, pasas, ciruelas, higos, dátiles, etc.)',
+      ]},
+    ],
+    steps:[
+      '<strong>1.</strong> Calentar el horno a 180 °C.',
+      '<strong>2.</strong> Hidratar la fruta disecada con algún vino caliente, con almíbar o jugo de naranja.',
+      '<strong>3.</strong> Colocar en una olla al fuego la cerveza, bicarbonato y miel. Retirar del fuego y dejar entibiar. Incorporar los 4 huevos ligeramente batidos y mezclar hasta integrar.',
+      '<strong>4.</strong> En un bowl arenar la manteca, harina, azúcar y especias. Luego agregar la mezcla de cerveza y huevos y revolver hasta integrar.',
+      '<strong>5.</strong> Incorporar la fruta seca y la hidratada.',
+      '<strong>6.</strong> Disponer la mezcla en un molde de 24 cm enmantecado y enharinado. Llevar al horno hasta que la torta esté seca en el centro. Aproximadamente 30 minutos.',
+    ],
+    techNote:'Arriba se puede terminar con mascarpone, crema batida, glacé y frutas o simplemente azúcar y canela espolvoreada. Se puede servir como reemplazo del pan dulce pero también como postre, tibia, con helado y salsa de chocolate amargo.',
+    tips:[
+      'Anotación de clase: la manteca también puede ser 100 g de manteca y 100 g de oliva suave.',
+      'Anotación de clase: hay mezclas de especias que se venden como "7 especias" y se pueden usar.',
     ],
   },
 ];
